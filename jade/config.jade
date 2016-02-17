@@ -1,0 +1,9 @@
+script(id="menu", type="text/x-template")
+  include lib/nav
+
+
+script(id="row", type="text/x-template")
+  li.list-group-item
+    span.badge {{data.rssi}}
+    a(href='#/{{data.ssid}}') {{data.ssid}}
+
