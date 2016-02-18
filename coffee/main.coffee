@@ -14,6 +14,22 @@ App =
 Views = App.Views
 Models = App.Models
 
+# replace bb sysnc
+Backbone._sync = Backbone.sync
+Backbone.sync = (method, model, options) ->
+  beforeSend = options.beforeSend
+  options = options or {}
+  if method == 'update' or method == 'delete' or method == 'patch'
+    options.beforeSend = (xhr) ->
+      xhr.setRequestHeader 'X-HTTP-Method-Override', method
+      if beforeSend
+        beforeSend.apply this, arguments
+      method = 'create'
+      return
+
+  Backbone._sync method, model, options
+
+
 
 App.Views.Menu = Backbone.View.extend
   template:_.template $('#Nav').html()
@@ -55,18 +71,18 @@ Views.Main = Backbone.View.extend
     @onRendered() if @onRendered
     @
   onRendered: ->
-    console.log 'Main'
     @
 
 
 Views.Config = Views.Main.extend
+  model: new Models.Config()
   template: _.template $('#Config').html()
   onRendered: ->
     console.log 'Config'
     @
 
 Views.Hardware = Views.Main.extend
-  model:new Models.Hardware()
+  model: new Models.Hardware()
   template: _.template $('#Hardware').html()
   onRendered: ->
     console.log 'Hardware'

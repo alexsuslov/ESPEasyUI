@@ -1,7 +1,7 @@
-mixin frm_input(title, name)
+mixin frm_input(title, name, value)
   .form-group
     label= title
-    input.form-control( name=name placeholder=title)
+    input.form-control( name=name placeholder=title value!="<%= #{value} %>" )
 
 mixin label(title)
   .form-group

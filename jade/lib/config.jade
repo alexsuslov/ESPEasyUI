@@ -1,33 +1,49 @@
 include mixin
+- var protocols = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+- var names = ["- Standalone", "Domoticz HTTP", "Domoticz MQTT", "Nodo Telnet", "ThingSpeak", "OpenHAB MQTT", "PiDome MQTT", "Emoncms", "Generic HTTP"];
 
 form.row(method="POST")
   fieldset.col-md-3
     legend Main Settings
-    +frm_input('Device Name', 'name' )
-    +frm_input('Change Admin password', 'password' )
+    +frm_input('Device Name', 'Name', 'Settings.Name' )
+    +frm_input('Device Delay', 'Delay', 'Settings.Delay' )
+    //- +frm_input('Change Admin password', 'password' )
+    .form-group
+      label Password
+      input.form-control( name='password')
     button.btn.btn-default(type='submit') Submit
+
+    legend Protocol
+    p Protocol: #{2}
 
   fieldset.col-md-3
     legend WiFi Station Settings
-    +frm_input('SSID', 'ssid' )
-    +frm_input('WPA key', 'key' )
+    +frm_input('SSID', 'ssid', 'SecuritySettings.WifiSSID' )
+    +frm_input('WPA key', 'key', 'SecuritySettings.WifiKey' )
     button.btn.btn-default(type='submit') Submit
 
 
   fieldset.col-md-3
     legend WiFi Access Point Settings
-    +frm_input('WPA AP mode key', 'key' )
-    +frm_input('ESP ip', 'espip' )
+    +frm_input('WPA AP mode key', 'SecuritySettings.WifiAPKey' )
+    +frm_input('ESP ip', 'espip', 'Settings.IP' )
     +frm_input('ESP gw', 'espgateway' )
-    +frm_input('ESP Subnet', 'espsubnet' )
-    +frm_input('ESP DNS', 'espdns' )
+    +frm_input('ESP Subnet', 'espsubnet','Settings.Subnet' )
+    +frm_input('ESP DNS', 'espdns','Settings.DNS' )
     button.btn.btn-default(type='submit') Submit
 
   fieldset.col-md-3
+    legend Protocol
+    +label('Protocol')
+      select.form-control( name="protocol" )
+        for protocol, i in protocols
+          option(value=protocol)= names[i]
+
+    p Protocol: #{2}
     legend MQTT
-    +frm_input('MQTT hostname', 'controllerhostname' )
-    +frm_input('MQTT ip', 'controllerip' )
-    +frm_input('MQTT port', 'controllerport' )
-    +frm_input('MQTT user', 'controlleruser' )
-    +frm_input('MQTT pass', 'controllerpassword' )
+    +frm_input('MQTT hostname', 'controllerhostname','Settings.ControllerHostName' )
+    +frm_input('MQTT ip', 'controllerip','Settings.Controller_IP' )
+    +frm_input('MQTT port', 'controllerport', 'Settings.ControllerPort' )
+    +frm_input('MQTT user', 'controlleruser','SecuritySettings.ControllerUser' )
+    +frm_input('MQTT pass', 'controllerpassword','SecuritySettings.ControllerPassword' )
     button.btn.btn-default(type='submit') Submit
