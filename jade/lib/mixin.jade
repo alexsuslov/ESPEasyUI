@@ -2,3 +2,15 @@ mixin frm_input(title, name)
   .form-group
     label= title
     input.form-control( name=name placeholder=title)
+
+mixin label(title)
+  .form-group
+    label= title
+    block
+
+mixin pinState(id)
+  +label Pin mode #{id} :
+    select.form-control
+      option(value="0") Default
+      option(value="1") Output Low
+      option(value="2") Output High

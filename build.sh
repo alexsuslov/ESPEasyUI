@@ -13,10 +13,10 @@ function jade2h {
   sed "s/${src}/${dst}/" $1.h | sed "s/${src1}/${dst1}/" >../${filename}.h
 }
 
-rm *.h
-time gulp dist
+rm -rf .tmp/ *.h
+time gulp jade
 
-cd .tmp
+cd .tmp/
 
 for f in `ls *.html`
 do

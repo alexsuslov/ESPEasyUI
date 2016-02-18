@@ -5,17 +5,13 @@ var coffee = require('gulp-coffee');
 var uglify = require('gulp-uglify');
 var clean = require('gulp-clean');
 var watch = require('gulp-watch');
-var exec = require('gulp-exec');
-var debug = require('gulp-debug');
-var path = require('path');
-var foreach = require('gulp-foreach');
+var webserver = require('gulp-webserver');
 
-gulp.task('default', ['coffee','compress','jade', 'watch']);
-gulp.task('dist', ['clean', 'jade']);
+gulp.task('default', ['coffee','compress','jade', 'watch', 'webserver']);
 
 gulp.task('coffee', function() {
   return gulp.src('./coffee/*.coffee')
-    .pipe(coffee({bare: false}).on('error', gutil.log))
+    .pipe(coffee({bare: true}).on('error', gutil.log))
     .pipe(gulp.dest('.tmp/js/'));
 });
 
@@ -46,7 +42,17 @@ gulp.task('clean', function () {
 
 gulp.task('watch', function () {
   gulp.watch('coffee/**/*.coffee', ['coffee'])
-  gulp.watch('js/**/*.js', ['compress'])
+  gulp.watch('.tmp/js/**/*.js', ['compress'])
   gulp.watch('dist/**/*.js', ['jade'])
-  gulp.watch('jade/**/*.jade', ['jade']);
+  gulp.watch(['jade/**/*.jade','.tmp/js/*.js'], ['jade']);
 });
+
+gulp.task('webserver', function() {
+  gulp.src('.tmp')
+    .pipe(webserver({
+      livereload: true,
+      directoryListing: true,
+      open: false
+    }));
+});
+
