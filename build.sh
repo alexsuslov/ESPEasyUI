@@ -16,9 +16,9 @@ function jade2h {
 rm *.h
 time gulp dist
 
-cd html
+cd .tmp
 
-for f in `ls`
+for f in `ls *.html`
 do
  echo "Processing $f"
  jade2h $f

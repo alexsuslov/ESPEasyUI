@@ -13,36 +13,33 @@ var foreach = require('gulp-foreach');
 gulp.task('default', ['coffee','compress','jade', 'watch']);
 gulp.task('dist', ['clean', 'jade']);
 
+gulp.task('coffee', function() {
+  return gulp.src('./coffee/*.coffee')
+    .pipe(coffee({bare: false}).on('error', gutil.log))
+    .pipe(gulp.dest('.tmp/js/'));
+});
+
+gulp.task('compress',['coffee'], function() {
+  return gulp.src(['js/*.js','.tmp/js/*.js'])
+    .pipe(uglify())
+    .pipe(gulp.dest('.tmp/min/'));
+});
 
 gulp.task('jade', ['compress'], function() {
   var YOUR_LOCALS = {
     title:'ESP Easy.',
     footer: "Powered by 42do.ru"
   };
+
   return gulp.src('./jade/*.jade')
     .pipe(jade({
       locals: YOUR_LOCALS
     }))
-    .pipe(gulp.dest('./html/'))
+    .pipe(gulp.dest('.tmp/'))
 });
-
-
-gulp.task('coffee', function() {
-  return gulp.src('./coffee/*.coffee')
-    .pipe(coffee({bare: false}).on('error', gutil.log))
-    .pipe(gulp.dest('./js/'));
-});
-
-
-gulp.task('compress',['coffee'], function() {
-  return gulp.src('js/*.js')
-    .pipe(uglify())
-    .pipe(gulp.dest('dist'));
-});
-
 
 gulp.task('clean', function () {
-  return gulp.src(['dist', 'html'], {read: false})
+  return gulp.src(['.tmp'], {read: false})
     .pipe(clean());
 });
 
