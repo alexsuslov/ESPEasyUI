@@ -5,8 +5,14 @@
 ###
 'use strict'
 
-App = Views : {}
+apiPrefix = "http://10.0.1.32/api/"
+
+App =
+  Views : {}
+  Models : {}
+
 Views = App.Views
+Models = App.Models
 
 
 App.Views.Menu = Backbone.View.extend
@@ -15,16 +21,37 @@ App.Views.Menu = Backbone.View.extend
     @$el.html(@template())
     @
 
+Models.Config = Backbone.Model.extend
+  url:apiPrefix + "config"
+
+Models.Hardware = Models.Config.extend
+  url:apiPrefix + "hardware"
 
 Views.Main = Backbone.View.extend
   initialize:->
-    @render()
+    unless @model
+      @render()
+    else
+      @model.fetch()
+    @model.on 'sync', =>
+      @render()
+    @
+
+  select: ->
+    if @model
+      @$el.find('select').forEach (s)=>
+        name = $(s).attr('name')
+        val = @model.get $(s).attr('name') unless name is undefined
+        unless val is undefined
+          @$el.find("select[name='#{name}'] option[value='#{val}']").attr("selected", "selected")
     @
 
   render: ->
     @menu = new App.Views.Menu()
     @$el.html @menu.render().el
-    @$el.append(@template()) if @template
+    # console.log @template @model.toJSON()
+    @$el.append(@template( if @model then @model.toJSON() else {} )) if @template
+    @select()
     @onRendered() if @onRendered
     @
   onRendered: ->
@@ -39,6 +66,7 @@ Views.Config = Views.Main.extend
     @
 
 Views.Hardware = Views.Main.extend
+  model:new Models.Hardware()
   template: _.template $('#Hardware').html()
   onRendered: ->
     console.log 'Hardware'

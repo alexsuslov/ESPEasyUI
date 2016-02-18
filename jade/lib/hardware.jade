@@ -2,10 +2,11 @@ include mixin
 
 - var gpios = [-1, 0, 2, 4, 5, 9, 10, 12, 13, 14, 15, 16];
 - var labels = ["", 'PIO-0', 'PIO-2', 'PIO-4', 'PIO-5', 'PIO-9', 'GPIO-10', 'GPIO-12', 'GPIO-13', 'GPIO-14', 'GPIO-15', 'GPIO-16'];
+- V = function(val){return '%=' + val + '%'}
 
 mixin pinState(id)
-  +label Pin mode #{id} :
-    select.form-control
+  +label Pin mode #{id}:
+    select.form-control( name="p#{id}" )
       option(value="0") Default
       option(value="1") Output Low
       option(value="2") Output High
@@ -15,11 +16,11 @@ form.row(method="POST")
   fieldset.col-md-3
     legend I²C
     +label SDA:
-      select.form-control
+      select.form-control(name="Pin_i2c_sda")
         for gpio, i in gpios
           option(value=gpio)= labels[i]
     +label SCL:
-      select.form-control
+      select.form-control(name="Pin_i2c_scl")
         for gpio, i in gpios
           option(value=gpio)= labels[i]
     button.btn.btn-default(type='submit') Submit
