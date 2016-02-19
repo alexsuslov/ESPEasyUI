@@ -13,10 +13,17 @@ html
     script(src=backbone)
 
   body
+    include lib/nav
     .container
-    .footer
-      hr
-      h6.text-center= footer
+      .main.block
+      .config.block
+      .hardware.block
+      .devices.block
+      .device.block
+      .tools.block
+      .footer
+        hr
+        h6.text-center= footer
     include templates
     include lib/app
 

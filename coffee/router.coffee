@@ -13,25 +13,40 @@ App.Router = Backbone.Router.extend
     tools         : 'tools'
     'devices/:id' : 'device'
     ''            : 'summary'
+  Forms:{}
+  initialize:->
+    @
 
   summary:->
-    new App.Views.Main(el:'.container')
+    @Forms.main = new App.Views.Main( el:'.main') unless @Forms.main
+    $('.block').hide()
+    # @Forms.main.render()
+    $('.main').show()
     @
 
   help:->
     console.log 'help'
 
   config:->
-    new App.Views.Config(el:'.container')
+    @Forms.config = new App.Views.Config(el:'.config') unless @Forms.config
+    $('.block').hide()
+    @Forms.config.model.fetch()
+    $('.config').show()
     @
 
   hardware:->
-    new App.Views.Hardware(el:'.container')
+    @Forms.hardware = new App.Views.Hardware(el:'.hardware') unless @Forms.hardware
+    $('.block').hide()
+    @Forms.hardware.model.fetch()
+    $('.hardware').show()
     @
 
   devices:->
-    new App.Views.Devices(el:'.container')
-    console.log 'devices'
+    @Forms.devices = new App.Views.Devices(el:'.devices') unless @Forms.devices
+    $('.block').hide()
+    @Forms.devices.collection.fetch()
+    $('.devices').show()
+    @
 
   device:(id)->
     new App.Views.Device(el:'.container')

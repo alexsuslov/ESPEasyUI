@@ -16,17 +16,11 @@ $.fn.serializeObject = ->
 App =
   Views : {}
   Models : {}
+  Collections: {}
 
 Views = App.Views
 Models = App.Models
-
-
-
-App.Views.Menu = Backbone.View.extend
-  template:_.template $('#Nav').html()
-  render:->
-    @$el.html(@template())
-    @
+Collections = App.Collections
 
 Models.Config = Backbone.Model.extend
   url:apiPrefix + "config"
@@ -35,16 +29,18 @@ Models.Config = Backbone.Model.extend
       @save( {}, type: 'post', data: @data, contentType: false, processData: false,)
     @
 
+Models.Device = Models.Config.extend
+  url:apiPrefix + "device"
+
+Collections.Devices = Backbone.Collection.extend
+  url:apiPrefix + "devices"
 
 Models.Hardware = Models.Config.extend
   url:apiPrefix + "hardware"
 
 Views.Main = Backbone.View.extend
   initialize:->
-    unless @model
-      @render()
-    else
-      @model.fetch()
+    if @model
       @model.on 'sync', =>
         @render()
     @
@@ -68,9 +64,6 @@ Views.Main = Backbone.View.extend
     @
 
   render: ->
-    @menu = new App.Views.Menu()
-    @$el.html @menu.render().el
-    # console.log @template @model.toJSON()
     @$el.append(@template( if @model then @model.toJSON() else {} )) if @template
     @select()
     @onRendered() if @onRendered
@@ -82,23 +75,35 @@ Views.Main = Backbone.View.extend
 Views.Config = Views.Main.extend
   model: new Models.Config()
   template: _.template $('#Config').html()
-  onRendered: ->
-    console.log 'Config'
-    @
 
 Views.Hardware = Views.Main.extend
   model: new Models.Hardware()
   template: _.template $('#Hardware').html()
-  onRendered: ->
-    console.log 'Hardware'
+
+
+Views.Devices = Backbone.View.extend
+  template    : _.template $('#Devices').html()
+  templateRow : _.template $('#DevicesRow').html()
+
+  collection  :new Collections.Devices()
+  initialize  :->
+    @collection.on 'update', => @render()
+    @
+  serilizeData: (data)->
+    data.device.value = data.device.Tasks.map (task)->
+      "#{task.TaskDeviceValueName}: #{task.TaskDeviceValue}"
+    data
+  render      :->
+
+    @$el.html @template()
+    $tbody = @$el.find('tbody')
+    @collection.toJSON().forEach (device)=>
+      $tbody.append @templateRow( @serilizeData device:device)
     @
 
-Views.Devices = Views.Main.extend
+
+Views.Device = Views.Main.extend
   template:_.template $('#Devices').html()
-  onRendered: ->
-    console.log 'Devices'
 
 Views.Tools = Views.Main.extend
   template:_.template $('#Tools').html()
-  onRendered: ->
-    console.log 'Tools'
