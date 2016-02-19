@@ -11,7 +11,8 @@ gulp.task('default', ['coffee','compress','jade', 'watch', 'webserver']);
 
 gulp.task('coffee', function() {
   return gulp.src('./coffee/*.coffee')
-    .pipe(coffee({bare: true}).on('error', gutil.log))
+    .pipe(coffee({bare: true}))
+      // .on('error', gutil.log))
     .pipe(gulp.dest('.tmp/js/'));
 });
 

@@ -7,6 +7,12 @@
 
 apiPrefix = "http://10.0.1.32/api/"
 
+$.fn.serializeObject = ->
+  obj = {}
+  @serializeArray().forEach (v)->
+    obj[v.name]= v.value
+  obj
+
 App =
   Views : {}
   Models : {}
@@ -26,7 +32,7 @@ Models.Config = Backbone.Model.extend
   url:apiPrefix + "config"
   initialize:->
     @on 'save', =>
-      @save( {}, type: 'post')
+      @save( {}, type: 'post', data: @data, contentType: false, processData: false,)
     @
 
 
@@ -47,6 +53,8 @@ Views.Main = Backbone.View.extend
     'submit form': 'submit'
 
   submit:->
+    @model.data = @$el.find('form').serialize()
+    console.log '@model.data',@model.data
     @model.trigger('save')
     false
 
