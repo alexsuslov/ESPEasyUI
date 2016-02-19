@@ -14,21 +14,6 @@ App =
 Views = App.Views
 Models = App.Models
 
-# replace bb sysnc
-Backbone._sync = Backbone.sync
-Backbone.sync = (method, model, options) ->
-  beforeSend = options.beforeSend
-  options = options or {}
-  if method == 'update' or method == 'delete' or method == 'patch'
-    options.beforeSend = (xhr) ->
-      xhr.setRequestHeader 'X-HTTP-Method-Override', method
-      if beforeSend
-        beforeSend.apply this, arguments
-      method = 'create'
-      return
-
-  Backbone._sync method, model, options
-
 
 
 App.Views.Menu = Backbone.View.extend
@@ -39,6 +24,11 @@ App.Views.Menu = Backbone.View.extend
 
 Models.Config = Backbone.Model.extend
   url:apiPrefix + "config"
+  initialize:->
+    @on 'save', =>
+      @save( {}, type: 'post')
+    @
+
 
 Models.Hardware = Models.Config.extend
   url:apiPrefix + "hardware"
@@ -49,9 +39,16 @@ Views.Main = Backbone.View.extend
       @render()
     else
       @model.fetch()
-    @model.on 'sync', =>
-      @render()
+      @model.on 'sync', =>
+        @render()
     @
+
+  events:
+    'submit form': 'submit'
+
+  submit:->
+    @model.trigger('save')
+    false
 
   select: ->
     if @model
