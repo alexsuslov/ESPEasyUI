@@ -49,8 +49,10 @@ App.Router = Backbone.Router.extend
     @
 
   device:(id)->
-    new App.Views.Device(el:'.container')
-    console.log 'device'
+    # new App.Views.Device(el:'.device')
+    console.log 'device', id
+    device = new Models.Device(id:id)
+    device.fetch()
 
   tools:(id)->
     new App.Views.Tools(el:'.container')

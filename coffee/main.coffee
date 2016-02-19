@@ -7,12 +7,6 @@
 
 apiPrefix = "http://10.0.1.32/api/"
 
-$.fn.serializeObject = ->
-  obj = {}
-  @serializeArray().forEach (v)->
-    obj[v.name]= v.value
-  obj
-
 App =
   Views : {}
   Models : {}
@@ -30,7 +24,9 @@ Models.Config = Backbone.Model.extend
     @
 
 Models.Device = Models.Config.extend
-  url:apiPrefix + "device"
+  url: ->
+    id = @get 'id'
+    apiPrefix + "device?index=#{id}"
 
 Collections.Devices = Backbone.Collection.extend
   url:apiPrefix + "devices"
@@ -64,7 +60,7 @@ Views.Main = Backbone.View.extend
     @
 
   render: ->
-    @$el.append(@template( if @model then @model.toJSON() else {} )) if @template
+    @$el.html(@template( if @model then @model.toJSON() else {} )) if @template
     @select()
     @onRendered() if @onRendered
     @
