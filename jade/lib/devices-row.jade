@@ -1,11 +1,11 @@
 tr
   td
-    a.btn.btn-default(href!='#/devices/<%= device.DeviceId %>') E
-  td <%= device.TaskDeviceID %>
+    a.btn.btn-info(href!='#/devices/<%= device.DeviceId %>') E
   td <%= device.DeviceName %>
+  td <%= device.value %>
+  td <%= device.TaskDeviceID %>
   td <%= device.TaskDeviceName %>
   td <%= device.PluginConfig %>
   td <%= device.TaskDeviceID %>
   td <%= device.DevicePins %>
-  td <%= device.value %>
 

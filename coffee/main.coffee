@@ -5,7 +5,7 @@
 ###
 'use strict'
 
-apiPrefix = "http://10.0.1.32/api/"
+apiPrefix = "http://192.168.1.104/api/"
 
 App =
   Views : {}

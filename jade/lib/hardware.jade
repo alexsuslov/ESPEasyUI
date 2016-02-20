@@ -23,7 +23,8 @@ form.row(method="POST")
       select.form-control(name="pscl")
         for gpio, i in gpios
           option(value=gpio)= labels[i]
-    button.btn.btn-default(type='submit') Submit
+    .col-xs-4.col-md-3.pull-right.no-padding
+      button.btn.btn-block.btn-info.pull-right(type='submit') Save All
 
   fieldset.col-md-3
     legend Pin state
@@ -31,5 +32,5 @@ form.row(method="POST")
       if gpio >=0
         +pinState(gpio)
 
-    button.btn.btn-default(type='submit') Submit
+    button.btn.btn-info.pull-right(type='submit') Save All
 

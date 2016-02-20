@@ -49,7 +49,7 @@ gulp.task('watch', function () {
 });
 
 gulp.task('webserver', function() {
-  gulp.src('.tmp')
+  gulp.src('.tmp/')
     .pipe(webserver({
       livereload: true,
       directoryListing: true,

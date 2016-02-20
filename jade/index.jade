@@ -6,15 +6,30 @@
 html
   head
     meta(charset="utf-8")
+    meta(name='viewport', content='width=device-width, initial-scale=1.0') 
     title= title
     link(rel='stylesheet', href=bootstrap)
     script(src=jquery)
     script(src=lodash)
     script(src=backbone)
+    style.
+      body  {
+        background-color: #303030 !important;
+      }
+      input, select {
+        color: #FFFFFF !important;
+        background-color: #555555 !important;
+      }
+      .form-group {
+        color: #4673a3 !important;
+      }
+      .no-padding {
+        padding: 0 !important;
+      }
 
   body
     include lib/nav
-    .container
+    .container.no-padding
       .login.block
       .main.block
       .config.block
