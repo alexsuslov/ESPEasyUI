@@ -16,6 +16,14 @@ Views = App.Views
 Models = App.Models
 Collections = App.Collections
 
+###
+ __  __           _      _
+|  \/  | ___   __| | ___| |___
+| |\/| |/ _ \ / _` |/ _ \ / __|
+| |  | | (_) | (_| |  __/ \__ \
+|_|  |_|\___/ \__,_|\___|_|___/
+###
+
 Models.Config = Backbone.Model.extend
   url:apiPrefix + "config"
   initialize:->
@@ -23,23 +31,50 @@ Models.Config = Backbone.Model.extend
       @save( {}, type: 'post', data: @data, contentType: false, processData: false,)
     @
 
-Models.Auth = Models.Config.extend
+Models.Main = Models.Config.extend
   url:apiPrefix + "auth"
+  initialize:->
+    @on 'change:Chip_id', =>
+      Backbone.trigger 'onLogin'
+      @
 
+    @on 'save', =>
+      @save( {}, type: 'post', data: @data, contentType: false, processData: false,)
+      @
+    @
+
+Models.Hardware = Models.Config.extend
+  url:apiPrefix + "hardware"
 
 Models.Device = Models.Config.extend
   url: ->
     id = @get 'id'
     apiPrefix + "device?index=#{id}"
 
+###
+  ____      _ _           _   _
+ / ___|___ | | | ___  ___| |_(_) ___  _ __  ___
+| |   / _ \| | |/ _ \/ __| __| |/ _ \| '_ \/ __|
+| |__| (_) | | |  __/ (__| |_| | (_) | | | \__ \
+ \____\___/|_|_|\___|\___|\__|_|\___/|_| |_|___/
+###
+
 Collections.Devices = Backbone.Collection.extend
   url:apiPrefix + "devices"
 
+###
+__     ___
+\ \   / (_) _____      _____
+ \ \ / /| |/ _ \ \ /\ / / __|
+  \ V / | |  __/\ V  V /\__ \
+   \_/  |_|\___| \_/\_/ |___/
+###
 
-Models.Hardware = Models.Config.extend
-  url:apiPrefix + "hardware"
-
+###*
+ * [Main view]
+###
 Views.Main = Backbone.View.extend
+  template: _.template $('#Main').html()
   initialize:->
     if @model
       @model.on 'sync', =>
@@ -50,8 +85,8 @@ Views.Main = Backbone.View.extend
     'submit form': 'submit'
 
   submit:->
+    console.log 'submit'
     @model.data = @$el.find('form').serialize()
-    console.log '@model.data',@model.data
     @model.trigger('save')
     false
 
@@ -65,28 +100,37 @@ Views.Main = Backbone.View.extend
     @
 
   render: ->
-    @$el.html(@template( if @model then @model.toJSON() else {} )) if @template
+    @$el.html(@template( if @model then data:@model.toJSON() else {data:{}} )) if @template
     @select()
     @onRendered() if @onRendered
     @
   onRendered: ->
     @
 
-
+###*
+ * Config View
+###
 Views.Config = Views.Main.extend
   model: new Models.Config()
   template: _.template $('#Config').html()
 
+###*
+ * Auth View
+###
 Views.Auth = Views.Main.extend
-  model: new Models.Auth()
+  template: _.template $('#Login').html()
 
 
-
+###*
+ * [Hardware View]
+###
 Views.Hardware = Views.Main.extend
   model: new Models.Hardware()
   template: _.template $('#Hardware').html()
 
-
+###*
+ * [Devices view]
+###
 Views.Devices = Backbone.View.extend
   template    : _.template $('#Devices').html()
   templateRow : _.template $('#DevicesRow').html()
@@ -107,9 +151,15 @@ Views.Devices = Backbone.View.extend
       $tbody.append @templateRow( @serilizeData device:device)
     @
 
-
+###*
+ * [Device view]
+###
 Views.Device = Views.Main.extend
   template:_.template $('#Devices').html()
 
+
+###*
+ * [Tools view]
+###
 Views.Tools = Views.Main.extend
   template:_.template $('#Tools').html()

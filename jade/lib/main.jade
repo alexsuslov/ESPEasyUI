@@ -1,0 +1,44 @@
+include mixin
+.row
+  .col-md-4
+    h4 systeminfo
+    p
+      strong Uptime:
+      | <%= data.Uptime%>
+    p
+      strong IP:
+      | <%= data.IP%>
+    p
+      strong GW:
+      | <%= data.Gateway%>
+
+    p
+      strong Build:
+      | <%= data.Build%>
+    p
+      strong Unit:
+      | <%= data.Unit%>
+    p
+      strong STA MAC:
+      | <%= data.STA_MAC%>
+      | <%= data.Unit%>
+    p
+      strong AP MAC:
+      | <%= data.AP_MAC%>
+    p
+      strong ESP Chip ID:
+      | <%= data.Chip_id%>
+    p
+      strong Flash Chip ID:
+      | <%= data.Flash_Chip_id%>
+    p
+      strong Flash Size:
+      | <%= data.Flash_Size%>
+    p
+      strong Free Mem:
+      | <%= data.FreeMem%>
+    p
+      strong Boot cause:
+      | <%= data.Boot_cause%>
+
+

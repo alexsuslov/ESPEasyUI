@@ -5,9 +5,9 @@ include mixin
 form.row(method="POST")
   fieldset.col-md-3
     legend Main Settings
-    +frm_input('Device Name', 'name', 'name' )
-    +frm_input('Device Delay', 'delay', 'delay' )
-    +frm_input('Device unit', 'unit', 'unit' )
+    +frm_input('Device Name', 'name', 'data.name' )
+    +frm_input('Device Delay', 'delay', 'data.delay' )
+    +frm_input('Device unit', 'unit', 'data.unit' )
     //- +frm_input('usedns', 'usedns', 'usedns' )
     //- +frm_input('Change Admin password', 'password' )
     .form-group
@@ -20,18 +20,18 @@ form.row(method="POST")
 
   fieldset.col-md-3
     legend WiFi Station Settings
-    +frm_input('SSID', 'ssid', 'ssid' )
-    +frm_input('WPA key', 'key', 'key' )
+    +frm_input('SSID', 'ssid', 'data.ssid' )
+    +frm_input('WPA key', 'key', 'data.key' )
     button.btn.btn-default(type='submit') Submit
 
 
   fieldset.col-md-3
     legend WiFi Access Point Settings
-    +frm_input('WPA AP mode key', 'apkey','apkey' )
-    +frm_input('ESP ip', 'espip', 'espip' )
-    +frm_input('ESP gw', 'espgateway','espgateway' )
-    +frm_input('ESP Subnet', 'espsubnet','espsubnet' )
-    +frm_input('ESP DNS', 'espdns','espdns' )
+    +frm_input('WPA AP mode key', 'apkey','data.apkey' )
+    +frm_input('ESP ip', 'espip', 'data.espip' )
+    +frm_input('ESP gw', 'espgateway','data.espgateway' )
+    +frm_input('ESP Subnet', 'espsubnet','data.espsubnet' )
+    +frm_input('ESP DNS', 'espdns','data.espdns' )
     button.btn.btn-default(type='submit') Submit
 
   fieldset.col-md-3
@@ -43,9 +43,9 @@ form.row(method="POST")
 
     p Protocol: #{2}
     legend MQTT
-    +frm_input('MQTT hostname', 'controllerhostname','controllerhostname' )
-    +frm_input('MQTT ip', 'controllerip','controllerip' )
-    +frm_input('MQTT port', 'controllerport', 'controllerport' )
-    +frm_input('MQTT user', 'controlleruser','controlleruser' )
-    +frm_input('MQTT pass', 'controllerpassword','controllerpassword' )
+    +frm_input('MQTT hostname', 'controllerhostname','data.controllerhostname' )
+    +frm_input('MQTT ip', 'controllerip','data.controllerip' )
+    +frm_input('MQTT port', 'controllerport', 'data.controllerport' )
+    +frm_input('MQTT user', 'controlleruser','data.controlleruser' )
+    +frm_input('MQTT pass', 'controllerpassword','data.controllerpassword' )
     button.btn.btn-default(type='submit') Submit

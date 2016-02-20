@@ -3,9 +3,16 @@
  * @author AlexSuslov<suslov@me.com>
  * @created 2016-02-18
 ###
+if window.data
+  App.model = new Models.Main(window.data)
+else
+  App.model = new Models.Main()
+
 
 App.Router = Backbone.Router.extend
+  login:false
   routes:
+    logout        : 'logout'
     config        : 'config'
     hardware      : 'hardware'
     devices       : 'devices'
@@ -13,23 +20,33 @@ App.Router = Backbone.Router.extend
     'devices/:id' : 'device'
     ''            : 'summary'
   Forms:
-    auth     : new App.Views.Auth( el:'.login')
-    main     : new App.Views.Main( el:'.main')
+    login    : new App.Views.Auth( model:App.model, el:'.login').render()
+    main     : new App.Views.Main( model:App.model, el:'.main')
     config   : new App.Views.Config(el:'.config')
     hardware : new App.Views.Hardware(el:'.hardware')
     devices  : new App.Views.Devices(el:'.devices')
   initialize:->
+    # logout
+    Backbone.on 'onLogin', =>
+      @summary()
+    Backbone.on 'onLogout', =>
+      App.model.clear()
+      @summary()
+    @
+
+  logout:->
+    Backbone.trigger 'onLogout'
     @
 
   summary:->
     $('.block').hide()
-    $('.login').show()
-    # @Forms.main.render()
-    $('.main').show()
+    if App.model.get 'Chip_id'
+      $('nav').show()
+      $('.main').show()
+    else
+      $('nav').hide()
+      $('.login').show()
     @
-
-  help:->
-    console.log 'help'
 
   config:->
     $('.block').hide()
