@@ -4,7 +4,7 @@ include mixin
 
 form.row(method="POST")
   fieldset.col-md-3
-    legend Main Settings
+    legend Config
     +frm_input('Device Name', 'name', 'data.name' )
     +frm_input('Device Delay', 'delay', 'data.delay' )
     +frm_input('Device unit', 'unit', 'data.unit' )
@@ -13,7 +13,7 @@ form.row(method="POST")
     .form-group
       label Password
       input.form-control( name='password')
-    button.btn.btn-success.pull-right(type='submit') Save All
+    button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
 
     legend Protocol
     p Protocol: #{2}
@@ -22,7 +22,7 @@ form.row(method="POST")
     legend WiFi Station Settings
     +frm_input('SSID', 'ssid', 'data.ssid' )
     +frm_input('WPA key', 'key', 'data.key' )
-    button.btn.btn-success.pull-right(type='submit') Save All
+    button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
 
 
   fieldset.col-md-3
@@ -32,7 +32,7 @@ form.row(method="POST")
     +frm_input('ESP gw', 'espgateway','data.espgateway' )
     +frm_input('ESP Subnet', 'espsubnet','data.espsubnet' )
     +frm_input('ESP DNS', 'espdns','data.espdns' )
-    button.btn.btn-success.pull-right(type='submit') Save All
+    button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
 
   fieldset.col-md-3
     legend Protocol
@@ -48,4 +48,4 @@ form.row(method="POST")
     +frm_input('MQTT port', 'controllerport', 'data.controllerport' )
     +frm_input('MQTT user', 'controlleruser','data.controlleruser' )
     +frm_input('MQTT pass', 'controllerpassword','data.controllerpassword' )
-    button.btn.btn-success.pull-right(type='submit') Save All
+    button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
