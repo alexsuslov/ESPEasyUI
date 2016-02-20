@@ -6,20 +6,24 @@
 
 App.Router = Backbone.Router.extend
   routes:
-    help          : 'help'
     config        : 'config'
     hardware      : 'hardware'
     devices       : 'devices'
     tools         : 'tools'
     'devices/:id' : 'device'
     ''            : 'summary'
-  Forms:{}
+  Forms:
+    auth     : new App.Views.Auth( el:'.login')
+    main     : new App.Views.Main( el:'.main')
+    config   : new App.Views.Config(el:'.config')
+    hardware : new App.Views.Hardware(el:'.hardware')
+    devices  : new App.Views.Devices(el:'.devices')
   initialize:->
     @
 
   summary:->
-    @Forms.main = new App.Views.Main( el:'.main') unless @Forms.main
     $('.block').hide()
+    $('.login').show()
     # @Forms.main.render()
     $('.main').show()
     @
@@ -28,28 +32,24 @@ App.Router = Backbone.Router.extend
     console.log 'help'
 
   config:->
-    @Forms.config = new App.Views.Config(el:'.config') unless @Forms.config
     $('.block').hide()
     @Forms.config.model.fetch()
     $('.config').show()
     @
 
   hardware:->
-    @Forms.hardware = new App.Views.Hardware(el:'.hardware') unless @Forms.hardware
     $('.block').hide()
     @Forms.hardware.model.fetch()
     $('.hardware').show()
     @
 
   devices:->
-    @Forms.devices = new App.Views.Devices(el:'.devices') unless @Forms.devices
     $('.block').hide()
     @Forms.devices.collection.fetch()
     $('.devices').show()
     @
 
   device:(id)->
-    # new App.Views.Device(el:'.device')
     console.log 'device', id
     device = new Models.Device(id:id)
     device.fetch()

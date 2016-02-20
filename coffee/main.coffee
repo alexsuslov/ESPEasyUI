@@ -23,6 +23,10 @@ Models.Config = Backbone.Model.extend
       @save( {}, type: 'post', data: @data, contentType: false, processData: false,)
     @
 
+Models.Auth = Models.Config.extend
+  url:apiPrefix + "auth"
+
+
 Models.Device = Models.Config.extend
   url: ->
     id = @get 'id'
@@ -30,6 +34,7 @@ Models.Device = Models.Config.extend
 
 Collections.Devices = Backbone.Collection.extend
   url:apiPrefix + "devices"
+
 
 Models.Hardware = Models.Config.extend
   url:apiPrefix + "hardware"
@@ -71,6 +76,11 @@ Views.Main = Backbone.View.extend
 Views.Config = Views.Main.extend
   model: new Models.Config()
   template: _.template $('#Config').html()
+
+Views.Auth = Views.Main.extend
+  model: new Models.Auth()
+
+
 
 Views.Hardware = Views.Main.extend
   model: new Models.Hardware()
