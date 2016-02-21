@@ -11,25 +11,28 @@ mixin pinState(id)
       option(value="1") Output Low
       option(value="2") Output High
 
-
 form.row(method="POST")
-  fieldset.col-md-3.col-md-offset-2
-    legend I²C
-    +label SDA:
-      select.form-control(name="psda")
-        for gpio, i in gpios
-          option(value=gpio)= labels[i]
-    +label SCL:
-      select.form-control(name="pscl")
-        for gpio, i in gpios
-          option(value=gpio)= labels[i]
-    button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
-
-  fieldset.col-md-3
-    legend Pin state
-    for gpio in gpios
-      if gpio >=0
-        +pinState(gpio)
-
-    button.btn.btn-primary.pull-right(type='submit') Save All
+  fieldset.col-sm-3.col-sm-offset-3
+    .panel.panel-primary
+      .panel-heading
+        h3.panel-title I²C Settings
+      .panel-body
+        +label SDA:
+          select.form-control(name="psda")
+            for gpio, i in gpios
+              option(value=gpio)= labels[i]
+        +label SCL:
+          select.form-control(name="pscl")
+            for gpio, i in gpios
+              option(value=gpio)= labels[i]
+        button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
+  fieldset.col-sm-3
+    .panel.panel-primary
+      .panel-heading
+        h3.panel-title Pins state
+      .panel-body
+        for gpio in gpios
+          if gpio >=0
+            +pinState(gpio)
+        button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
 

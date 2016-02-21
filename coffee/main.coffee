@@ -7,6 +7,8 @@
 
 apiPrefix = "http://10.0.1.32/api/"
 
+  # apiPrefix = "http://192.168.1.104/api/"
+
 App =
   Views : {}
   Models : {}
@@ -150,7 +152,7 @@ Views.Devices = Backbone.View.extend
   render      :->
 
     @$el.html @template()
-    $tbody = @$el.find('tbody')
+    $tbody = @$el.find('#devices-list')
     @collection.toJSON().forEach (device)=>
       $tbody.append @templateRow( @serilizeData device:device)
     @

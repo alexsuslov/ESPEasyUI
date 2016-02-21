@@ -1,7 +1,7 @@
 {
   "name": "esp-easy-ui",
   "version": "1.0.0",
-  "description": "Esp Easy UI generator",
+  "description": "ESP Easy UI generator",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
