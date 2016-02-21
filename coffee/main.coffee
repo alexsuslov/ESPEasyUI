@@ -27,6 +27,8 @@ Collections = App.Collections
 Models.Config = Backbone.Model.extend
   url:apiPrefix + "config"
   initialize:->
+    @on 'error', ->
+      Backbone.trigger 'onLogout'
     @on 'save', =>
       @save( {}, type: 'post', data: @data, contentType: false, processData: false,)
     @
@@ -34,17 +36,17 @@ Models.Config = Backbone.Model.extend
 Models.Main = Models.Config.extend
   url:apiPrefix + "auth"
   initialize:->
-    @on 'change:Chip_id', =>
+    @on 'error', ->
+      Backbone.trigger 'onLogout'
+    @on 'change:Chip_id', ->
       Backbone.trigger 'onLogin'
-      @
-
     @on 'save', =>
       @save( {}, type: 'post', data: @data, contentType: false, processData: false,)
-      @
     @
 
 Models.Hardware = Models.Config.extend
   url:apiPrefix + "hardware"
+
 
 Models.Device = Models.Config.extend
   url: ->
@@ -61,6 +63,9 @@ Models.Device = Models.Config.extend
 
 Collections.Devices = Backbone.Collection.extend
   url:apiPrefix + "devices"
+
+Collections.Log = Backbone.Collection.extend
+  url:apiPrefix + "log"
 
 ###
 __     ___
@@ -134,7 +139,6 @@ Views.Hardware = Views.Main.extend
 Views.Devices = Backbone.View.extend
   template    : _.template $('#Devices').html()
   templateRow : _.template $('#DevicesRow').html()
-
   collection  :new Collections.Devices()
   initialize  :->
     @collection.on 'update', => @render()
@@ -150,6 +154,11 @@ Views.Devices = Backbone.View.extend
     @collection.toJSON().forEach (device)=>
       $tbody.append @templateRow( @serilizeData device:device)
     @
+
+Views.Log = Views.Devices.extend
+  template    : _.template $('#Log').html()
+  templateRow : _.template $('#LogRow').html()
+  collection  : new Collections.Log()
 
 ###*
  * [Device view]

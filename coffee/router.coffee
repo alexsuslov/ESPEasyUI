@@ -17,14 +17,18 @@ App.Router = Backbone.Router.extend
     hardware      : 'hardware'
     devices       : 'devices'
     tools         : 'tools'
+    log           : 'log'
     'devices/:id' : 'device'
     ''            : 'summary'
+
   Forms:
+    log      : new App.Views.Log( el:'.log')
     login    : new App.Views.Auth( model:App.model, el:'.login').render()
     main     : new App.Views.Main( model:App.model, el:'.main')
     config   : new App.Views.Config(el:'.config')
     hardware : new App.Views.Hardware(el:'.hardware')
     devices  : new App.Views.Devices(el:'.devices')
+
   initialize:->
     # logout
     Backbone.on 'onLogin', =>
@@ -32,6 +36,12 @@ App.Router = Backbone.Router.extend
     Backbone.on 'onLogout', =>
       App.model.clear()
       @summary()
+    @
+
+  log:->
+    $('.log').hide()
+    @Forms.log.collection.fetch()
+    $('.log').show()
     @
 
   logout:->
