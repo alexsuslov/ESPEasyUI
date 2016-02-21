@@ -6,11 +6,31 @@
 html
   head
     meta(charset="utf-8")
+    meta(name='viewport', content='width=device-width, initial-scale=1.0') 
     title= title
     link(rel='stylesheet', href=bootstrap)
     script(src=jquery)
     script(src=lodash)
     script(src=backbone)
+
+    // Custom styles override theme settings
+    style.
+      body  {
+        background-color: #353540 !important;
+      }
+      input, select {
+        color: #FFFFFF !important;
+        background-color: #555562 !important;
+      }
+      .form-group {
+        color: #4673a3 !important;
+      }
+      .no-padding {
+        padding: 0 !important!;
+      }
+      .brend > .btn-link:hover, .btn-link:focus {
+        text-decoration:none;
+      }
 
   body
     include lib/nav

@@ -13,7 +13,7 @@ mixin pinState(id)
 
 
 form.row(method="POST")
-  fieldset.col-md-3
+  fieldset.col-md-3.col-md-offset-2
     legend I²C
     +label SDA:
       select.form-control(name="psda")
@@ -23,7 +23,7 @@ form.row(method="POST")
       select.form-control(name="pscl")
         for gpio, i in gpios
           option(value=gpio)= labels[i]
-    button.btn.btn-default(type='submit') Submit
+    button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
 
   fieldset.col-md-3
     legend Pin state
@@ -31,5 +31,5 @@ form.row(method="POST")
       if gpio >=0
         +pinState(gpio)
 
-    button.btn.btn-default(type='submit') Submit
+    button.btn.btn-primary.pull-right(type='submit') Save All
 

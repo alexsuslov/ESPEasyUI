@@ -1,43 +1,41 @@
 include mixin
 .row
-  .col-md-4
-    h4 systeminfo
-    p
-      strong Uptime:
-      | <%= data.Uptime%>
-    p
-      strong IP:
-      | <%= data.IP%>
-    p
-      strong GW:
-      | <%= data.Gateway%>
-
-    p
-      strong Build:
-      | <%= data.Build%>
-    p
-      strong Unit:
-      | <%= data.Unit%>
-    p
-      strong STA MAC:
-      | <%= data.STA_MAC%>
-    p
-      strong AP MAC:
-      | <%= data.AP_MAC%>
-    p
-      strong ESP Chip ID:
-      | <%= data.Chip_id%>
-    p
-      strong Flash Chip ID:
-      | <%= data.Flash_Chip_id%>
-    p
-      strong Flash Size:
-      | <%= data.Flash_Size%>
-    p
-      strong Free Mem:
-      | <%= data.FreeMem%>
-    p
-      strong Boot cause:
-      | <%= data.Boot_cause%>
-
-
+  .col-md-6.col-md-offset-3
+    legend System Info
+    table.table.table-striped
+      tr
+        td Uptime
+        td.text-right <%= data.Uptime%>
+      tr
+        td IP address
+        td.text-right <%= data.IP%>
+      tr
+        td Gateway
+        td.text-right <%= data.Gateway%>
+      tr
+        td Build
+        td.text-right <%= data.Build%>
+      tr
+        td Unit
+        td.text-right <%= data.Unit%>
+      tr
+        td STA MAC
+        td.text-right <%= data.STA_MAC%>
+      tr
+        td AP MAC
+        td.text-right <%= data.AP_MAC%>
+      tr
+        td ESP chip id
+        td.text-right <%= data.Chip_id%>
+      tr
+        td Flash chip id
+        td.text-right <%= data.Flash_Chip_id%>
+      tr
+        td Flash Size
+        td.text-right <%= data.Flash_Size%>
+      tr
+        td Free Mem
+        td.text-right <%= data.FreeMem%>
+      tr
+        td Boot cause
+        td.text-right <%= data.Boot_cause%>
