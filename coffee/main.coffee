@@ -5,8 +5,6 @@
 ###
 'use strict'
 
-apiPrefix = "http://10.0.1.32/api/"
-
 App =
   Views : {}
   Models : {}
@@ -155,10 +153,15 @@ Views.Devices = Backbone.View.extend
       $tbody.append @templateRow( @serilizeData device:device)
     @
 
+
+###*
+ * [Log view]
+###
 Views.Log = Views.Devices.extend
   template    : _.template $('#Log').html()
   templateRow : _.template $('#LogRow').html()
   collection  : new Collections.Log()
+
 
 ###*
  * [Device view]
