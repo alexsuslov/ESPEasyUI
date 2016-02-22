@@ -18,6 +18,7 @@ App.Router = Backbone.Router.extend
     devices       : 'devices'
     tools         : 'tools'
     log           : 'log'
+    wifi          : 'wifi'
     'devices/:id' : 'device'
     ''            : 'summary'
 
@@ -28,6 +29,7 @@ App.Router = Backbone.Router.extend
     config   : new App.Views.Config(el:'.config')
     hardware : new App.Views.Hardware(el:'.hardware')
     devices  : new App.Views.Devices(el:'.devices')
+    wifi     : new App.Views.Wifi(el:'.wifi')
 
   initialize:->
     # logout
@@ -37,6 +39,14 @@ App.Router = Backbone.Router.extend
       App.model.clear()
       @summary()
     @
+
+  wifi:->
+    $('.block').hide()
+    $('.wifi').hide()
+    @Forms.wifi.collection.fetch()
+    $('.wifi').show()
+    @
+
 
   log:->
     $('.block').hide()

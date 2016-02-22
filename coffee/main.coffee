@@ -68,6 +68,7 @@ Models.Device = Models.Config.extend
 ###
 Models.Advanced = Models.Config.extend
   url: url:apiPrefix + "advanced"
+
 ###*
  * [Command model]
 ###
@@ -106,6 +107,13 @@ Collections.Commands = Backbone.Collection.extend
 ###
 Collections.I2C = Backbone.Collection.extend
   url:apiPrefix + "i2c"
+
+###*
+ * [Wifi collection]
+###
+Collections.Wifi = Backbone.Collection.extend
+  url:apiPrefix + "wifiscanner"
+  model: Backbone.Model
 
 
 ###
@@ -186,37 +194,39 @@ Views.Hardware = Views.Main.extend
  * [Devices view]
  * Collection list prototype
 ###
-Views.Devices = Backbone.View.extend
-  template    : _.template $('#Devices').html()
-  templateRow : _.template $('#DevicesRow').html()
-  tBody: '#devices-list'
+Views.Collection = Backbone.View.extend
+  tBody: '.list'
   collection  :new Collections.Devices()
+  serializeData: (data)->data
   initialize  :->
     @collection.on 'update', => @render()
     @
-  serilizeData: (data)->
-    data.device.value = data.device.Tasks.map (task)->
+
+  render      :->
+    if @template and @$el
+      @$el.html @template()
+      $tbody = @$el.find(@tBody)
+      @collection.toJSON().forEach (device)=>
+        $tbody.append @templateRow( @serializeData row:device)
+    @
+
+Views.Devices = Views.Collection.extend
+  template    : _.template $('#Devices').html()
+  templateRow : _.template $('#DevicesRow').html()
+  serializeData: (data)->
+    data.row.value = data.row.Tasks.map (task)->
       "#{task.TaskDeviceValueName}: #{task.TaskDeviceValue}"
     data
-  render      :->
-    @$el.html @template()
-    $tbody = @$el.find(@tBody)
-    @collection.toJSON().forEach (device)=>
-      $tbody.append @templateRow( @serilizeData row:device)
-    @
 
 
 ###*
  * [Log view]
 ###
-Views.Log = Views.Devices.extend
+Views.Log = Views.Collection.extend
   template    : _.template $('#Log').html()
   templateRow : _.template $('#LogRow').html()
   tBody: '#log-list'
   collection  : new Collections.Log()
-  serilizeData: (data)->
-    # console.log data
-    data
 
 
 ###*
@@ -229,15 +239,17 @@ Views.Device = Views.Main.extend
 ###*
  * [wifi list view]
 ###
-Views.Wifi = Views.Devices.extend
+Views.Wifi = Views.Collection.extend
   template:_.template $('#Wifi').html()
   templateRow:_.template $('#WifiRow').html()
+  tBody: '#wifi-list'
+  collection: new Collections.Wifi()
 
 
 ###*
  * [I2c list view]
 ###
-Views.I2C = Views.Devices.extend
+Views.I2C = Views.Collection.extend
   template:_.template $('#I2c').html()
   templateRow:_.template $('#I2cRow').html()
   collection: new Collections.I2C()
@@ -246,7 +258,7 @@ Views.I2C = Views.Devices.extend
 ###*
  * [Commands list view]
 ###
-Views.Commands = Views.Devices.extend
+Views.Commands = Views.Collection.extend
   template:_.template $('#Commands').html()
   templateRow:_.template $('#CommandsRow').html()
   tBody: '#commands-list'

@@ -8,8 +8,8 @@ $ ->
   timeout = 10
 
   # templates object
-  reSSID = new RegExp('{{data.ssid}}' , 'g')
-  reRSSI = new RegExp('{{data.rssi}}' , 'g')
+  reSSID = new RegExp('<%= row.ssid %>' , 'g')
+  reRSSI = new RegExp('<%= row.ssid %>' , 'g')
 
   tpl = (data)->
     data.sort (a,b)->
