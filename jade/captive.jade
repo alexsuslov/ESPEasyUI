@@ -1,20 +1,9 @@
 script(id="captive", type="text/x-template")
-   h1
-   h4.cfg Networks List
-   ul.cfg.list-group
+  include lib/wifi
 
-   form.cfg(action='#')
-     h4 Connect to:
-     .form-group
-       input.form-control(id="SSID", placeholder="SSID")
-     .form-group
-       input.form-control(id="KEY", placeholder="KEY")
-     button.btn.btn-default(type="submit") Connect now!
 
 script(id="row", type="text/x-template")
-  li.list-group-item
-    span.badge {{data.rssi}}
-    a(href='#/{{data.ssid}}') {{data.ssid}}
+  include lib/wifi-row
 
 script
   include ../.tmp/min/captive.js
