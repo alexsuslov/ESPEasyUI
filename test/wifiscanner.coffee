@@ -7,7 +7,6 @@ describe 'wifi scanner api', ->
 
     request url, (err, response, body)->
       if (!err and response.statusCode is 200)
-        console.log(body)
         json = JSON.parse( body )
         throw "scanner list not array" unless Array.isArray( json)
         done()
