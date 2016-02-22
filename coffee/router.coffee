@@ -39,6 +39,7 @@ App.Router = Backbone.Router.extend
     @
 
   log:->
+    $('.block').hide()
     $('.log').hide()
     @Forms.log.collection.fetch()
     $('.log').show()

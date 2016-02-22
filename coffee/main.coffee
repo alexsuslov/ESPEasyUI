@@ -189,6 +189,7 @@ Views.Hardware = Views.Main.extend
 Views.Devices = Backbone.View.extend
   template    : _.template $('#Devices').html()
   templateRow : _.template $('#DevicesRow').html()
+  tBody: '#devices-list'
   collection  :new Collections.Devices()
   initialize  :->
     @collection.on 'update', => @render()
@@ -198,11 +199,10 @@ Views.Devices = Backbone.View.extend
       "#{task.TaskDeviceValueName}: #{task.TaskDeviceValue}"
     data
   render      :->
-
     @$el.html @template()
-    $tbody = @$el.find('#devices-list')
+    $tbody = @$el.find(@tBody)
     @collection.toJSON().forEach (device)=>
-      $tbody.append @templateRow( @serilizeData device:device)
+      $tbody.append @templateRow( @serilizeData row:device)
     @
 
 
@@ -212,7 +212,11 @@ Views.Devices = Backbone.View.extend
 Views.Log = Views.Devices.extend
   template    : _.template $('#Log').html()
   templateRow : _.template $('#LogRow').html()
+  tBody: '#log-list'
   collection  : new Collections.Log()
+  serilizeData: (data)->
+    # console.log data
+    data
 
 
 ###*
@@ -237,6 +241,7 @@ Views.I2C = Views.Devices.extend
   template:_.template $('#I2c').html()
   templateRow:_.template $('#I2cRow').html()
   collection: new Collections.I2C()
+  tBody: '#i2c-list'
 
 ###*
  * [Commands list view]
@@ -244,6 +249,7 @@ Views.I2C = Views.Devices.extend
 Views.Commands = Views.Devices.extend
   template:_.template $('#Commands').html()
   templateRow:_.template $('#CommandsRow').html()
+  tBody: '#commands-list'
 
 
 ###*
