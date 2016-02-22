@@ -1,11 +1,25 @@
-tr
-  td
-    a.btn.btn-info(href!='#/devices/<%= device.DeviceId %>') E
-  td <%= device.DeviceName %>
-  td <%= device.value %>
-  td <%= device.TaskDeviceID %>
-  td <%= device.TaskDeviceName %>
-  td <%= device.PluginConfig %>
-  td <%= device.TaskDeviceID %>
-  td <%= device.DevicePins %>
-
+fieldset.col-md-4
+  .panel.panel-primary
+    .panel-heading
+      h3.panel-title <%= device.DeviceName %>
+    .panel-body
+      table.table.table-striped
+        tr
+          td Task
+          td.text-right <%= device.DeviceId %>
+        tr
+          td Name
+          td.text-right <%= device.TaskDeviceName %>
+        tr
+          td Port  
+          td.text-right <%= device.PluginConfig %>
+        tr
+          td IDX
+          td.text-right <%= device.TaskDeviceID %>
+        tr
+          td GPIO
+          td.text-right <%= device.DevicePins %>
+        tr
+          td Values
+          td.text-right <%= device.value %>
+      a.btn.btn-primary.pull-right.col-xs-6(href!='#/devices/<%= device.DeviceId %>') Edit

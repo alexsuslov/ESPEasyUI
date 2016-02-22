@@ -1,9 +1,14 @@
 include mixin
-form(method='post')
-  h4 Auth
-  .input-group
-      input.form-control( type='password' name='password' placeholder='enter password' )
-      span.input-group-btn
-        button.btn.btn-default ok
-
-
+.row
+  .col-sm-6.col-sm-offset-3
+    .panel.panel-primary
+      .panel-heading
+        h3.panel-title Authorization Required
+      .panel-body
+        .form-group
+          label Please, enter firmware password
+          form(method='post')
+            .input-group
+              input.form-control( type='password' name='password' placeholder='enter password' )
+              span.input-group-btn
+                button.btn.btn-primary Login

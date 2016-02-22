@@ -4,48 +4,59 @@ include mixin
 
 form.row(method="POST")
   fieldset.col-md-3
-    legend Config
-    +frm_input('Device Name', 'name', 'data.name' )
-    +frm_input('Device Delay', 'delay', 'data.delay' )
-    +frm_input('Device unit', 'unit', 'data.unit' )
-    //- +frm_input('usedns', 'usedns', 'usedns' )
-    //- +frm_input('Change Admin password', 'password' )
-    .form-group
-      label Password
-      input.form-control( name='password')
-    button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
+    .panel.panel-primary
+      .panel-heading
+        h3.panel-title Config
+      .panel-body
+        +frm_input('Device Name', 'name', 'data.name' )
+        +frm_input('Device Delay', 'delay', 'data.delay' )
+        +frm_input('Device unit', 'unit', 'data.unit' )
 
-    legend Protocol
-    p Protocol: #{2}
+        //- +frm_input('usedns', 'usedns', 'usedns' )
+        //- +frm_input('Change Admin password', 'password' )
 
-  fieldset.col-md-3
-    legend WiFi Station Settings
-    +frm_input('SSID', 'ssid', 'data.ssid' )
-    +frm_input('WPA key', 'key', 'data.key' )
-    button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
+        .form-group
+          label Login Password
+          input.form-control( name='password')
+        button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
 
+        //- legend Protocol
+        //- p Protocol: #{2}
 
   fieldset.col-md-3
-    legend WiFi Access Point Settings
-    +frm_input('WPA AP mode key', 'apkey','data.apkey' )
-    +frm_input('ESP ip', 'espip', 'data.espip' )
-    +frm_input('ESP gw', 'espgateway','data.espgateway' )
-    +frm_input('ESP Subnet', 'espsubnet','data.espsubnet' )
-    +frm_input('ESP DNS', 'espdns','data.espdns' )
-    button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
+    .panel.panel-primary
+      .panel-heading
+        h3.panel-title WiFi STA Settings
+      .panel-body
+        +frm_input('Router SSID', 'ssid', 'data.ssid' )
+        +frm_input('Router WPA key', 'key', 'data.key' )
+        button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
+
 
   fieldset.col-md-3
-    legend Protocol
-    +label('Protocol')
-      select.form-control( name="protocol" )
-        for protocol, i in protocols
-          option(value=protocol)= names[i]
+    .panel.panel-primary
+      .panel-heading
+        h3.panel-title WiFi AP Settings
+      .panel-body
+        +frm_input('WPA AP mode key', 'apkey','data.apkey' )
+        +frm_input('ESP ip', 'espip', 'data.espip' )
+        +frm_input('ESP gateway', 'espgateway','data.espgateway' )
+        +frm_input('ESP Subnet', 'espsubnet','data.espsubnet' )
+        +frm_input('ESP DNS', 'espdns','data.espdns' )
+        button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
 
-    p Protocol: #{2}
-    legend MQTT
-    +frm_input('MQTT hostname', 'controllerhostname','data.controllerhostname' )
-    +frm_input('MQTT ip', 'controllerip','data.controllerip' )
-    +frm_input('MQTT port', 'controllerport', 'data.controllerport' )
-    +frm_input('MQTT user', 'controlleruser','data.controlleruser' )
-    +frm_input('MQTT pass', 'controllerpassword','data.controllerpassword' )
-    button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
+  fieldset.col-md-3
+    .panel.panel-primary
+      .panel-heading
+        h3.panel-title Protocol Settings
+      .panel-body
+        +label('Protocol')
+          select.form-control( name="protocol" )
+            for protocol, i in protocols
+              option(value=protocol)= names[i]
+        +frm_input('MQTT hostname', 'controllerhostname','data.controllerhostname' )
+        +frm_input('MQTT ip', 'controllerip','data.controllerip' )
+        +frm_input('MQTT port', 'controllerport', 'data.controllerport' )
+        +frm_input('MQTT user', 'controlleruser','data.controlleruser' )
+        +frm_input('MQTT pass', 'controllerpassword','data.controllerpassword' )
+        button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All

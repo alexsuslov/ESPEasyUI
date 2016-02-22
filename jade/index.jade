@@ -18,6 +18,9 @@ html
       body  {
         background-color: #353540 !important;
       }
+      .panel {
+        background-color: #303035 !important;       
+      }
       input, select {
         color: #FFFFFF !important;
         background-color: #555562 !important;
@@ -25,11 +28,13 @@ html
       .form-group {
         color: #4673a3 !important;
       }
-      .no-padding {
-        padding: 0 !important!;
+      .btn-link:hover, .btn-link:focus, .btn-link:active{
+        text-decoration:none !important;
+        border: 1px solid;
+        border-radius: 5px;
       }
-      .brend > .btn-link:hover, .btn-link:focus {
-        text-decoration:none;
+      .divider24 {
+        padding-top: 24px;
       }
 
   body
@@ -42,11 +47,22 @@ html
       .devices.block
       .device.block
       .tools.block
+      .pager
+        a(href="#").btn.btn-sm.btn-primary.pull-left &larr;
+        a(href="#").btn.btn-sm.btn-primary.pull-right &rarr;
       .footer
-        hr
-        h6.text-center= footer
+          .progress
+            .progress-bar(style='width:100%;')
+        .well.well-sm.text-center
+          a(href='http://www.esp8266.nu/index.php/Main_Page',target='_blank')
+            span.label.label-primary ESPEasy
+          &nbsp;
+          a(href='https://github.com/alexsuslov/ESPEasyUI',target='_blank')
+            span.label.label-primary ESPEasyUI
+          &nbsp;
+          a(href='https://play.google.com/store/apps/details?id=ru.esp8266.iotmanager',target='_blank')
+            span.label.label-primary IoT Manager
+          br
+          .well-sm.text-center= footer
     include templates
     include lib/app
-
-
-
