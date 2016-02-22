@@ -12,6 +12,9 @@ $ ->
   reRSSI = new RegExp('{{data.rssi}}' , 'g')
 
   tpl = (data)->
+    data.sort (a,b)->
+      if a.rssi > b.rssi then -1 else 1
+
     html  = $('#row').html()
     html.replace reSSID, data.ssid
       .replace reRSSI, data.rssi
