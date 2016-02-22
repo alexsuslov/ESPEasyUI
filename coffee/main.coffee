@@ -191,17 +191,18 @@ Views.Hardware = Views.Main.extend
   template: _.template $('#Hardware').html()
 
 ###*
- * [Devices view]
+ * [Collection view]
  * Collection list prototype
 ###
 Views.Collection = Backbone.View.extend
   tBody: '.list'
-  collection  :new Collections.Devices()
-  serializeData: (data)->data
+
+  serializeData: (data)->
+    console.log data
+    data
   initialize  :->
     @collection.on 'update', => @render()
     @
-
   render      :->
     if @template and @$el
       @$el.html @template()
@@ -209,8 +210,11 @@ Views.Collection = Backbone.View.extend
       @collection.toJSON().forEach (device)=>
         $tbody.append @templateRow( @serializeData row:device)
     @
-
+###*
+ * [Devices view]
+###
 Views.Devices = Views.Collection.extend
+  collection  :new Collections.Devices()
   template    : _.template $('#Devices').html()
   templateRow : _.template $('#DevicesRow').html()
   serializeData: (data)->

@@ -44,6 +44,7 @@ App.Router = Backbone.Router.extend
     $('.block').hide()
     $('.wifi').hide()
     @Forms.wifi.collection.fetch()
+    console.log @Forms.wifi.collection.toJSON()
     $('.wifi').show()
     @
 
