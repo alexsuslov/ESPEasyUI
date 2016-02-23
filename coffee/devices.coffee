@@ -61,3 +61,4 @@ Views.Devices = Views.Collection.extend
 ###
 Views.Device = Views.Main.extend
   template:_.template $('#Devices').html()
+  model: new Models.Device()

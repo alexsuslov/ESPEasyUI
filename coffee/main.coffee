@@ -123,7 +123,6 @@ Views.Main = Backbone.View.extend
     'submit form': 'submit'
 
   submit:->
-    console.log 'submit'
     @model.data = @$el.find('form').serialize()
     @model.trigger('save')
     false
@@ -185,7 +184,7 @@ Views.Collection = Backbone.View.extend
   tBody: '.list'
 
   serializeData: (data)->
-    console.log data
+    # console.log data
     data
   initialize  :->
     @collection.on 'update', => @render()

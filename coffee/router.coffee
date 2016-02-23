@@ -42,18 +42,18 @@ App.Router = Backbone.Router.extend
     @
 
   wifi:->
-    $('.block').hide()
-    $('.wifi').hide()
-    @Forms.wifi.collection.fetch()
-    $('.wifi').show()
+    col = @Forms.wifi.collection
+    @showPage 'wifi' , (fn)=>
+      col.on 'sync', ->fn()
+      col.fetch()
     @
 
 
   log:->
-    $('.block').hide()
-    $('.log').hide()
-    @Forms.log.collection.fetch()
-    $('.log').show()
+    col = @Forms.log.collection
+    @showPage 'log' , (fn)=>
+      col.on 'sync', ->fn()
+      col.fetch()
     @
 
   logout:->
@@ -71,9 +71,11 @@ App.Router = Backbone.Router.extend
     @
 
   config:->
-    $('.block').hide()
-    @Forms.config.model.fetch()
-    $('.config').show()
+    model = @Forms.config.model
+    @showPage 'config' , (fn)=>
+      model.fetch()
+      model.on 'sync', ->
+        fn()
     @
 
   hardware:->
@@ -89,13 +91,25 @@ App.Router = Backbone.Router.extend
     @
 
   device:(id)->
+    $('.block').hide()
+    $('.devices').show()
     console.log 'device:', id
     # device = new Models.Device(id:id)
     # device.fetch()
 
-  tools:(id)->
+  tools:()->
+    @showPage 'tools'
+
+  showPage: (name, fn)->
     $('.block').hide()
-    $('.tools').show()
+    if fn
+      $('.loading').show()
+      fn ()->
+        $('.loading').hide()
+        $( '.' + name).show()
+    else
+      $( '.' + name).show()
+
 
 
 App.router = new App.Router()
