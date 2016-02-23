@@ -53,16 +53,6 @@ Models.Main = Models.Config.extend
 Models.Hardware = Models.Config.extend
   url:apiPrefix + "hardware"
 
-
-###*
- * [Device model]
-###
-Models.Device = Models.Config.extend
-  url: ->
-    id = @get 'id'
-    apiPrefix + "device?index=#{id}"
-
-
 ###*
  * [Advanced model]
 ###
@@ -84,13 +74,6 @@ Models.Command = Models.Config.extend
 | |__| (_) | | |  __/ (__| |_| | (_) | | | \__ \
  \____\___/|_|_|\___|\___|\__|_|\___/|_| |_|___/
 ###
-
-###*
- * [Devices collection]
-###
-Collections.Devices = Backbone.Collection.extend
-  url:apiPrefix + "devices"
-
 ###*
  * [Log collection]
 ###
@@ -162,6 +145,7 @@ Views.Main = Backbone.View.extend
   onRendered: ->
     @
 
+
 ###*
  * Config View
 ###
@@ -169,11 +153,13 @@ Views.Config = Views.Main.extend
   model: new Models.Config()
   template: _.template $('#Config').html()
 
+
 ###*
  * Auth View
 ###
 Views.Auth = Views.Main.extend
   template: _.template $('#Login').html()
+
 
 ###*
  * Advanced View
@@ -189,6 +175,7 @@ Views.Advanced = Views.Main.extend
 Views.Hardware = Views.Main.extend
   model: new Models.Hardware()
   template: _.template $('#Hardware').html()
+
 
 ###*
  * [Collection view]
@@ -210,18 +197,6 @@ Views.Collection = Backbone.View.extend
       @collection.toJSON().forEach (device)=>
         $tbody.append @templateRow( @serializeData row:device)
     @
-###*
- * [Devices view]
-###
-Views.Devices = Views.Collection.extend
-  collection  :new Collections.Devices()
-  template    : _.template $('#Devices').html()
-  templateRow : _.template $('#DevicesRow').html()
-  tBody: '#devices-list'
-  serializeData: (data)->
-    data.row.value = data.row.Tasks.map (task)->
-      "#{task.TaskDeviceValueName}: #{task.TaskDeviceValue}"
-    data
 
 
 ###*
@@ -232,13 +207,6 @@ Views.Log = Views.Collection.extend
   templateRow : _.template $('#LogRow').html()
   tBody: '#log-list'
   collection  : new Collections.Log()
-
-
-###*
- * [Device view]
-###
-Views.Device = Views.Main.extend
-  template:_.template $('#Devices').html()
 
 
 ###*
@@ -259,6 +227,7 @@ Views.I2C = Views.Collection.extend
   templateRow:_.template $('#I2cRow').html()
   collection: new Collections.I2C()
   tBody: '#i2c-list'
+
 
 ###*
  * [Commands list view]
