@@ -9,6 +9,7 @@
   "author": "Alex Suslov <suslov@me.com>",
   "license": "MIT",
   "devDependencies": {
+    "async": "^1.5.2",
     "chai": "^3.5.0",
     "coffee-script": "^1.10.0",
     "gulp": "^3.9.1",
