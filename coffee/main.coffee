@@ -27,12 +27,13 @@ Collections = App.Collections
 ###
 Models.Config = Backbone.Model.extend
   url:apiPrefix + "config"
+
   initialize:->
-    @on 'error', ->
-      Backbone.trigger 'onLogout'
     @on 'save', =>
       @save( {}, type: 'post', data: @data, contentType: false, processData: false,)
     @
+
+
 ###*
  * [Main model]
 ###
@@ -40,10 +41,13 @@ Models.Main = Models.Config.extend
   url:apiPrefix + "auth"
   initialize:->
     @on 'error', ->
-      Backbone.trigger 'onLogout'
+      Backbone.trigger 'login'
+
     @on 'change:Chip_id', ->
       Backbone.trigger 'onLogin'
+
     @on 'save', =>
+      console.log @data
       @save( {}, type: 'post', data: @data, contentType: false, processData: false,)
     @
 

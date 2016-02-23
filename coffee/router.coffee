@@ -3,14 +3,10 @@
  * @author AlexSuslov<suslov@me.com>
  * @created 2016-02-18
 ###
-if window.data
-  App.model = new Models.Main(window.data)
-else
-  App.model = new Models.Main()
-
-
+App.model = new Models.Main()
 App.Router = Backbone.Router.extend
   login:false
+
   routes:
     logout        : 'logout'
     config        : 'config'
@@ -33,11 +29,11 @@ App.Router = Backbone.Router.extend
     wifi     : new App.Views.Wifi(el:'.wifi')
 
   initialize:->
-    # logout
+    Backbone.on 'login', =>
+      $('.block').hide()
+      $('.loading').hide()
+      $('.login').show()
     Backbone.on 'onLogin', =>
-      @summary()
-    Backbone.on 'onLogout', =>
-      App.model.clear()
       @summary()
     @
 
@@ -61,13 +57,11 @@ App.Router = Backbone.Router.extend
     @
 
   summary:->
-    $('.block').hide()
-    if App.model.get 'Chip_id'
-      $('nav').show()
-      $('.main').show()
-    else
-      $('nav').hide()
-      $('.login').show()
+    model= App.model
+    @showPage 'main' , (fn)=>
+      model.on 'sync', ->fn()
+      model.fetch()
+
     @
 
   config:->
@@ -82,12 +76,19 @@ App.Router = Backbone.Router.extend
     $('.block').hide()
     @Forms.hardware.model.fetch()
     $('.hardware').show()
+
+    model = @Forms.hardware.model
+    @showPage 'hardware' , (fn)=>
+      model.on 'sync', ->fn()
+      model.fetch()
+
     @
 
   devices:->
-    $('.block').hide()
-    @Forms.devices.collection.fetch()
-    $('.devices').show()
+    col = @Forms.devices.collection
+    @showPage 'devices' , (fn)=>
+      col.on 'sync', ->fn()
+      col.fetch()
     @
 
   device:(id)->
