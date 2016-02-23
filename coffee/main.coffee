@@ -28,7 +28,11 @@ Collections = App.Collections
 Models.Config = Backbone.Model.extend
   url:apiPrefix + "config"
 
+
   initialize:->
+    @on 'error', ->
+      Backbone.trigger 'login'
+
     @on 'save', =>
       @save( {}, type: 'post', data: @data, contentType: false, processData: false,)
     @
@@ -37,7 +41,7 @@ Models.Config = Backbone.Model.extend
 ###*
  * [Main model]
 ###
-Models.Main = Models.Config.extend
+Models.Main = Backbone.Model.extend
   url:apiPrefix + "info"
   initialize:->
     @on 'error', ->
@@ -47,7 +51,6 @@ Models.Main = Models.Config.extend
       Backbone.trigger 'onLogin'
 
     @on 'save', =>
-      console.log @data
       @save( {}, type: 'post', data: @data, contentType: false, processData: false,)
     @
 
@@ -117,6 +120,8 @@ __     ___
 ###
 Views.Main = Backbone.View.extend
   template: _.template $('#Main').html()
+  model:App.model
+  el:'.main'
   initialize:->
     if @model
       @model.on 'sync', =>
@@ -153,15 +158,18 @@ Views.Main = Backbone.View.extend
  * Config View
 ###
 Views.Config = Views.Main.extend
-  model: new Models.Config()
-  template: _.template $('#Config').html()
+  model     : new Models.Config()
+  template  : _.template $('#Config').html()
+  el        : '.config'
 
 
 ###*
- * Auth View
+ * Unlock View
 ###
-Views.Auth = Views.Main.extend
-  template: _.template $('#Login').html()
+Views.Unlock = Views.Main.extend
+  template  : _.template $('#Login').html()
+  model     : App.model
+  el        : '.login'
 
 
 ###*
@@ -176,8 +184,9 @@ Views.Advanced = Views.Main.extend
  * [Hardware View]
 ###
 Views.Hardware = Views.Main.extend
-  model: new Models.Hardware()
-  template: _.template $('#Hardware').html()
+  model     : new Models.Hardware()
+  template  : _.template $('#Hardware').html()
+  el        : '.hardware'
 
 
 ###*
@@ -208,18 +217,20 @@ Views.Collection = Backbone.View.extend
 Views.Log = Views.Collection.extend
   template    : _.template $('#Log').html()
   templateRow : _.template $('#LogRow').html()
-  tBody: '#log-list'
+  tBody       : '#log-list'
   collection  : new Collections.Log()
+  el          : '.log'
 
 
 ###*
  * [wifi list view]
 ###
 Views.Wifi = Views.Collection.extend
-  template:_.template $('#Wifi').html()
-  templateRow:_.template $('#WifiRow').html()
-  tBody: '#wifi-list'
-  collection: new Collections.Wifi()
+  template      : _.template $('#Wifi').html()
+  templateRow   : _.template $('#WifiRow').html()
+  tBody         : '#wifi-list'
+  collection    : new Collections.Wifi()
+  el            : '.wifi'
 
 
 ###*
@@ -246,3 +257,4 @@ Views.Commands = Views.Collection.extend
 ###
 Views.Tools = Views.Main.extend
   template:_.template $('#Tools').html()
+  el:'.tools'

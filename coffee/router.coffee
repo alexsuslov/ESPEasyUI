@@ -19,14 +19,14 @@ App.Router = Backbone.Router.extend
     ''            : 'summary'
 
   Forms:
-    tools    : new App.Views.Tools( el:'.tools').render()
-    log      : new App.Views.Log( el:'.log')
-    login    : new App.Views.Auth( model:App.model, el:'.login').render()
-    main     : new App.Views.Main( model:App.model, el:'.main')
-    config   : new App.Views.Config(el:'.config')
-    hardware : new App.Views.Hardware(el:'.hardware')
-    devices  : new App.Views.Devices(el:'.devices')
-    wifi     : new App.Views.Wifi(el:'.wifi')
+    tools    : new App.Views.Tools().render()
+    log      : new App.Views.Log()
+    login    : new App.Views.Unlock().render()
+    main     : new App.Views.Main()
+    config   : new App.Views.Config()
+    hardware : new App.Views.Hardware()
+    devices  : new App.Views.Devices()
+    wifi     : new App.Views.Wifi()
 
   initialize:->
     Backbone.on 'login', =>
@@ -73,15 +73,10 @@ App.Router = Backbone.Router.extend
     @
 
   hardware:->
-    $('.block').hide()
-    @Forms.hardware.model.fetch()
-    $('.hardware').show()
-
     model = @Forms.hardware.model
     @showPage 'hardware' , (fn)=>
       model.on 'sync', ->fn()
       model.fetch()
-
     @
 
   devices:->
@@ -114,5 +109,4 @@ App.Router = Backbone.Router.extend
 
 
 App.router = new App.Router()
-
 Backbone.history.start();

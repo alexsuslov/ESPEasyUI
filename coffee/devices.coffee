@@ -50,7 +50,8 @@ Views.Devices = Views.Collection.extend
   collection  :new Collections.Devices()
   template    : _.template $('#Devices').html()
   templateRow : _.template $('#DevicesRow').html()
-  tBody: '#devices-list'
+  tBody       : '#devices-list'
+  el          : '.devices'
   serializeData: (data)->
     data.row.value = data.row.Tasks.map (task)->
       "#{task.TaskDeviceValueName}: #{task.TaskDeviceValue}"
