@@ -38,7 +38,7 @@ Models.Config = Backbone.Model.extend
  * [Main model]
 ###
 Models.Main = Models.Config.extend
-  url:apiPrefix + "auth"
+  url:apiPrefix + "info"
   initialize:->
     @on 'error', ->
       Backbone.trigger 'login'
