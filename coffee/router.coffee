@@ -23,6 +23,7 @@ App.Router = Backbone.Router.extend
     ''            : 'summary'
 
   Forms:
+    tools    : new App.Views.Tools( el:'.tools').render()
     log      : new App.Views.Log( el:'.log')
     login    : new App.Views.Auth( model:App.model, el:'.login').render()
     main     : new App.Views.Main( model:App.model, el:'.main')
@@ -44,7 +45,6 @@ App.Router = Backbone.Router.extend
     $('.block').hide()
     $('.wifi').hide()
     @Forms.wifi.collection.fetch()
-    console.log @Forms.wifi.collection.toJSON()
     $('.wifi').show()
     @
 
@@ -89,13 +89,13 @@ App.Router = Backbone.Router.extend
     @
 
   device:(id)->
-    console.log 'device', id
-    device = new Models.Device(id:id)
-    device.fetch()
+    console.log 'device:', id
+    # device = new Models.Device(id:id)
+    # device.fetch()
 
   tools:(id)->
-    new App.Views.Tools(el:'.container')
-    console.log 'tools'
+    $('.block').hide()
+    $('.tools').show()
 
 
 App.router = new App.Router()
