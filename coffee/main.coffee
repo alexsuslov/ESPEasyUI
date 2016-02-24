@@ -78,12 +78,6 @@ Collections.Log = Backbone.Collection.extend
   url:apiPrefix + "log"
 
 ###*
- * [I2C collection]
-###
-Collections.I2C = Backbone.Collection.extend
-  url:apiPrefix + "i2c"
-
-###*
  * [Wifi collection]
 ###
 Collections.Wifi = Backbone.Collection.extend
@@ -219,14 +213,7 @@ Views.Wifi = Views.Collection.extend
   el            : '.wifi'
 
 
-###*
- * [I2c list view]
-###
-Views.I2C = Views.Collection.extend
-  template:_.template $('#I2c').html()
-  templateRow:_.template $('#I2cRow').html()
-  collection: new Collections.I2C()
-  tBody: '#i2c-list'
+
 
 
 ###*

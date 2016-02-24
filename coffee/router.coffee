@@ -8,6 +8,7 @@ App.Router = Backbone.Router.extend
   login:false
 
   routes:
+    i2c           : 'i2c'
     command       : 'command'
     logout        : 'logout'
     config        : 'config'
@@ -28,6 +29,7 @@ App.Router = Backbone.Router.extend
     hardware : new App.Views.Hardware()
     devices  : new App.Views.Devices()
     wifi     : new App.Views.Wifi()
+    I2c      : new App.Views.I2c()
     command  : new App.Views.Commands().render()
 
   initialize:->
@@ -40,6 +42,14 @@ App.Router = Backbone.Router.extend
       @Forms.main.render()
       @showPage 'main'
     @
+
+  i2c:->
+    col = @Forms.I2c.collection
+    @showPage 'i2c' , (fn)=>
+      col.on 'sync', ->fn()
+      col.fetch()
+    @
+
 
   command:->
     $('.loading').hide()
