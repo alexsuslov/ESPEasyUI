@@ -6,7 +6,9 @@ form.row(method="POST")
   fieldset.col-md-3
     .panel.panel-primary
       .panel-heading
+        button.btn.btn-warning.pull-right.btn-xs(type='submit') UpdateAll
         h3.panel-title Config
+
       .panel-body
         +frm_input('Device Name', 'name', 'data.name' )
         +frm_input('Device Delay', 'delay', 'data.delay' )
@@ -18,7 +20,7 @@ form.row(method="POST")
         .form-group
           label Login Password
           input.form-control( name='password')
-        button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
+        //- button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
 
         //- legend Protocol
         //- p Protocol: #{2}

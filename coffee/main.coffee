@@ -63,13 +63,6 @@ Models.Hardware = Models.Config.extend
 Models.Advanced = Models.Config.extend
   url: url:apiPrefix + "advanced"
 
-###*
- * [Command model]
-###
-Models.Command = Models.Config.extend
-  url: url:apiPrefix + "command"
-
-
 
 ###
   ____      _ _           _   _
@@ -83,11 +76,6 @@ Models.Command = Models.Config.extend
 ###
 Collections.Log = Backbone.Collection.extend
   url:apiPrefix + "log"
-
-###*
- * [Commands collection]
-###
-Collections.Commands = Backbone.Collection.extend
 
 ###*
  * [I2C collection]
@@ -130,6 +118,7 @@ Views.Main = Backbone.View.extend
 
   submit:->
     @model.data = @$el.find('form').serialize()
+    # console.log @model.data
     @model.trigger('save')
     false
 
@@ -238,15 +227,6 @@ Views.I2C = Views.Collection.extend
   templateRow:_.template $('#I2cRow').html()
   collection: new Collections.I2C()
   tBody: '#i2c-list'
-
-
-###*
- * [Commands list view]
-###
-Views.Commands = Views.Collection.extend
-  template:_.template $('#Commands').html()
-  templateRow:_.template $('#CommandsRow').html()
-  tBody: '#commands-list'
 
 
 ###*

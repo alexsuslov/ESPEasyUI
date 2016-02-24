@@ -1,25 +1,26 @@
 fieldset.col-md-4
-  .panel.panel-primary
-    .panel-heading
-      h3.panel-title <%= row.DeviceName %>
-    .panel-body
-      table.table.table-striped
-        tr
-          td Task
-          td.text-right <%= row.DeviceId %>
-        tr
-          td Name
-          td.text-right <%= row.TaskDeviceName %>
-        tr
-          td Port
-          td.text-right <%= row.PluginConfig %>
-        tr
-          td IDX
-          td.text-right <%= row.TaskDeviceID %>
-        tr
-          td GPIO
-          td.text-right <%= row.DevicePins %>
-        tr
-          td Values
-          td.text-right <%= row.value %>
-      a.btn.btn-primary.pull-right.col-xs-6(href!='#/device?index=<%= row.DeviceId %>') Edit
+    .panel.panel-primary
+      .panel-heading
+        a(href!='#/device?index=<%= row.DeviceId %>')
+          h3.panel-title <%= row.DeviceName %>
+      .panel-body
+        table.table.table-striped
+          tr
+            td Task
+            td.text-right <%= row.DeviceId %>
+          tr
+            td Name
+            td.text-right <%= row.TaskDeviceName %>
+          tr
+            td Port
+            td.text-right <%= row.PluginConfig %>
+          tr
+            td IDX
+            td.text-right <%= row.TaskDeviceID %>
+          tr
+            td GPIO
+            td.text-right <%= row.DevicePins %>
+          tr
+            td Values
+            td.text-right <%= row.value %>
+        //- a.btn.btn-primary.pull-right.col-xs-6(href!='#/device?index=<%= row.DeviceId %>') Edit

@@ -8,6 +8,7 @@ App.Router = Backbone.Router.extend
   login:false
 
   routes:
+    command       : 'command'
     logout        : 'logout'
     config        : 'config'
     hardware      : 'hardware'
@@ -27,6 +28,7 @@ App.Router = Backbone.Router.extend
     hardware : new App.Views.Hardware()
     devices  : new App.Views.Devices()
     wifi     : new App.Views.Wifi()
+    command  : new App.Views.Commands().render()
 
   initialize:->
     Backbone.on 'locked', =>
@@ -38,6 +40,11 @@ App.Router = Backbone.Router.extend
       @Forms.main.render()
       @showPage 'main'
     @
+
+  command:->
+    $('.loading').hide()
+    @showPage 'command'
+
 
   summary:->
     model= App.model
