@@ -7,7 +7,7 @@ var clean = require('gulp-clean');
 var watch = require('gulp-watch');
 var webserver = require('gulp-webserver');
 
-gulp.task('default', ['coffee','compress','jade', 'watch', 'webserver']);
+gulp.task('default', ['watch', 'webserver']);
 
 gulp.task('coffee', function() {
   return gulp.src('./coffee/*.coffee')
@@ -48,7 +48,7 @@ gulp.task('watch', function () {
   gulp.watch(['jade/**/*.jade','.tmp/js/*.js'], ['jade']);
 });
 
-gulp.task('webserver', function() {
+gulp.task('webserver', ['jade'], function() {
   gulp.src('.tmp/')
     .pipe(webserver({
       livereload: true,
