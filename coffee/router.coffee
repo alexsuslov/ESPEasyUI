@@ -21,21 +21,31 @@ App.Router = Backbone.Router.extend
   Forms:
     tools    : new App.Views.Tools().render()
     log      : new App.Views.Log()
-    login    : new App.Views.Unlock().render()
-    main     : new App.Views.Main()
+    login    : new App.Views.Unlock(model:App.model).render()
+    main     : new App.Views.Main(model:App.model)
     config   : new App.Views.Config()
     hardware : new App.Views.Hardware()
     devices  : new App.Views.Devices()
     wifi     : new App.Views.Wifi()
 
   initialize:->
-    Backbone.on 'login', =>
+    Backbone.on 'locked', =>
       $('.block').hide()
       $('.loading').hide()
       $('.login').show()
-    Backbone.on 'onLogin', =>
-      @summary()
+
+    Backbone.on 'unLocked', =>
+      @Forms.main.render()
+      @showPage 'main'
     @
+
+  summary:->
+    model= App.model
+    @showPage 'main' , (fn)=>
+      model.on 'sync', ->fn()
+      model.fetch()
+    @
+
 
   wifi:->
     col = @Forms.wifi.collection
@@ -56,13 +66,7 @@ App.Router = Backbone.Router.extend
     Backbone.trigger 'onLogout'
     @
 
-  summary:->
-    model= App.model
-    @showPage 'main' , (fn)=>
-      model.on 'sync', ->fn()
-      model.fetch()
 
-    @
 
   config:->
     model = @Forms.config.model
@@ -75,7 +79,9 @@ App.Router = Backbone.Router.extend
   hardware:->
     model = @Forms.hardware.model
     @showPage 'hardware' , (fn)=>
-      model.on 'sync', ->fn()
+      model.on 'sync', ->
+        # console.log model.toJSON()
+        fn()
       model.fetch()
     @
 

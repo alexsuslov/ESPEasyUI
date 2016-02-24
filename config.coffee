@@ -5,4 +5,4 @@
 ###
 'use strict'
 module.exports =
-  apiPrefix: "http://10.0.1.32/api/"
+  apiPrefix: "http://10.0.1.32"

@@ -1,16 +1,15 @@
 config = require '../config'
 request = require 'request'
 
-url = config.apiPrefix + "/api/wifiscanner"
+url = config.apiPrefix + '/api/'
 
-describe 'wifi scanner api', ->
-  @timeout(5000);
+describe 'Api', ->
   it '[get]', (done)->
 
     request url, (err, response, body)->
       if (!err and response.statusCode is 200)
         json = JSON.parse( body )
-        throw "scanner list not array" unless Array.isArray( json)
+        throw "devices not array" unless Array.isArray( json)
         done()
       else
         throw err

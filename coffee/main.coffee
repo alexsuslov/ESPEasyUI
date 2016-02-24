@@ -23,32 +23,29 @@ Collections = App.Collections
 ###
 
 ###*
- * [Config model]
+ * [Main model]
 ###
-Models.Config = Backbone.Model.extend
-  url:apiPrefix + "config"
-
-
+# console.log apiPrefix
+Models.Main = Backbone.Model.extend
+  url: apiPrefix
   initialize:->
     @on 'error', ->
-      Backbone.trigger 'login'
+      Backbone.trigger 'locked'
+
+    @on 'change:Chip_id', ->
+      Backbone.trigger 'unLocked'
 
     @on 'save', =>
       @save( {}, type: 'post', data: @data, contentType: false, processData: false,)
     @
-
-
 ###*
- * [Main model]
+ * [Config model]
 ###
-Models.Main = Backbone.Model.extend
-  url:apiPrefix + "info"
+Models.Config = Backbone.Model.extend
+  url: apiPrefix + "config"
   initialize:->
     @on 'error', ->
-      Backbone.trigger 'login'
-
-    @on 'change:Chip_id', ->
-      Backbone.trigger 'onLogin'
+      Backbone.trigger 'locked'
 
     @on 'save', =>
       @save( {}, type: 'post', data: @data, contentType: false, processData: false,)

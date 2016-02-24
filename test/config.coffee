@@ -26,7 +26,7 @@ objParam = (data)->
     encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
   ).join('&')
 
-url = config.apiPrefix + "config"
+url = config.apiPrefix + "/api/config"
 
 describe 'config api test', ->
 #   @timeout(5000);

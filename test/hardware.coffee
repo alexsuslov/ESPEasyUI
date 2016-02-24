@@ -7,7 +7,7 @@ objParam = (data)->
     encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
   ).join('&')
 
-url = config.apiPrefix + "hardware"
+url = config.apiPrefix + "/api/hardware"
 
 describe 'hardware api test', ->
   it '[get]/[post]', (done)->
