@@ -24,8 +24,8 @@ gulp.task('compress',['coffee'], function() {
 
 gulp.task('jade', ['compress'], function() {
   var YOUR_LOCALS = {
-    title:'ESP Easy.',
-    footer: "Powered by 42do.ru"
+    title:'ESP Easy',
+    footer: "Powered by IoT Manager team"
   };
 
   return gulp.src('./jade/*.jade')

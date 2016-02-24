@@ -43,3 +43,7 @@
 ## Firmware
 - upload
 - save
+
+## Other
+- summary: "Boot cause" value change to readable
+- all IP addresses without comma
