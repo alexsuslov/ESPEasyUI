@@ -5,9 +5,9 @@ include mixin
 form.row(method="POST")
   fieldset.col-md-3
     .panel.panel-primary
-      .panel-heading
-        button.btn.btn-warning.pull-right.btn-xs(type='submit') UpdateAll
-        h3.panel-title Config
+      .panel-heading.clearfix
+        h3.panel-title.pull-left Config
+        button.btn.btn-info.pull-right.btn-sm(type='submit') Save
 
       .panel-body
         +frm_input('Device Name', 'name', 'data.name' )
@@ -27,30 +27,31 @@ form.row(method="POST")
 
   fieldset.col-md-3
     .panel.panel-primary
-      .panel-heading
-        h3.panel-title WiFi STA Settings
+      .panel-heading.clearfix
+        h3.panel-title.pull-left WiFi STA Settings
+        button.btn.btn-info.pull-right.btn-sm(type='submit') Save
       .panel-body
         +frm_input('Router SSID', 'ssid', 'data.ssid' )
         +frm_input('Router WPA key', 'key', 'data.key' )
-        button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
 
 
   fieldset.col-md-3
     .panel.panel-primary
-      .panel-heading
-        h3.panel-title WiFi AP Settings
+      .panel-heading.clearfix
+        h3.panel-title.pull-left WiFi AP Settings
+        button.btn.btn-info.pull-right.btn-sm(type='submit') Save
       .panel-body
         +frm_input('WPA AP mode key', 'apkey','data.apkey' )
         +frm_input('ESP ip', 'espip', 'data.espip' )
         +frm_input('ESP gateway', 'espgateway','data.espgateway' )
         +frm_input('ESP Subnet', 'espsubnet','data.espsubnet' )
         +frm_input('ESP DNS', 'espdns','data.espdns' )
-        button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
 
   fieldset.col-md-3
     .panel.panel-primary
-      .panel-heading
-        h3.panel-title Protocol Settings
+      .panel-heading.clearfix
+        h3.panel-title.pull-left Protocol Settings
+        button.btn.btn-info.pull-right.btn-sm(type='submit') Save
       .panel-body
         +label('Protocol')
           select.form-control( name="protocol" )
@@ -61,4 +62,3 @@ form.row(method="POST")
         +frm_input('MQTT port', 'controllerport', 'data.controllerport' )
         +frm_input('MQTT user', 'controlleruser','data.controlleruser' )
         +frm_input('MQTT pass', 'controllerpassword','data.controllerpassword' )
-        button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
