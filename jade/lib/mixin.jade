@@ -3,6 +3,11 @@ mixin frm_input(title, name, value)
     label= title
     input.form-control( name=name placeholder=title value!="<%= #{value} %>" )
 
+mixin frm_input_ip(title, name, value)
+  .form-group
+    label= title
+    input.form-control.ip( name=name placeholder=title value!="<%= #{value} %>" )
+
 mixin label(title)
   .form-group
     label= title
