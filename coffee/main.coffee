@@ -125,9 +125,17 @@ Views.Main = Backbone.View.extend
           @$el.find("select[name='#{name}'] option[value='#{val}']").attr("selected", "selected")
     @
 
+  ip: ->
+    if @model
+      @$el.find('input.ip').forEach (s)=>
+        $el= $(s)
+        $el.val $el.val().replace( /,/g,'.')
+    @
+
   render: ->
     @$el.html(@template( if @model then data:@model.toJSON() else {data:{}} )) if @template
     @select()
+    @ip()
     @onRendered() if @onRendered
     @
   onRendered: ->
