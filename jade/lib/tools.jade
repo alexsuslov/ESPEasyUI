@@ -1,7 +1,7 @@
 include mixin
 
 .row
-  fieldset.col-sm-3
+  fieldset.col-sm-4.col-sm-offset-4
     .panel.panel-primary
       .panel-heading.clearfix
         h3.panel-title.pull-left Tools
@@ -11,24 +11,20 @@ include mixin
           a.list-group-item(href='#/log') Log
           a.list-group-item(href='#') Reboot
           a.list-group-item(href='#') Advanced
+          a.list-group-item(href='#/command') Commands
         h3 Wifi
+        .list-group
           a.list-group-item(href='#/wifi') Scan
           a.list-group-item(href='#') Connect
           a.list-group-item(href='#') Disconnect
         h3 Interfaces
+        .list-group
           a.list-group-item(href='#/i2c') I²C Scan
         h3 Settings
+        .list-group
           a.list-group-item(href='#') Load
           a.list-group-item(href='#') Save
         h3 Firmware
+        .list-group
           a.list-group-item(href='#') Load
           a.list-group-item(href='#') Save
-        h3 Command
-          .input-group
-            input.form-control
-              span.input-group-btn
-                button.btn.btn-default go
-
-
-
-

@@ -1,14 +1,5 @@
 - var menuItems = ["Main", "Config", "Hard", "Dev", "Tools", "Logout"];
 
-//-.nav.navbar.navbar-default
-    .navbar-brand ESP
-      sub easy
-    ul.nav.pull-right
-      li
-        select.form-control( name="menuItem" )
-          for menuItem, i in menuItems
-            option(value=menuItem)= menuItems[i]
-
 .brand
   a.btn.btn-link(href='#/') ESP
     sub easy
@@ -19,33 +10,3 @@
     a.btn.btn-primary(href='#/devices') dev
     a.btn.btn-primary(href='#/tools') tools
 .divider24
-
-
-//- nav.navbar.navbar-default
-  div
-    ul.nav.navbar-nav
-      li.dropdown
-        a.dropdown-toggle(href='#') Menu
-          b.caret
-        ul.dropdown-menu
-          li.a config
-          li.a config1
-          li.a config2
-
-//- nav.navbar.navbar-default
-  .container-fluid
-    .navbar-brand ESP
-      sub easy
-    ul.nav.navbar-nav.navbar-right
-      li
-        a(href='#/') Main
-      li
-        a(href='#/config') Config
-     li
-        a(href='#/hardware') Hardware
-      li
-        a(href='#/devices') Devices
-      li
-        a(href='#/tools') Tools
-      li
-        a(href='#/logout') Exit
