@@ -110,8 +110,11 @@ Views.Main = Backbone.View.extend
   events:
     'submit form': 'submit'
 
+  deSerialize:(data)->
+    $.param data
+
   submit:->
-    @model.data = @$el.find('form').serialize()
+    @model.data = @deSerialize @$el.find('form').serializeArray()
     # console.log @model.data
     @model.trigger('save')
     false
@@ -149,6 +152,12 @@ Views.Config = Views.Main.extend
   model     : new Models.Config()
   template  : _.template $('#Config').html()
   el        : '.config'
+  deSerialize:(data)->
+    ipInputs = ['espip', 'espgateway', 'espsubnet', 'espdns']
+    data.map (val)->
+      if val.name in ipInputs
+        val.value = val.value.replace( /\./g,',')
+    $.param data
 
 
 ###*
