@@ -101,6 +101,7 @@ Views.Main = Backbone.View.extend
   template: _.template $('#Main').html()
   model:App.model
   el:'.main'
+  ipInputs: []
   initialize:->
     if @model
       @model.on 'sync', =>
@@ -130,8 +131,11 @@ Views.Main = Backbone.View.extend
 
   ip: ->
     if @model
+      @ipInputs = []
       @$el.find('input.ip').forEach (s)=>
+        @ipInputs.push
         $el= $(s)
+        @ipInputs.push $el.attr('name')
         $el.val $el.val().replace( /,/g,'.')
     @
 
@@ -153,9 +157,8 @@ Views.Config = Views.Main.extend
   template  : _.template $('#Config').html()
   el        : '.config'
   deSerialize:(data)->
-    ipInputs = ['espip', 'espgateway', 'espsubnet', 'espdns']
-    data.map (val)->
-      if val.name in ipInputs
+    data.map (val)=>
+      if val.name in @ipInputs
         val.value = val.value.replace( /\./g,',')
     $.param data
 

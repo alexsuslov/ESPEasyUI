@@ -41,7 +41,7 @@ form.row(method="POST")
         h3.panel-title.pull-left WiFi AP Settings
         button.btn.btn-info.pull-right.btn-sm(type='submit') Save
       .panel-body
-        +frm_input_ip('WPA AP mode key', 'apkey','data.apkey' )
+        +frm_input('WPA AP mode key', 'apkey','data.apkey' )
         +frm_input_ip('ESP ip', 'espip', 'data.espip' )
         +frm_input_ip('ESP gateway', 'espgateway','data.espgateway' )
         +frm_input_ip('ESP Subnet', 'espsubnet','data.espsubnet' )
