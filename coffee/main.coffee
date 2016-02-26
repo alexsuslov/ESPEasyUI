@@ -168,16 +168,13 @@ Views.Config = Views.Main.extend
   protocol:(e)->
     @model.set 'protocol', "" + e.currentTarget.selectedIndex
     @onRendered()
-    # console.log el.options[el.selectedIndex]
-
-    # console.log e.currentTarget.selectedIndex
     false
+
   onRendered: ->
     # get #Protocol element
     $el = @$el.find('#Protocol')
     # get template name
     name = @templates[ parseInt( @model.get( 'protocol') ) ]
-    console.log name
     # create template func
     template = _.template $(name).html()
     # render
