@@ -37,14 +37,16 @@ describe 'config api test', ->
         fn JSON.parse(body)
 
     get url, (data)->
-      data.name = 'NewDevice'
+      data.name = 'NewDevice1'
+      data.delay = '65'
       opt =
         url : url
         body : objParam data
       request.post opt, (err, response, body)->
         throw err if (err and !response.statusCode is 200)
         json = JSON.parse(body)
-        throw new Error 'config update error' if json.name isnt 'NewDevice'
+        throw new Error 'config update name error' if json.name isnt 'NewDevice1'
+        throw new Error 'config update delay error' if json.delay isnt '65'
         done()
 
 

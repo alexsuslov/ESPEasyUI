@@ -1,7 +1,21 @@
 .Log
 
 .row.editLine
-  form.Cmd()
-    input.form-control( type='text' name='c' placeholder='>' )
-
-
+  .fieldset.col-sm-6.col-sm-offset-3
+    .panel.panel-primary
+      .panel-heading.clearfix
+        h3.panel-title.pull-left Enter command
+      .panel-body
+        form.Cmd()
+          input.form-control( type='text' name='c' placeholder='>' )
+.row
+  .fieldset.col-sm-4.col-sm-offset-4
+    .panel.panel-primary
+      .panel-heading.clearfix
+        h3.panel-title.pull-left Quick commands
+      .panel-body
+        h3 System
+        .list-group
+          a.list-group-item(href='#/command/?cmd=TaskClear') TaskClear
+          a.list-group-item(href='#/command/?cmd=Settings' ) Settings
+          a.list-group-item(href='#/command/?cmd=WifiScan' ) WifiScan

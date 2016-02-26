@@ -1,30 +1,42 @@
 include mixin
 
 .row
-  fieldset.col-sm-4.col-sm-offset-4
+  fieldset.col-sm-3
     .panel.panel-primary
       .panel-heading.clearfix
-        h3.panel-title.pull-left Tools
+        h3.panel-title.pull-left System
       .panel-body
-        h3 System
         .list-group
           a.list-group-item(href='#/log') Log
           a.list-group-item(href='#') Reboot
           a.list-group-item(href='#') Advanced
           a.list-group-item(href='#/command') Commands
-        h3 Wifi
+  fieldset.col-sm-3
+    .panel.panel-primary
+      .panel-heading.clearfix
+        h3.panel-title.pull-left Wifi
+      .panel-body
         .list-group
           a.list-group-item(href='#/wifi') Scan
           a.list-group-item(href='#') Connect
           a.list-group-item(href='#') Disconnect
-        h3 Interfaces
+  fieldset.col-sm-3
+    .panel.panel-primary
+      .panel-heading.clearfix
+        h3.panel-title.pull-left Interfaces
+      .panel-body
         .list-group
           a.list-group-item(href='#/i2c') I²C Scan
-        h3 Settings
+  fieldset.col-sm-3
+    .panel.panel-primary
+      .panel-heading.clearfix
+        h3.panel-title.pull-left Service
+      .panel-body
+        h4 Settings
         .list-group
           a.list-group-item(href='#') Load
           a.list-group-item(href='#') Save
-        h3 Firmware
+        h4 Firmware
         .list-group
           a.list-group-item(href='#') Load
           a.list-group-item(href='#') Save
