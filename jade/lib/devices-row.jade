@@ -1,8 +1,9 @@
 fieldset.col-md-4
     .panel.panel-primary
-      .panel-heading
+      .panel-heading.clearfix
         a(href!='#/device?index=<%= row.DeviceId %>')
-          h3.panel-title <%= row.DeviceName %>
+          h3.panel-title.pull-left <%= row.DeviceName %>
+        a.btn.btn-info.pull-right.btn-sm(href!='#/device?index=<%= row.DeviceId %>') Edit
       .panel-body
         table.table.table-striped
           tr
@@ -23,4 +24,3 @@ fieldset.col-md-4
           tr
             td Values
             td.text-right <%= row.value %>
-        //- a.btn.btn-primary.pull-right.col-xs-6(href!='#/device?index=<%= row.DeviceId %>') Edit

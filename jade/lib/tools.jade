@@ -1,42 +1,33 @@
 include mixin
 
 .row
-  .col-md-4
-    h4 System
-    .btn-group
-      a.btn.btn-default(href='#/log') Log
-      button.btn.btn-default Reboot
-      a.btn.btn-default(href='#/advanced') Advanced
-
-  .col-md-4
-    h4 Wifi
-    .btn-group
-      a.btn.btn-default(href='#/wifi') Scan
-      button.btn.btn-default Connect
-      button.btn.btn-default Disconnect
-
-  .col-md-4
-    h4 Interfaces
-    a.btn.btn-default(href='#/i2c') I2C Scan
-.row
-
-
-  .col-md-4
-    h4 Settings
-    button.btn.btn-default Load
-    button.btn.btn-default Save
-
-  .col-md-4
-    h4 Firmware
-    button.btn.btn-default Load
-    button.btn.btn-default Save
-
-  .col-md-4
-    h4 Command
-    .input-group
-      input.form-control
-      span.input-group-btn
-        button.btn.btn-default Submit
+  fieldset.col-sm-3
+    .panel.panel-primary
+      .panel-heading.clearfix
+        h3.panel-title.pull-left Tools
+      .panel-body
+        h3 System
+        .list-group
+          a.list-group-item(href='#/log') Log
+          a.list-group-item(href='#') Reboot
+          a.list-group-item(href='#') Advanced
+        h3 Wifi
+          a.list-group-item(href='#/wifi') Scan
+          a.list-group-item(href='#') Connect
+          a.list-group-item(href='#') Disconnect
+        h3 Interfaces
+          a.list-group-item(href='#/i2c') I²C Scan
+        h3 Settings
+          a.list-group-item(href='#') Load
+          a.list-group-item(href='#') Save
+        h3 Firmware
+          a.list-group-item(href='#') Load
+          a.list-group-item(href='#') Save
+        h3 Command
+          .input-group
+            input.form-control
+              span.input-group-btn
+                button.btn.btn-default go
 
 
 

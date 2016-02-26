@@ -14,8 +14,9 @@ mixin pinState(id)
 form.row(method="POST")
   fieldset.col-sm-3.col-sm-offset-3
     .panel.panel-primary
-      .panel-heading
-        h3.panel-title I²C Settings
+      .panel-heading.clearfix
+        h3.panel-title.pull-left I²C Settings
+        button.btn.btn-info.pull-right.btn-sm(type='submit') Save
       .panel-body
         +label SDA:
           select.form-control(name="psda")
@@ -25,14 +26,13 @@ form.row(method="POST")
           select.form-control(name="pscl")
             for gpio, i in gpios
               option(value=gpio)= labels[i]
-        button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
   fieldset.col-sm-3
     .panel.panel-primary
-      .panel-heading
-        h3.panel-title Pins state
+      .panel-heading.clearfix
+        h3.panel-title.pull-left Pins state
+        button.btn.btn-info.pull-right.btn-sm(type='submit') Save
       .panel-body
         for gpio in gpios
           if gpio >=0
             +pinState(gpio)
-        button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
 
