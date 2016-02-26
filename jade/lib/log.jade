@@ -1,9 +1,15 @@
 include mixin
 
-table.table
-  thead
-    tr
-      td Time
-      td Message
-  tbody#log-list
+.row
+  .col-sm-8.col-sm-offset-2
+    .panel.panel-primary
+      .panel-heading.clearfix
+        h3.panel-title.pull-left Log
+      .panel-body
+        table.table.table-striped
+          thead
+            tr
+              td Time
+              td Message
+          tbody#log-list
 
