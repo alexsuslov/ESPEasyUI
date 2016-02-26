@@ -57,8 +57,9 @@ form.row(method="POST")
           select.form-control( name="protocol" )
             for protocol, i in protocols
               option(value=protocol)= names[i]
-        +frm_input('MQTT hostname', 'controllerhostname','data.controllerhostname' )
-        +frm_input('MQTT ip', 'controllerip','data.controllerip' )
-        +frm_input('MQTT port', 'controllerport', 'data.controllerport' )
-        +frm_input('MQTT user', 'controlleruser','data.controlleruser' )
-        +frm_input('MQTT pass', 'controllerpassword','data.controllerpassword' )
+        #Protocol
+        //- +frm_input('MQTT hostname', 'controllerhostname','data.controllerhostname' )
+        //- +frm_input('MQTT ip', 'controllerip','data.controllerip' )
+        //- +frm_input('MQTT port', 'controllerport', 'data.controllerport' )
+        //- +frm_input('MQTT user', 'controlleruser','data.controlleruser' )
+        //- +frm_input('MQTT pass', 'controllerpassword','data.controllerpassword' )

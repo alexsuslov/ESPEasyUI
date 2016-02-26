@@ -8,6 +8,11 @@ mixin frm_input_ip(title, name, value)
     label= title
     input.form-control.ip( name=name placeholder=title value!="<%= #{value} %>" )
 
+mixin frm_check(title, name, value)
+  .form-group
+    label= title
+    input.form-control( type='checkbox' name=name value!="<%= #{value} %>" )
+
 mixin label(title)
   .form-group
     label= title
@@ -19,3 +24,7 @@ mixin pinState(id)
       option(value="0") Default
       option(value="1") Output Low
       option(value="2") Output High
+
+- var gpios = [-1, 0, 2, 4, 5, 9, 10, 12, 13, 14, 15, 16];
+- var labels = ["", 'PIO-0', 'PIO-2', 'PIO-4', 'PIO-5', 'PIO-9', 'GPIO-10', 'GPIO-12', 'GPIO-13', 'GPIO-14', 'GPIO-15', 'GPIO-16'];
+- V = function(val){return '%=' + val + '%'}

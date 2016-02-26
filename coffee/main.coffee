@@ -141,13 +141,12 @@ Views.Main = Backbone.View.extend
 
   render: ->
     @$el.html(@template( if @model then data:@model.toJSON() else {data:{}} )) if @template
+    @onRendered() if @onRendered
     @select()
     @ip()
-    @onRendered() if @onRendered
     @
   onRendered: ->
     @
-
 
 ###*
  * Config View
@@ -155,13 +154,35 @@ Views.Main = Backbone.View.extend
 Views.Config = Views.Main.extend
   model     : new Models.Config()
   template  : _.template $('#Config').html()
+  templates : ['#alone','#DomoticzHTTP']
   el        : '.config'
   deSerialize:(data)->
     data.map (val)=>
       if val.name in @ipInputs
         val.value = val.value.replace( /\./g,',')
     $.param data
+  events:
+    'submit form': 'submit'
+    'change [name="protocol"]': 'protocol'
 
+  protocol:(e)->
+    @model.set 'protocol', "" + e.currentTarget.selectedIndex
+    @onRendered()
+    # console.log el.options[el.selectedIndex]
+
+    # console.log e.currentTarget.selectedIndex
+    false
+  onRendered: ->
+    # get #Protocol element
+    $el = @$el.find('#Protocol')
+    # get template name
+    name = @templates[ parseInt( @model.get( 'protocol') ) ]
+    console.log name
+    # create template func
+    template = _.template $(name).html()
+    # render
+    $el.html template data:@model.toJSON()
+    @
 
 ###*
  * Unlock View
