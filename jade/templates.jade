@@ -1,9 +1,33 @@
-script(id="DomoticzHTTP", type="text/x-template")
-  include lib/DomoticzHTTP
 
-script(id="alone", type="text/x-template")
-  include lib/alone
+//- protocol
+script(id="GenericHTTP", type="text/x-template-protocol" p="5")
+  include lib/protocol/http
 
+script(id="Emoncms", type="text/x-template-protocol" p="5")
+  include lib/protocol/telnet
+
+script(id="PiDomeMQTT", type="text/x-template-protocol" p="5")
+  include lib/protocol/mqtt1
+
+script(id="OpenHABMQTT", type="text/x-template-protocol" p="5")
+  include lib/protocol/mqtt
+
+script(id="ThingSpeak", type="text/x-template-protocol" p="4")
+  include lib/protocol/telnet
+
+script(id="NodoTelnet", type="text/x-template-protocol" p="3")
+  include lib/protocol/telnet
+
+script(id="DomoticzMQTT", type="text/x-template-protocol" p="2")
+  include lib/protocol/mqtt
+
+script(id="DomoticzHTTP", type="text/x-template-protocol" p="1")
+  include lib/protocol/http
+
+script(id="alone", type="text/x-template-protocol" p="0")
+  include lib/protocol/alone
+
+//- forms
 script(id="Cmd", type="text/x-template")
   include lib/cmd
 

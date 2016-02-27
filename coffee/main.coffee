@@ -154,7 +154,7 @@ Views.Main = Backbone.View.extend
 Views.Config = Views.Main.extend
   model     : new Models.Config()
   template  : _.template $('#Config').html()
-  templates : ['#alone','#DomoticzHTTP']
+  templates : []
   el        : '.config'
   deSerialize:(data)->
     data.map (val)=>
@@ -171,6 +171,11 @@ Views.Config = Views.Main.extend
     false
 
   onRendered: ->
+    # create list protocol templates
+    @templates = $('[type="text/x-template-protocol"]').sort( (a,b)->
+      return -1 if $(a).attr('p') < $(b).attr('p')
+      1
+      ).map (i,v)-> '#' + v.id
     # get #Protocol element
     $el = @$el.find('#Protocol')
     # get template name
