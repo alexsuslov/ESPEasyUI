@@ -17,15 +17,14 @@ describe 'hardware api test', ->
         fn JSON.parse(body)
 
     get url, (data)->
-      data.p0 = 1
+      data.p0 = '1'
       opt =
         url : url
         body : objParam data
       request.post opt, (err, response, body)->
         throw err if (err and !response.statusCode is 200)
         json = JSON.parse(body)
-        # console.log json
-        throw new Error 'Hardware config update error' if json.p0 isnt 1
+        throw new Error 'Hardware config update error' if json.p0 isnt '1'
         done()
 
 
