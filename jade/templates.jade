@@ -1,82 +1,64 @@
 
-//- protocol
-script(id="GenericHTTP", type="text/x-template-protocol" p="5")
-  include lib/protocol/http
+include lib/task/index
+include lib/protocol/index
 
-script(id="Emoncms", type="text/x-template-protocol" p="5")
-  include lib/protocol/telnet
+//-
+  ######  ####  #####  #    #  ####
+  #      #    # #    # ##  ## #
+  #####  #    # #    # # ## #  ####
+  #      #    # #####  #    #      #
+  #      #    # #   #  #    # #    #
+  #       ####  #    # #    #  ####
 
-script(id="PiDomeMQTT", type="text/x-template-protocol" p="5")
-  include lib/protocol/mqtt1
-
-script(id="OpenHABMQTT", type="text/x-template-protocol" p="5")
-  include lib/protocol/mqtt
-
-script(id="ThingSpeak", type="text/x-template-protocol" p="4")
-  include lib/protocol/telnet
-
-script(id="NodoTelnet", type="text/x-template-protocol" p="3")
-  include lib/protocol/telnet
-
-script(id="DomoticzMQTT", type="text/x-template-protocol" p="2")
-  include lib/protocol/mqtt
-
-script(id="DomoticzHTTP", type="text/x-template-protocol" p="1")
-  include lib/protocol/http
-
-script(id="alone", type="text/x-template-protocol" p="0")
-  include lib/protocol/alone
-
-//- forms
-script(id="Cmd", type="text/x-template")
+script(id='Cmd', type='text/x-template')
   include lib/cmd
 
-script(id="CmdResp", type="text/x-template")
+script(id='CmdResp', type='text/x-template')
   include lib/cmd-resp
 
-script(id="Commands", type="text/x-template")
+script(id='Commands', type='text/x-template')
   include lib/commands
 
-script(id="I2cRow", type="text/x-template")
+script(id='I2cRow', type='text/x-template')
   include lib/i2c-row
 
-script(id="I2c", type="text/x-template")
+script(id='I2c', type='text/x-template')
   include lib/i2c
 
-script(id="WifiRow", type="text/x-template")
+script(id='WifiRow', type='text/x-template')
   include lib/wifi-row
 
-script(id="Wifi", type="text/x-template")
+script(id='Wifi', type='text/x-template')
   include lib/wifi
 
-script(id="LogRow", type="text/x-template")
+script(id='LogRow', type='text/x-template')
   include lib/log-row
 
-script(id="Log", type="text/x-template")
+script(id='Log', type='text/x-template')
   include lib/log
 
-script(id="Main", type="text/x-template")
+script(id='Main', type='text/x-template')
   include lib/main
 
-script(id="Login", type="text/x-template")
+script(id='Login', type='text/x-template')
   include lib/login
 
-script(id="Tools", type="text/x-template")
+script(id='Tools', type='text/x-template')
   include lib/tools
 
-script(id="DevicesRow", type="text/x-template")
+script(id='DevicesRow', type='text/x-template')
   include lib/devices-row
 
-script(id="Devices", type="text/x-template")
+script(id='Devices', type='text/x-template')
   include lib/devices
 
-script(id="Config", type="text/x-template")
+script(id='Config', type='text/x-template')
   include lib/config
 
-script(id="Hardware", type="text/x-template")
+script(id='Hardware', type='text/x-template')
   include lib/hardware
 
-script(id="Nav", type="text/x-template")
+script(id='Nav', type='text/x-template')
   include lib/nav
 
 

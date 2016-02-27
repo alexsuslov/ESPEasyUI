@@ -1,0 +1,209 @@
+//- #####   ##    ####  #    #
+//-   #    #  #  #      #   #
+//-   #   #    #  ####  ####
+//-   #   ######      # #  #
+//-   #   #    # #    # #   #
+//-   #   #    #  ####  #    #
+
+script(
+  id='INA219'
+  type='text/x-template-task'
+  task='13'
+  name='Voltage &amp; Current (DC) - INA219')
+    include ina219
+
+script(
+  id='HC-SR04'
+  type='text/x-template-task'
+  task='13'
+  name='Ultrasonic Sensor - HC-SR04')
+  include hc-sr04
+
+script(
+  id='MLX90614'
+  type='text/x-template-task'
+  task='24'
+  name='Temperature IR + ambient - MLX90614')
+  include mlx90614
+
+script(
+  id='DS18b20'
+  type='text/x-template-task'
+  task='4'
+  name='Temperature - DS18b20')
+  include ds18b20
+
+
+script(
+  id='BMP085'
+  type='text/x-template-task'
+  task='6'
+  name='Temperature &amp; Pressure - BMP085')
+  include bmp085
+
+script(
+  id='SI7021'
+  type='text/x-template-task'
+  task='14'
+  name='Temperature &amp; Humidity - SI7021')
+  include si7021
+
+script(
+  id='DHT'
+  type='text/x-template-task'
+  task='5'
+  name='Temperature &amp; Humidity - DHT')
+  include dht
+
+script(
+  id='BME280'
+  type='text/x-template-task'
+  task='28'
+  name='Temperature &amp; Humidity &amp; Pressure - BME280')
+  include bme280
+
+script(
+  id='System'
+  type='text/x-template-task'
+  task='26'
+  name='System Info')
+  include system
+
+script(
+  id='PCF8574'
+  type='text/x-template-task'
+  task='9'
+  name='Switch input - PCF8574')
+  include pcf8574
+
+script(
+  id='MCP23017'
+  type='text/x-template-task'
+  task='9'
+  name='Switch input - MCP23017')
+  include mcp23017
+
+script(
+  id='Switch'
+  type='text/x-template-task'
+  task='1'
+  name='Switch input')
+    include sw
+
+script(
+  id='Serial'
+  type='text/x-template-task'
+  task='20'
+  name='Serial Server')
+    include serial
+
+
+script(
+  id='Wiegand'
+  type='text/x-template-task'
+  task='8'
+  name='RFID Reader - Wiegand')
+  include wiegand
+
+script(
+  id='PN532'
+  type='text/x-template-task'
+  task='17'
+  name='RFID Reader - PN532')
+  include pn532
+
+
+script(
+  id='Pulse'
+  type='text/x-template-task'
+  task='3'
+  name='Pulse Counter')
+  include pulse
+
+script(
+  id='ProMini'
+  type='text/x-template-task'
+  task='11'
+  name='ProMini Extender')
+  include promini
+
+script(
+  id='PCA9685'
+  type='text/x-template-task'
+  task='22'
+  name='PWM - PCA9685')
+  include pca9685
+
+
+script(
+  id='TLS2561'
+  type='text/x-template-task'
+  task='15'
+  name='Luminosity - TLS2561')
+  include tls2561
+
+
+script(
+  id='BH1750'
+  type='text/x-template-task'
+  task='10'
+  name='Luminosity - BH1750')
+  include bh1750
+
+
+script(
+  id='level'
+  type='text/x-template-task'
+  task='21'
+  name='Level Control')
+  include level
+
+
+script(
+  id='TSOP4838'
+  type='text/x-template-task'
+  task='16'
+  name='Infrared input - TSOP4838')
+  include tsop4838
+
+script(
+  id='GP2Y10'
+  type='text/x-template-task'
+  task='18'
+  name='Dust Sensor - Sharp GP2Y10')
+  include gp2y10
+
+script(
+  id='SSD1306'
+  type='text/x-template-task'
+  task='23'
+  name='Display - OLED SSD1306')
+    include ssd1306
+
+script(
+  id='LCD2004'
+  type='text/x-template-task'
+  task='12'
+  name='Display - LCD2004')
+    include lcd2004
+
+script(
+  id='PCF8591'
+  type='text/x-template-task'
+  task='7'
+  name='Analog input - PCF8591')
+    include pcf8591
+
+script(
+  id='ADS1115'
+  type='text/x-template-task'
+  task='25'
+  name='Analog input - ADS1115')
+    include ads1115
+
+script(
+  id='Analoginput'
+  type='text/x-template-task'
+  task='2'
+  name='Analog input')
+    include analog

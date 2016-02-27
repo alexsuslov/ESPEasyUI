@@ -1,0 +1,67 @@
+
+//- #####  #####   ####  #####  ####   ####   ####  #
+//- #    # #    # #    #   #   #    # #    # #    # #
+//- #    # #    # #    #   #   #    # #      #    # #
+//- #####  #####  #    #   #   #    # #      #    # #
+//- #      #   #  #    #   #   #    # #    # #    # #
+//- #      #    #  ####    #    ####   ####   ####  ######
+
+script(
+  id='GenericHTTP'
+  name='Generic HTTP'
+  type='text/x-template-protocol'
+  p='5')
+    include http
+
+script(
+  id='Emoncms'
+  name='Emoncms'
+  type='text/x-template-protocol'
+  p='5')
+    include telnet
+
+script(
+  id='PiDomeMQTT'
+  name='PiDome MQTT'
+  type='text/x-template-protocol'
+  p='5')
+    include mqtt1
+
+script(
+  id='OpenHABMQTT'
+  name='OpenHAB MQTT'
+  type='text/x-template-protocol'
+  p='5')
+    include mqtt
+
+script(
+  id='ThingSpeak'
+  name='ThingSpeak'
+  type='text/x-template-protocol'
+  p='4')
+    include telnet
+
+script(
+  id='NodoTelnet'
+  type='text/x-template-protocol'
+  p='3')
+  include telnet
+
+script(
+  id='DomoticzMQTT'
+  type='text/x-template-protocol'
+  p='2')
+  include mqtt
+
+script(
+  id='DomoticzHTTP'
+  type='text/x-template-protocol'
+  p='1' )
+  include http
+
+script(
+  id='alone'
+  type='text/x-template-protocol'
+  name='- Standalone -'
+  p='0')
+    include alone

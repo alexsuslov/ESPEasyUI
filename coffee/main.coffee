@@ -168,6 +168,7 @@ Views.Config = Views.Main.extend
   protocol:(e)->
     @model.set 'protocol', "" + e.currentTarget.selectedIndex
     @onRendered()
+    @ip()
     false
 
   onRendered: ->
