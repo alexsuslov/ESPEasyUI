@@ -7,7 +7,10 @@
         h3.panel-title.pull-left Enter command
       .panel-body
         form.Cmd()
-          input.form-control( type='text' name='c' placeholder='>' )
+          .input-group
+            input.form-control( type='text' name='c' placeholder='>' )
+            span.input-group-btn
+              button.btn.btn-primary Send
 .row
   .fieldset.col-sm-4.col-sm-offset-4
     .panel.panel-primary
@@ -16,6 +19,6 @@
       .panel-body
         h3 System
         .list-group
-          a.list-group-item(href='#/command/?cmd=TaskClear') TaskClear
-          a.list-group-item(href='#/command/?cmd=Settings' ) Settings
-          a.list-group-item(href='#/command/?cmd=WifiScan' ) WifiScan
+          a.list-group-item(href='#/command/?c=TaskClear') TaskClear
+          a.list-group-item(href='#/command/?c=Settings' ) Settings
+          a.list-group-item(href='#/command/?c=WifiScan' ) WifiScan
