@@ -58,7 +58,6 @@ App.Router = Backbone.Router.extend
     @showPage 'command'
 
   advanced:->
-    console.log  $('#advanced').html()
     $('.loading').hide()
     @showPage 'advanced'
 
