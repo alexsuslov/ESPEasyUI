@@ -8,6 +8,7 @@ App.Router = Backbone.Router.extend
   login:false
 
   routes:
+    advanced      : 'advanced'
     i2c           : 'i2c'
     command       : 'command'
     logout        : 'logout'
@@ -21,6 +22,7 @@ App.Router = Backbone.Router.extend
     ''            : 'summary'
 
   Forms:
+    advanced    : new App.Views.Advanced().render()
     tools    : new App.Views.Tools().render()
     log      : new App.Views.Log()
     login    : new App.Views.Unlock(model:App.model).render()
@@ -54,6 +56,11 @@ App.Router = Backbone.Router.extend
   command:->
     $('.loading').hide()
     @showPage 'command'
+
+  advanced:->
+    console.log  $('#advanced').html()
+    $('.loading').hide()
+    @showPage 'advanced'
 
 
   summary:->

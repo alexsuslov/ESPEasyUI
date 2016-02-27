@@ -1,0 +1,19 @@
+include ../mixin
+
++frm_input('Name', 'taskdevicename', 'data.taskdevicename' )
++frm_input('Delay', 'taskdevicetimer', 'data.taskdevicetimer' )
++frm_input('IDX / Var:', 'taskdeviceid', 'data.taskdeviceid' )
++label 1st GPIO:
+  select.form-control(name="taskdevicepin1")
+    for gpio, i in gpios
+      option(value=gpio)= labels[i]
+
+//- @todo: сделать список
++frm_input( 'Device Nr:' , 'plugin_004_dev', 'data.plugin_004_dev' )
+
++frm_check('Send Data:', 'taskdevicesenddata', 'data.taskdevicesenddata' )
+
+ +frm_input('Formula Temperature:', 'taskdeviceformula1', 'data.taskdeviceformula1' )
+
+ +frm_input('Value Name 1:', 'taskdevicevaluename1', 'data.taskdevicevaluename1' )
+

@@ -200,6 +200,7 @@ Views.Unlock = Views.Main.extend
  * Advanced View
 ###
 Views.Advanced = Views.Main.extend
+  el:'.advanced'
   model: new Models.Advanced()
   template: _.template $('#advanced').html()
 

@@ -16,7 +16,7 @@
  * [Command model]
 ###
 Models.Command = Models.Config.extend
-  url: apiPrefix + "command"
+  url: apiPrefix + "cmd"
 
 
 ###

@@ -1,0 +1,25 @@
+include ../mixin
+
++frm_input('Name', 'taskdevicename', 'data.taskdevicename' )
++frm_input('Delay', 'taskdevicetimer', 'data.taskdevicetimer' )
++frm_input('IDX / Var:', 'taskdeviceid', 'data.taskdeviceid' )
++label 1st GPIO:
+      select.form-control(name="taskdevicepin1")
+        for gpio, i in gpios
+          option(value=gpio)= labels[i]
+
++label DHT Type:
+      select.form-control(name="plugin_005_dhttype")
+        option(value='11') DHT 11
+        option(value='22') DHT 22
+
+
++frm_check('Send Data:', 'taskdevicesenddata', 'data.taskdevicesenddata' )
+
++frm_input('Formula Temperature:', 'taskdeviceformula1', 'data.taskdeviceformula1' )
+
++frm_input('Formula Humidity:', 'taskdeviceformula2', 'data.taskdeviceformula2' )
+
++frm_input('Value Name 1:', 'taskdevicevaluename1', 'data.taskdevicevaluename1' )
+
++frm_input('Value Name 2:', 'taskdevicevaluename2', 'data.taskdevicevaluename2' )
