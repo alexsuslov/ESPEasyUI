@@ -7,19 +7,19 @@ objParam = (data)->
     encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
   ).join('&')
 
-url = config.apiPrefix + "/api/command"
+url = config.apiPrefix + "/api/cmd"
 
 describe 'command api test', ->
   it '[post]', (done)->
-    get url, (data)->
-      data.p0 = 'cmd'
-      opt =
-        url : url
-        body : objParam data
-      request.post opt, (err, response, body)->
-        throw err if (err and !response.statusCode is 200)
-        json = JSON.parse(body)
-        throw new Error 'config update error' if json.p0 isnt '1'
-        done()
+
+   data=
+    c: 'Settings'
+   opt =
+     url : url
+     body : objParam data
+   request.post opt, (err, response, body)->
+     throw err if (err and !response.statusCode is 200)
+     json = JSON.parse(body)
+     done()
 
 
