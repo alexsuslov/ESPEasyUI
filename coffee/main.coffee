@@ -257,9 +257,6 @@ Views.Wifi = Views.Collection.extend
   el            : '.wifi'
 
 
-
-
-
 ###*
  * [Tools view]
 ###

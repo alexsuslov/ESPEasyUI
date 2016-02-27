@@ -32,6 +32,7 @@ __     ___
  * [I2c list view]
 ###
 Views.I2c = Views.Collection.extend
+  el: '.i2c'
   template:_.template $('#I2c').html()
   templateRow:_.template $('#I2cRow').html()
   collection: new Collections.I2C()
