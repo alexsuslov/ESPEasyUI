@@ -24,7 +24,7 @@ describe 'hardware api test', ->
       request.post opt, (err, response, body)->
         throw err if (err and !response.statusCode is 200)
         json = JSON.parse(body)
-        console.log json
+        # console.log json
         throw new Error 'Hardware config update error' if json.p0 isnt 1
         done()
 
