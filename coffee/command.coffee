@@ -54,6 +54,11 @@ Views.Commands = Views.Collection.extend
   el:'.command'
   events:
     'submit form': 'submit'
+    'click button.cmd' : 'fastCommand'
+
+  fastCommand: (e)->
+    $('input[name="c"]').val( e.currentTarget.innerText )
+    false
 
   initialize:->
     @model.on 'change:resp', =>

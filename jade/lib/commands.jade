@@ -7,18 +7,22 @@
         h3.panel-title.pull-left Enter command
       .panel-body
         form.Cmd()
+          .fast
+            button.cmd.btn.btn-primary.btn-xs TaskClear
+            button.cmd.btn.btn-primary.btn-xs Settings
+            button.cmd.btn.btn-primary.btn-xs WifiScan
           .input-group
             input.form-control( type='text' name='c' placeholder='>' )
             span.input-group-btn
               button.btn.btn-primary Send
-.row
-  .fieldset.col-sm-4.col-sm-offset-4
-    .panel.panel-primary
-      .panel-heading.clearfix
-        h3.panel-title.pull-left Quick commands
-      .panel-body
-        h3 System
-        .list-group
-          a.list-group-item(href='#/command/?c=TaskClear') TaskClear
-          a.list-group-item(href='#/command/?c=Settings' ) Settings
-          a.list-group-item(href='#/command/?c=WifiScan' ) WifiScan
+//- .row
+//-   .fieldset.col-sm-4.col-sm-offset-4
+//-     .panel.panel-primary
+//-       .panel-heading.clearfix
+//-         h3.panel-title.pull-left Quick commands
+//-       .panel-body
+//-         h3 System
+//-         .list-group
+//-           a.list-group-item(href='#/command/?c=TaskClear') TaskClear
+//-           a.list-group-item(href='#/command/?c=Settings' ) Settings
+//-           a.list-group-item(href='#/command/?c=WifiScan' ) WifiScan

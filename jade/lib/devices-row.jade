@@ -1,9 +1,9 @@
 fieldset.col-md-4
     .panel.panel-primary
       .panel-heading.clearfix
-        a(href!='#/device?index=<%= row.DeviceId %>')
+        a(href!='#/devices/<%= row.DeviceId %>')
           h3.panel-title.pull-left <%= row.DeviceName %>
-        a.btn.btn-info.pull-right.btn-sm(href!='#/device?index=<%= row.DeviceId %>') Edit
+        //- a.btn.btn-info.pull-right.btn-sm(href!='#/device?index=<%= row.DeviceId %>') Edit
       .panel-body
         table.table.table-striped
           tr
