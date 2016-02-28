@@ -13,7 +13,8 @@ form.row(method="POST")
         +frm_input('Device Name', 'name', 'data.name' )
         +frm_input('Device Delay', 'delay', 'data.delay' )
         +frm_input('Device unit', 'unit', 'data.unit' )
-
+        //- deepsleep
+        +frm_check('Sleep Mode:', 'deepsleep', 'data.deepsleep' )
         //- +frm_input('usedns', 'usedns', 'usedns' )
         //- +frm_input('Change Admin password', 'password' )
 
@@ -57,6 +58,7 @@ form.row(method="POST")
           select.form-control( name="protocol" )
             for protocol, i in protocols
               option(value=protocol)= names[i]
+
         #Protocol
         //- +frm_input('MQTT hostname', 'controllerhostname','data.controllerhostname' )
         //- +frm_input('MQTT ip', 'controllerip','data.controllerip' )

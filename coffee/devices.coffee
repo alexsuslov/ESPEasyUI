@@ -61,5 +61,11 @@ Views.Devices = Views.Collection.extend
  * [Device view]
 ###
 Views.Device = Views.Main.extend
-  template:_.template $('#Devices').html()
+  template: _.template $('#Device').html()
+  templateOption:  _.template '<option value="<%= o.task %>"><%= o.name %></option>'
   model: new Models.Device()
+  el:'.device'
+  onRendered: ->
+    App.tasks.forEach (task)=>
+      @$el.find('select.tasks').append @templateOption o:task
+    @

@@ -25,7 +25,6 @@ Collections = App.Collections
 ###*
  * [Main model]
 ###
-# console.log apiPrefix
 Models.Main = Backbone.Model.extend
   url: apiPrefix
   initialize:->
@@ -84,7 +83,6 @@ Collections.Wifi = Backbone.Collection.extend
   url:apiPrefix + "wifiscanner"
   model: Backbone.Model
 
-
 ###
 __     ___
 \ \   / (_) _____      _____
@@ -124,7 +122,8 @@ Views.Main = Backbone.View.extend
     if @model
       @$el.find('select').forEach (s)=>
         name = $(s).attr('name')
-        val = @model.get $(s).attr('name') unless name is undefined
+
+        val = @model.get name unless name is undefined
         unless val is undefined
           @$el.find("select[name='#{name}'] option[value='#{val}']").attr("selected", "selected")
     @
@@ -151,6 +150,11 @@ Views.Main = Backbone.View.extend
 ###*
  * Config View
 ###
+
+# @todo: create auto parse ip / host
+# console.log 'it\'s ip' if "192.168.1.1".match  /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/
+
+
 Views.Config = Views.Main.extend
   model     : new Models.Config()
   template  : _.template $('#Config').html()
@@ -179,10 +183,13 @@ Views.Config = Views.Main.extend
       ).map (i,v)-> '#' + v.id
     # get #Protocol element
     $el = @$el.find('#Protocol')
-    # get template name
-    name = @templates[ parseInt( @model.get( 'protocol') ) ]
+    proto =  @model.get( 'protocol')
+    # get model
+    # console.log   App.protocols.toJSON()
+    model = App.protocols.get proto
+    # console.log 'model', model
     # create template func
-    template = _.template $(name).html()
+    template = _.template model.getTemplate()
     # render
     $el.html template data:@model.toJSON()
     @

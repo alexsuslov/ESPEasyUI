@@ -4,6 +4,11 @@
  * @created 2016-02-18
 ###
 App.model = new Models.Main()
+App.tasks = $('[type="text/x-template-task"]').map (i, el)->
+  task:$(el).attr 'task'
+  id: $(el).attr 'id'
+  name: $(el).attr 'name'
+
 App.Router = Backbone.Router.extend
   login:false
 
@@ -30,6 +35,7 @@ App.Router = Backbone.Router.extend
     config   : new App.Views.Config()
     hardware : new App.Views.Hardware()
     devices  : new App.Views.Devices()
+    device    : new App.Views.Device()
     wifi     : new App.Views.Wifi()
     I2c      : new App.Views.I2c()
     command  : new App.Views.Commands().render()
@@ -89,8 +95,6 @@ App.Router = Backbone.Router.extend
     Backbone.trigger 'onLogout'
     @
 
-
-
   config:->
     model = @Forms.config.model
     @showPage 'config' , (fn)=>
@@ -116,11 +120,11 @@ App.Router = Backbone.Router.extend
     @
 
   device:(id)->
-    $('.block').hide()
-    $('.devices').show()
-    console.log 'device:', id
-    # device = new Models.Device(id:id)
-    # device.fetch()
+    model = @Forms.device.model
+    @showPage 'device', (fn)=>
+      model.on 'sync', -> fn()
+      model.set id:id
+      model.fetch()
 
   tools:()->
     @showPage 'tools'

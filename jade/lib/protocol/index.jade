@@ -1,3 +1,4 @@
+include ../mixin
 
 //- #####  #####   ####  #####  ####   ####   ####  #
 //- #    # #    # #    #   #   #    # #    # #    # #
@@ -6,62 +7,29 @@
 //- #      #   #  #    #   #   #    # #    # #    # #
 //- #      #    #  ####    #    ####   ####   ####  ######
 
-script(
-  id='GenericHTTP'
-  name='Generic HTTP'
-  type='text/x-template-protocol'
-  p='5')
-    include http
+script(id='ProtocolAccount', type='text/x-template')
+  //- user
+  +frm_input('Controller User:', 'controlleruser', 'data.controlleruser')
+  //- pass
+  //- +frm_input(
+    'Controller Password:',
+    'controllerpassword',
+    'data.controllerpassword')
 
-script(
-  id='Emoncms'
-  name='Emoncms'
-  type='text/x-template-protocol'
-  p='5')
-    include telnet
+script(id='ProtocolHost', type='text/x-template')
+  //- hostname
+  +frm_input('Controller Hostname:', 'controllerhostname', 'data.controllerhostname' )
+  //- ip
+  +frm_input_ip('Controller IP:', 'controllerip', 'data.controllerip' )
+  //- port
+  +frm_input('Controller Port:', 'controllerport', 'data.controllerport' )
 
-script(
-  id='PiDomeMQTT'
-  name='PiDome MQTT'
-  type='text/x-template-protocol'
-  p='5')
-    include mqtt1
 
-script(
-  id='OpenHABMQTT'
-  name='OpenHAB MQTT'
-  type='text/x-template-protocol'
-  p='5')
-    include mqtt
+script(id='ProtocolPassword', type='text/x-template')
+  //- pass
+  +frm_input('Controller Password:', 'controllerpassword', 'data.controllerpassword' )
 
-script(
-  id='ThingSpeak'
-  name='ThingSpeak'
-  type='text/x-template-protocol'
-  p='4')
-    include telnet
 
-script(
-  id='NodoTelnet'
-  type='text/x-template-protocol'
-  p='3')
-  include telnet
 
-script(
-  id='DomoticzMQTT'
-  type='text/x-template-protocol'
-  p='2')
-  include mqtt
 
-script(
-  id='DomoticzHTTP'
-  type='text/x-template-protocol'
-  p='1' )
-  include http
 
-script(
-  id='alone'
-  type='text/x-template-protocol'
-  name='- Standalone -'
-  p='0')
-    include alone
