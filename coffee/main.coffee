@@ -23,9 +23,21 @@ Collections = App.Collections
 ###
 
 ###*
+ * [Model description]
+###
+Models.Model = Backbone.Model.extend
+  initialize:->
+    @on 'error', ->
+      Backbone.trigger 'locked'
+
+    @on 'save', =>
+      @save( {}, type: 'post', data: @data, contentType: false, processData: false,)
+    @
+
+###*
  * [Main model]
 ###
-Models.Main = Backbone.Model.extend
+Models.Main = Models.Model.extend
   url: apiPrefix
   initialize:->
     @on 'error', ->
@@ -37,29 +49,17 @@ Models.Main = Backbone.Model.extend
     @on 'save', =>
       @save( {}, type: 'post', data: @data, contentType: false, processData: false,)
     @
-###*
- * [Config model]
-###
-Models.Config = Backbone.Model.extend
-  url: apiPrefix + "config"
-  initialize:->
-    @on 'error', ->
-      Backbone.trigger 'locked'
-
-    @on 'save', =>
-      @save( {}, type: 'post', data: @data, contentType: false, processData: false,)
-    @
 
 ###*
  * [Hardware model]
 ###
-Models.Hardware = Models.Config.extend
+Models.Hardware = Models.Model.extend
   url:apiPrefix + "hardware"
 
 ###*
  * [Advanced model]
 ###
-Models.Advanced = Models.Config.extend
+Models.Advanced = Models.Model.extend
   url: url:apiPrefix + "advanced"
 
 
@@ -70,6 +70,7 @@ Models.Advanced = Models.Config.extend
 | |__| (_) | | |  __/ (__| |_| | (_) | | | \__ \
  \____\___/|_|_|\___|\___|\__|_|\___/|_| |_|___/
 ###
+
 ###*
  * [Log collection]
 ###
@@ -148,61 +149,6 @@ Views.Main = Backbone.View.extend
   onRendered: ->
     @
 
-###*
- * Config View
-###
-
-# @todo: create auto parse ip / host
-# console.log 'it\'s ip' if "192.168.1.1".match  /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/
-
-
-Views.Config = Views.Main.extend
-  model     : new Models.Config()
-  template  : _.template $('#Config').html()
-  templateRow: _.template '<option value="<%= row.Number %>" ><%=row.Name%></option>'
-  templates : []
-  el        : '.config'
-  deSerialize:(data)->
-    data.map (val)=>
-      if val.name in @ipInputs
-        val.value = val.value.replace( /\./g,',')
-    $.param data
-  events:
-    'submit form': 'submit'
-    'change [name="protocol"]': 'protocol'
-
-  protocol:(e)->
-    @model.set 'protocol', "" + e.currentTarget.selectedIndex
-    @onRendered()
-    @ip()
-    false
-
-  onRendered: ->
-    # create select list
-    $select = $('select[name="protocol"]')
-    App.protocols.toJSON()
-      .sort (a, b)->
-        return -1 if a.Number < b.Number
-        return 1
-      .forEach (p)=>
-        $select.append @templateRow row:p
-    # create list protocol templates
-    @templates = $('[type="text/x-template-protocol"]').sort( (a,b)->
-      return -1 if $(a).attr('p') < $(b).attr('p')
-      1
-      ).map (i,v)-> '#' + v.id
-    # get #Protocol element
-    $el = @$el.find('#Protocol')
-    proto =  @model.get( 'protocol')
-    # get model
-    # console.log   App.protocols.toJSON()
-    model = App.protocols.get proto
-    # console.log 'model', model
-    # create template func
-    template = _.template model.getTemplate()
-    # render
-    $el.html template data:@model.toJSON()
-    @
 
 ###*
  * Unlock View
