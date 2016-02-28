@@ -1,20 +1,15 @@
-include ../mixin
-
-//- #####  #####   ####  #####  ####   ####   ####  #
-//- #    # #    # #    #   #   #    # #    # #    # #
-//- #    # #    # #    #   #   #    # #      #    # #
-//- #####  #####  #    #   #   #    # #      #    # #
-//- #      #   #  #    #   #   #    # #    # #    # #
-//- #      #    #  ####    #    ####   ####   ####  ######
+include mixin
+//-
+  #####  #####   ####  #####  ####   ####   ####  #
+  #    # #    # #    #   #   #    # #    # #    # #
+  #    # #    # #    #   #   #    # #      #    # #
+  #####  #####  #    #   #   #    # #      #    # #
+  #      #   #  #    #   #   #    # #    # #    # #
+  #      #    #  ####    #    ####   ####   ####  ######
 
 script(id='ProtocolAccount', type='text/x-template')
   //- user
   +frm_input('Controller User:', 'controlleruser', 'data.controlleruser')
-  //- pass
-  //- +frm_input(
-    'Controller Password:',
-    'controllerpassword',
-    'data.controllerpassword')
 
 script(id='ProtocolHost', type='text/x-template')
   //- hostname
