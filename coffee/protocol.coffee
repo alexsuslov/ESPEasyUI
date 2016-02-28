@@ -23,7 +23,6 @@ Name: "Domoticz HTTP"
 Number: "1"
 Password: "0"
 defaultPort: "8080"
-
 ###
 
 Protocol = Backbone.Model.extend

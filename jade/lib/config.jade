@@ -1,6 +1,6 @@
 include mixin
-- var protocols = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-- var names = ["- Standalone", "Domoticz HTTP", "Domoticz MQTT", "Nodo Telnet", "ThingSpeak", "OpenHAB MQTT", "PiDome MQTT", "Emoncms", "Generic HTTP"];
+// - var protocols = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+// - var names = ["- Standalone", "Domoticz HTTP", "Domoticz MQTT", "Nodo Telnet", "ThingSpeak", "OpenHAB MQTT", "PiDome MQTT", "Emoncms", "Generic HTTP"];
 
 form.row(method="POST")
   fieldset.col-md-3
@@ -56,8 +56,8 @@ form.row(method="POST")
       .panel-body
         +label('Protocol')
           select.form-control( name="protocol" )
-            for protocol, i in protocols
-              option(value=protocol)= names[i]
+            //- for protocol, i in protocols
+            //-   option(value=protocol)= names[i]
 
         #Protocol
         //- +frm_input('MQTT hostname', 'controllerhostname','data.controllerhostname' )

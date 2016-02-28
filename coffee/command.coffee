@@ -57,16 +57,21 @@ Views.Commands = Views.Collection.extend
     'click button.cmd' : 'fastCommand'
 
   fastCommand: (e)->
-    $('input[name="c"]').val( e.currentTarget.innerText )
+    $('input[name="c"]').val( $(e.currentTarget).attr 'def' )
     false
 
   initialize:->
-    @model.on 'change:resp', =>
-      @collection.add @model
+    @model.on 'sync', =>
+      @model.set 'c', @command
+      @model.set 'time', new Date()
+      @collection.add @model.toJSON()
+      @render()
       @
 
-
   submit:->
-    @model.data = @$el.find('form').serialize()
-    @model.trigger('save')
+    @command = @$el.find('form').serializeArray()[0].value
+    if @command
+      @model.data = @$el.find('form').serialize()
+      @command = @$el.find('form').serializeArray()[0].value
+      @model.trigger('save')
     false

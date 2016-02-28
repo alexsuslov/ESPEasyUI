@@ -139,6 +139,7 @@ Views.Main = Backbone.View.extend
     @
 
   render: ->
+
     @$el.html(@template( if @model then data:@model.toJSON() else {data:{}} )) if @template
     @onRendered() if @onRendered
     @select()
@@ -158,6 +159,7 @@ Views.Main = Backbone.View.extend
 Views.Config = Views.Main.extend
   model     : new Models.Config()
   template  : _.template $('#Config').html()
+  templateRow: _.template '<option value="<%= row.Number %>" ><%=row.Name%></option>'
   templates : []
   el        : '.config'
   deSerialize:(data)->
@@ -176,6 +178,14 @@ Views.Config = Views.Main.extend
     false
 
   onRendered: ->
+    # create select list
+    $select = $('select[name="protocol"]')
+    App.protocols.toJSON()
+      .sort (a, b)->
+        return -1 if a.Number < b.Number
+        return 1
+      .forEach (p)=>
+        $select.append @templateRow row:p
     # create list protocol templates
     @templates = $('[type="text/x-template-protocol"]').sort( (a,b)->
       return -1 if $(a).attr('p') < $(b).attr('p')
@@ -229,7 +239,6 @@ Views.Collection = Backbone.View.extend
   tBody: '.list'
 
   serializeData: (data)->
-    # console.log data
     data
   initialize  :->
     @collection.on 'update', => @render()

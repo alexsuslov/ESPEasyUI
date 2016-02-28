@@ -1,4 +1,4 @@
-.Log
+#commands-list
 
 .row.editLine
   .fieldset.col-sm-6.col-sm-offset-3
@@ -8,14 +8,14 @@
       .panel-body
         form.Cmd()
           .fast
-            button.cmd.btn.btn-primary.btn-xs TaskClear
-            button.cmd.btn.btn-primary.btn-xs Settings
-            button.cmd.btn.btn-primary.btn-xs WifiScan
+            button.cmd.btn.btn-primary.btn-xs(def="TaskClear %1 %2") TaskClear
+            button.cmd.btn.btn-primary.btn-xs(def="Settings") Settings
+            button.cmd.btn.btn-primary.btn-xs(def="WifiScan") WifiScan
           .input-group
             input.form-control( type='text' name='c' placeholder='>' )
             span.input-group-btn
               button.btn.btn-primary Send
-//- .row
+
 //-   .fieldset.col-sm-4.col-sm-offset-4
 //-     .panel.panel-primary
 //-       .panel-heading.clearfix
