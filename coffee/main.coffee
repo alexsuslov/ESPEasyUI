@@ -127,7 +127,7 @@ Views.Main = Backbone.View.extend
   submit:->
     @model.data = @deSerialize @$el.find('form').serializeArray()
     # console.log @model.data
-    # @model.trigger('save')
+    @model.trigger('save')
     false
 
   checkbox: ->
