@@ -1,15 +1,15 @@
 config = require '../config'
 request = require 'request'
 
+url = config.apiPrefix + "/api?q=5"
 
 objParam = (data)->
   Object.keys(data).map( (k)->
     encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
   ).join('&')
 
-url = config.apiPrefix + "/api?q=2"
 
-describe 'Hardware api test', ->
+describe 'advanced api test', ->
   it '[get]/[post]', (done)->
     get = (url, fn)->
       request.get url, (err, response, body)->
@@ -17,25 +17,21 @@ describe 'Hardware api test', ->
         fn JSON.parse(body)
 
     get url, (data)->
-      # create tmp env
-      tmp = '' + data.p0
-      # set test "1"
-      data.p0 = '1'
-      # options 4 request
+      tmp = "" + data.MQTTsubscribe
+
+      data.MQTTsubscribe = '/home/#'
       opt =
         url : url
         body : objParam data
-      # send post request
+
       request.post opt, (err, response, body)->
-        # throw err if status not 200
         throw err if (err and !response.statusCode is 200)
-        # parse json
         json = JSON.parse(body)
-        # throw err if response p0 not "1"
-        throw new Error 'Hardware config update error' if json.p0 isnt '1'
+        console.log json
+        throw new Error 'config update MQTTsubscribe error' if json.MQTTsubscribe isnt '/home/#'
+
         # restore data
-        data.p0 = tmp
-        # create param body
+        data.MQTTsubscribe = tmp
         opt.body = objParam data
         request.post opt, (err, response, body)->
           done()

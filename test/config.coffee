@@ -8,7 +8,7 @@ objParam = (data)->
 
 url = config.apiPrefix + "/api?q=1"
 
-describe 'config api test', ->
+describe 'Config api test', ->
   it '[get]/[post]', (done)->
     get = (url, fn)->
       request.get url, (err, response, body)->

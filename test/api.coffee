@@ -1,7 +1,7 @@
 config = require '../config'
 request = require 'request'
 
-url = config.apiPrefix + '/api/'
+url = config.apiPrefix + '/api?q=0'
 
 describe 'Api', ->
   it '[get]', (done)->
