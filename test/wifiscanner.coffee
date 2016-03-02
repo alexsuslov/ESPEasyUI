@@ -1,7 +1,7 @@
 config = require '../config'
 request = require 'request'
 
-url = config.apiPrefix + "/api/wifiscanner"
+url = config.apiPrefix + "/api?q=7"
 
 describe 'wifi scanner api', ->
   @timeout(5000);

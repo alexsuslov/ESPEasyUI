@@ -1,9 +1,9 @@
 config = require '../config'
 request = require 'request'
 
-url = config.apiPrefix + "/api?q=8"
+url = config.apiPrefix + "/api?q=6"
 
-describe 'I2C api', ->
+describe 'Log api', ->
   it '[get]', (done)->
 
     request url, (err, response, body)->
