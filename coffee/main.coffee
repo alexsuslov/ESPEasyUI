@@ -60,7 +60,7 @@ Models.Hardware = Models.Model.extend
  * [Advanced model]
 ###
 Models.Advanced = Models.Model.extend
-  url: url:apiPrefix + "?q=3"
+  url: apiPrefix + "?q=5"
 
 
 ###

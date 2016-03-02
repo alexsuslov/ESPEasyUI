@@ -27,7 +27,7 @@ App.Router = Backbone.Router.extend
     ''            : 'summary'
 
   Forms:
-    advanced    : new App.Views.Advanced().render()
+    advanced : new App.Views.Advanced().render()
     tools    : new App.Views.Tools().render()
     log      : new App.Views.Log()
     login    : new App.Views.Unlock(model:App.model).render()
@@ -64,9 +64,11 @@ App.Router = Backbone.Router.extend
     @showPage 'command'
 
   advanced:->
-    $('.loading').hide()
-    @showPage 'advanced'
-
+    model=  @Forms.advanced.model
+    @showPage 'advanced' , (fn)=>
+      model.on 'sync', ->fn()
+      model.fetch()
+    @
 
   summary:->
     model= App.model
