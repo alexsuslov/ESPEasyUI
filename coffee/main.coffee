@@ -167,6 +167,7 @@ Views.Advanced = Views.Main.extend
   model: new Models.Advanced()
   template: _.template $('#advanced').html()
   deSerialize:(data)->
+    data.edit = "1"
     data.useserial = 'on' if data.useserial is '1'
     data.customcss = 'on' if data.customcss is '1'
     data.usentp = 'on' if data.usentp is '1'

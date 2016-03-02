@@ -17,9 +17,10 @@ describe 'advanced api test', ->
         fn JSON.parse(body)
 
     get url, (data)->
-      tmp = "" + data.MQTTsubscribe
+      tmp = "" + data.mqttsubscribe
 
-      data.MQTTsubscribe = '/home/#'
+      data.mqttsubscribe = '/home/#'
+      data.edit = '1'
       opt =
         url : url
         body : objParam data
@@ -27,10 +28,10 @@ describe 'advanced api test', ->
       request.post opt, (err, response, body)->
         throw err if (err and !response.statusCode is 200)
         json = JSON.parse(body)
-        throw new Error 'Advanced update MQTTsubscribe error' if json.MQTTsubscribe isnt '/home/#'
+        throw new Error 'Advanced update MQTTsubscribe error' if json.mqttsubscribe isnt '/home/#'
 
         # restore data
-        data.MQTTsubscribe = tmp
+        data.mqttsubscribe = tmp
         opt.body = objParam data
         request.post opt, (err, response, body)->
           done()
