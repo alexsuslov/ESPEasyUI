@@ -14,6 +14,13 @@ form.row(method="POST")
         h3.panel-title.pull-left I²C Settings
         button.btn.btn-info.pull-right.btn-sm(type='submit') Save
       .panel-body
+
+
+        +label Wifi Status Led::
+          select.form-control(name="pled")
+            for gpio, i in gpios
+              option(value=gpio)= labels[i]
+
         +label SDA:
           select.form-control(name="psda")
             for gpio, i in gpios
