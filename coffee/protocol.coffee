@@ -50,7 +50,7 @@ Protocol = Backbone.Model.extend
 ###
 Protocols = Backbone.Collection.extend
   model: Protocol
-  url: apiPrefix + "protocols"
+  url: apiPrefix + "?q=10"
   idAttribute: 'Number'
 
 protocols = new Protocols()

@@ -17,7 +17,7 @@
  * [I2C collection]
 ###
 Collections.I2C = Backbone.Collection.extend
-  url:apiPrefix + "i2c"
+  url:apiPrefix + "?q=8"
 
 
 ###

@@ -17,7 +17,7 @@
  * [Config model]
 ###
 Models.Config = Models.Model.extend
-  url: apiPrefix + "config"
+  url: apiPrefix + "?q=1"
 
 ###
 __     ___

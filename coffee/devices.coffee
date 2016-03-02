@@ -18,7 +18,7 @@
 Models.Device = Models.Config.extend
   url: ->
     id = @get 'id'
-    apiPrefix + "device?index=#{id}"
+    apiPrefix + "?q=4&index=#{id}"
 
 
 ###
@@ -33,7 +33,7 @@ Models.Device = Models.Config.extend
  * [Devices collection]
 ###
 Collections.Devices = Backbone.Collection.extend
-  url: apiPrefix + "devices"
+  url: apiPrefix + "?q=3"
 
 ###
 __     ___

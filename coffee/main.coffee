@@ -38,7 +38,7 @@ Models.Model = Backbone.Model.extend
  * [Main model]
 ###
 Models.Main = Models.Model.extend
-  url: apiPrefix
+  url: apiPrefix + '?q=0'
   initialize:->
     @on 'error', ->
       Backbone.trigger 'locked'
@@ -54,13 +54,13 @@ Models.Main = Models.Model.extend
  * [Hardware model]
 ###
 Models.Hardware = Models.Model.extend
-  url:apiPrefix + "hardware"
+  url:apiPrefix + "?q=2"
 
 ###*
  * [Advanced model]
 ###
 Models.Advanced = Models.Model.extend
-  url: url:apiPrefix + "advanced"
+  url: url:apiPrefix + "?q=3"
 
 
 ###
@@ -75,13 +75,13 @@ Models.Advanced = Models.Model.extend
  * [Log collection]
 ###
 Collections.Log = Backbone.Collection.extend
-  url:apiPrefix + "log"
+  url:apiPrefix + "?q=6"
 
 ###*
  * [Wifi collection]
 ###
 Collections.Wifi = Backbone.Collection.extend
-  url:apiPrefix + "wifiscanner"
+  url:apiPrefix + "?q=7"
   model: Backbone.Model
 
 ###

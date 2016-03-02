@@ -27,7 +27,7 @@ describe 'advanced api test', ->
       request.post opt, (err, response, body)->
         throw err if (err and !response.statusCode is 200)
         json = JSON.parse(body)
-        throw new Error 'config update MQTTsubscribe error' if json.MQTTsubscribe isnt '/home/#'
+        throw new Error 'Advanced update MQTTsubscribe error' if json.MQTTsubscribe isnt '/home/#'
 
         # restore data
         data.MQTTsubscribe = tmp
