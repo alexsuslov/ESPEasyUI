@@ -166,7 +166,13 @@ Views.Advanced = Views.Main.extend
   el:'.advanced'
   model: new Models.Advanced()
   template: _.template $('#advanced').html()
-
+  deSerialize:(data)->
+    data.useserial = 'on' if data.useserial is '1'
+    data.customcss = 'on' if data.customcss is '1'
+    data.usentp = 'on' if data.usentp is '1'
+    data.dst = 'on' if data.dst is '1'
+    data.usessdp = 'on' if data.usessdp is '1'
+    $.param data
 
 ###*
  * [Hardware View]
