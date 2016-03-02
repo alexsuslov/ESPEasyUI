@@ -11,7 +11,7 @@ mixin frm_input_ip(title, name, value)
 mixin frm_check(title, name, value)
   .form-group
     label= title
-    input.form-control( type='checkbox' name=name value!="<%= #{value} %>" )
+    input.form-control( type='checkbox' name=name )
 
 mixin label(title)
   .form-group

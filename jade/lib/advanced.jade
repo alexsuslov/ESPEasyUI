@@ -10,7 +10,7 @@ form.row(method="POST")
 
   fieldset.col-md-3
     legend NTP
-    +frm_check('Use NTP:', 'taskdevicesenddata', 'data.taskdevicesenddata' )
+    +frm_check('Use NTP:', 'usentp', 'data.usentp' )
     +frm_input('NTP Hostname:', 'ntphost', 'data.ntphost' )
     +frm_input('Timezone Offset:', 'timezone', 'data.timezone' )
 
@@ -20,6 +20,7 @@ form.row(method="POST")
     +frm_input_ip('Syslog IP:', 'syslogip', 'data.syslogip' )
     +frm_input('Syslog Level:', 'sysloglevel', 'data.sysloglevel' )
     +frm_input('UDP port:', 'udpport', 'data.udpport' )
+    +frm_check('Enable Serial port:', 'useserial', 'data.useserial' )
     +frm_input('Serial log Level:', 'serialloglevel', 'data.serialloglevel' )
     +frm_input('Web log Level:', 'webloglevel', 'data.webloglevel' )
     +frm_input('Baud Rate:', 'baudrate', 'data.baudrate' )
@@ -28,5 +29,6 @@ form.row(method="POST")
     +frm_input('WD I2C Address:', 'wdi2caddress', 'data.wdi2caddress' )
 
     +frm_check('Custom CSS:', 'customcss', 'data.customcss' )
+    +frm_check('Use SSDP:', 'usessdp', 'data.usessdp' )
 
     button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All

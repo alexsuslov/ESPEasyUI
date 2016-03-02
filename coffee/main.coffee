@@ -110,15 +110,34 @@ Views.Main = Backbone.View.extend
   events:
     'submit form': 'submit'
 
-  deSerialize:(data)->
-    $.param data
+  deSerialize:(arr)->
+    object = arr.reduce (obj, el )->
+      obj[el.name] = el.value
+      obj
+    , {}
+    # checkbox
+    @$el.find('input[type="checkbox"]').forEach (s)=>
+      $s = $ s
+      object[name]="on" if $s.attr('checked') is 'checked'
+
+    $.param Object.keys(object).map (name)->
+      name:name
+      value: object[name]
 
   submit:->
     @model.data = @deSerialize @$el.find('form').serializeArray()
     # console.log @model.data
-    @model.trigger('save')
+    # @model.trigger('save')
     false
 
+  checkbox: ->
+    if @model
+      @$el.find('input[type="checkbox"]').forEach (s)=>
+        name = $(s).attr('name')
+        val = @model.get name unless name is undefined
+        if val is "1"
+          $(s).attr 'checked', 'checked'
+    @
   select: ->
     if @model
       @$el.find('select').forEach (s)=>
@@ -145,6 +164,7 @@ Views.Main = Backbone.View.extend
     @onRendered() if @onRendered
     @select()
     @ip()
+    @checkbox()
     @
   onRendered: ->
     @
@@ -166,14 +186,6 @@ Views.Advanced = Views.Main.extend
   el:'.advanced'
   model: new Models.Advanced()
   template: _.template $('#advanced').html()
-  deSerialize:(data)->
-    data.edit = "1"
-    data.useserial = 'on' if data.useserial is '1'
-    data.customcss = 'on' if data.customcss is '1'
-    data.usentp = 'on' if data.usentp is '1'
-    data.dst = 'on' if data.dst is '1'
-    data.usessdp = 'on' if data.usessdp is '1'
-    $.param data
 
 ###*
  * [Hardware View]
