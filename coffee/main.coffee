@@ -115,6 +115,8 @@ Views.Main = Backbone.View.extend
       obj[el.name] = el.value
       obj
     , {}
+    #
+    object.edit="1"
     # checkbox
     @$el.find('input[type="checkbox"]').forEach (s)=>
       $s = $ s
