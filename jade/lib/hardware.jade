@@ -8,34 +8,31 @@ mixin pinState(id)
       option(value="2") Output High
 
 form.row(method="POST")
-  fieldset.col-sm-3.col-sm-offset-3
-    .panel.panel-primary
-      .panel-heading.clearfix
-        h3.panel-title.pull-left I²C Settings
-        button.btn.btn-info.pull-right.btn-sm(type='submit') Save
-      .panel-body
+  fieldset.col-sm-6
+    legend I²C Settings
+      button.btn.btn-info.pull-right.btn-sm(type='submit') Save
+    //- .panel.panel-primary
+    //-   .panel-heading.clearfix
 
+    //-   .panel-body
 
-        +label Wifi Status Led::
-          select.form-control(name="pled")
-            for gpio, i in gpios
-              option(value=gpio)= labels[i]
+    +label Wifi Status Led::
+      select.form-control(name="pled")
+        for gpio, i in gpios
+          option(value=gpio)= labels[i]
 
-        +label SDA:
-          select.form-control(name="psda")
-            for gpio, i in gpios
-              option(value=gpio)= labels[i]
-        +label SCL:
-          select.form-control(name="pscl")
-            for gpio, i in gpios
-              option(value=gpio)= labels[i]
-  fieldset.col-sm-3
-    .panel.panel-primary
-      .panel-heading.clearfix
-        h3.panel-title.pull-left Pins state
-        button.btn.btn-info.pull-right.btn-sm(type='submit') Save
-      .panel-body
-        for gpio in gpios
-          if gpio >=0
-            +pinState(gpio)
+    +label SDA:
+      select.form-control(name="psda")
+        for gpio, i in gpios
+          option(value=gpio)= labels[i]
+    +label SCL:
+      select.form-control(name="pscl")
+        for gpio, i in gpios
+          option(value=gpio)= labels[i]
+  fieldset.col-sm-6
+    legend Pins state
+      button.btn.btn-info.pull-right.btn-sm(type='submit') Save
+      for gpio in gpios
+        if gpio >=0
+          +pinState(gpio)
 
