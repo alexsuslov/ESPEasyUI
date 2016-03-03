@@ -18,6 +18,19 @@
 ###
 Models.Config = Models.Model.extend
   url: apiPrefix + "?q=1"
+  initialize:->
+    @on 'error', ->
+      Backbone.trigger 'locked'
+
+    @on 'save', =>
+      @save( {}, type: 'post', data: @data, contentType: false, processData: false,)
+
+    @on 'change:usedns', =>
+      if @get( 'usedns') is '1'
+        @set 'host', @get 'controllerhostname'
+      else
+        @set 'host', @get  'controllerip'
+    @
 
 ###
 __     ___
