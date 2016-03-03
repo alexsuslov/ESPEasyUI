@@ -53,6 +53,7 @@ Views.Config = Views.Main.extend
 
     if object.host.match /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/
       object.controllerip = object.host
+      object.usedns = "0"
 
     else
       object.controllerhostname = object.host
