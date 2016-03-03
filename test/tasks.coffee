@@ -1,9 +1,9 @@
 config = require '../config'
 request = require 'request'
 
-url = config.apiPrefix + "/api?q=11"
+url = config.apiPrefix + "/api?q=3"
 
-describe 'DEVICES', ->
+describe 'TASKS', ->
   @timeout config.timeout
   it "[get]#{url}", (done)->
 
