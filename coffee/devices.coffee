@@ -68,4 +68,8 @@ Views.Device = Views.Main.extend
   onRendered: ->
     App.tasks.forEach (task)=>
       @$el.find('select.tasks').append @templateOption o:task
+    task = @model.get( 'taskdevicename')
+    template = _.template $( '#'+task).html()
+    form = @$el.find('form')
+    $(form).append template data:@model.toJSON()
     @
