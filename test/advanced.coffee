@@ -33,6 +33,7 @@ describe 'ADVANCED', ->
 
         # restore data
         data.mqttsubscribe = tmp
+        data.useserial = "on"
         opt.body = objParam data
         request.post opt, (err, response, body)->
           done()

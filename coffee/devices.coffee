@@ -35,6 +35,10 @@ Models.Device = Models.Config.extend
 Collections.Devices = Backbone.Collection.extend
   url: apiPrefix + "?q=3"
 
+Collections.Tasks = Backbone.Collection.extend
+  url: apiPrefix + "?q=11"
+
+
 ###
 __     ___
 \ \   / (_) _____      _____

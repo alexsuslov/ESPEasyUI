@@ -19,8 +19,7 @@
 Models.Config = Models.Model.extend
   url: apiPrefix + "?q=1"
   initialize:->
-    @on 'error', ->
-      Backbone.trigger 'locked'
+    @on 'error', (model, jqXHR)-> Backbone.trigger jqXHR.status
 
     @on 'save', =>
       @save( {}, type: 'post', data: @data, contentType: false, processData: false,)

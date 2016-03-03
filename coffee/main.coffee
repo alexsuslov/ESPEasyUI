@@ -27,11 +27,11 @@ Collections = App.Collections
 ###
 Models.Model = Backbone.Model.extend
   initialize:->
-    @on 'error', ->
-      Backbone.trigger 'locked'
+    @on 'error', (model, jqXHR)-> Backbone.trigger jqXHR.status
 
     @on 'save', =>
       @save( {}, type: 'post', data: @data, contentType: false, processData: false,)
+      @
     @
 
 ###*
@@ -40,8 +40,7 @@ Models.Model = Backbone.Model.extend
 Models.Main = Models.Model.extend
   url: apiPrefix + '?q=0'
   initialize:->
-    @on 'error', ->
-      Backbone.trigger 'locked'
+    @on 'error', (model, jqXHR)-> Backbone.trigger jqXHR.status
 
     @on 'change:Chip_id', ->
       Backbone.trigger 'unLocked'

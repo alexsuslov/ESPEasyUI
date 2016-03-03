@@ -50,15 +50,12 @@ Protocol = Backbone.Model.extend
 ###
 Protocols = Backbone.Collection.extend
   model: Protocol
-  url: apiPrefix + "?q=10"
   idAttribute: 'Number'
 
-protocols = new Protocols()
-protocols.fetch()
-protocols.on 'sync', ->
-  protocols.add
-    clean: true
-    Name: "- Standalone -"
-    Number: "0"
+protocols = new Protocols(
+  clean: true
+  Name: "- Standalone -"
+  Number: "0"
+)
 App.protocols = protocols
 

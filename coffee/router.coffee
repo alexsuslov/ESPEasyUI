@@ -4,10 +4,7 @@
  * @created 2016-02-18
 ###
 App.model = new Models.Main()
-App.tasks = $('[type="text/x-template-task"]').map (i, el)->
-  task:$(el).attr 'task'
-  id: $(el).attr 'id'
-  name: $(el).attr 'name'
+
 
 App.Router = Backbone.Router.extend
   login:false
@@ -41,7 +38,9 @@ App.Router = Backbone.Router.extend
     command  : new App.Views.Commands().render()
 
   initialize:->
-    Backbone.on 'locked', =>
+    Backbone.on '500', =>
+      console.log 'sync error'
+    Backbone.on '401', =>
       $('.block').hide()
       $('.loading').hide()
       $('.login').show()
@@ -131,6 +130,10 @@ App.Router = Backbone.Router.extend
   tools:()->
     @showPage 'tools'
 
+
+  # show page
+  # @param String name block name
+  # @param function fb callback
   showPage: (name, fn)->
     $('.block').hide()
     if fn
@@ -144,4 +147,50 @@ App.Router = Backbone.Router.extend
 
 
 App.router = new App.Router()
-Backbone.history.start();
+# options for ajax
+opt =
+  # url 4 combine json
+  url: apiPrefix
+  async: true
+  cache: true
+  # cb function
+  complete: (jqXHR)->
+    # conver to json
+    # @todo: create try / catch
+    json = JSON.parse(jqXHR.response)
+    # tasks list
+    tasks = json.Tasks.map (task)->
+      # convert list to object
+      Task =
+        Number: task[0]
+        Type: task[1]
+        VType: task[2]
+        Ports: task[3]
+        PullUpOption: task[4]
+        InverseLogicOption: task[5]
+        FormulaOption: task[6]
+        ValueCount: task[7]
+        Custom: task[8]
+        SendDataOption: task[9]
+        GlobalSyncOption: task[10]
+        TimerOption: task[11]
+    # create tasks collection
+    App.tasks = new Collections.Tasks( tasks)
+    # protocols
+    # use add function (App.protocols not empty)
+    json.Protocols.forEach (protocol)->
+      App.protocols.add protocol
+    # summary
+    # create summary model
+    App.model.set json.Summary
+    # start apiPrefix
+    Backbone.history.start();
+
+# hide blocks
+$('.block').hide()
+# show loading block
+$('.loading').show()
+# start ajax query
+$.ajax opt
+
+
