@@ -43,8 +43,7 @@ gulp.task('clean', function () {
 
 gulp.task('watch', function () {
   gulp.watch('coffee/**/*.coffee', ['coffee'])
-  gulp.watch('.tmp/js/**/*.js', ['compress'])
-  gulp.watch('dist/**/*.js', ['jade'])
+  // gulp.watch('.tmp/js/**/*.js', ['compress'])
   gulp.watch(['jade/**/*.jade','.tmp/js/*.js'], ['jade']);
 });
 

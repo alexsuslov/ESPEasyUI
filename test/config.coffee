@@ -8,8 +8,9 @@ objParam = (data)->
 
 url = config.apiPrefix + "/api?q=1"
 
-describe 'Config api test', ->
-  it '[get]/[post]', (done)->
+describe 'CONFIG', ->
+  @timeout config.timeout
+  it "[get]/[post]#{url}", (done)->
     get = (url, fn)->
       request.get url, (err, response, body)->
         throw err if (err and !response.statusCode is 200)

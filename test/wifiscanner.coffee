@@ -3,9 +3,9 @@ request = require 'request'
 
 url = config.apiPrefix + "/api?q=7"
 
-describe 'wifi scanner api', ->
+describe 'WIFI SCANNER', ->
   @timeout(5000);
-  it '[get]', (done)->
+  it "[get]#{url}", (done)->
 
     request url, (err, response, body)->
       if (!err and response.statusCode is 200)

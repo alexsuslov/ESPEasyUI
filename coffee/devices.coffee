@@ -65,11 +65,26 @@ Views.Device = Views.Main.extend
   templateOption:  _.template '<option value="<%= o.task %>"><%= o.name %></option>'
   model: new Models.Device()
   el:'.device'
+  events:
+    'submit form': 'submit'
+    'change [name="taskdevicenumber"]': 'taskdevicenumber'
+
+
+  taskdevicenumber:(e)->
+    e.preventDefault()
+
+    @model.set
+      taskdevicenumber: $(e.currentTarget).val()
+    @render()
+
+    false
+
+
   onRendered: ->
     App.tasks.forEach (task)=>
       @$el.find('select.tasks').append @templateOption o:task
-    task = @model.get( 'taskdevicename')
-    template = _.template $( '#'+task).html()
+    task = @model.get( 'taskdevicenumber')
+    template = _.template $( '[task="' + task + '"]' ).html()
     form = @$el.find('form')
-    $(form).append template data:@model.toJSON()
+    $(form).append template data: @model.toJSON()
     @

@@ -1,16 +1,17 @@
 config = require '../config'
 request = require 'request'
 
-url = config.apiPrefix + "/api/protocols"
+url = config.apiPrefix + "/api?q=10"
 
-describe 'protocols api', ->
-  it '[get]', (done)->
+describe 'PROTOCOLS', ->
+  @timeout config.timeout
+  it "[get]#{url} list protocols", (done)->
 
     request url, (err, response, body)->
       if (!err and response.statusCode is 200)
         json = JSON.parse( body )
-        throw "protocols not array" unless Array.isArray( json)
+        throw "Protocols is not array" unless Array.isArray(json)
         done()
       else
-        throw err
+        throw err || response.statusCode
 

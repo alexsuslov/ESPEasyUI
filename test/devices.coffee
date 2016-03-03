@@ -3,8 +3,9 @@ request = require 'request'
 
 url = config.apiPrefix + "/api?q=3"
 
-describe 'devices api', ->
-  it '[get]', (done)->
+describe 'DEVICES', ->
+  @timeout config.timeout
+  it "[get]#{url}", (done)->
 
     request url, (err, response, body)->
       if (!err and response.statusCode is 200)

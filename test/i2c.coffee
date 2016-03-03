@@ -3,8 +3,9 @@ request = require 'request'
 
 url = config.apiPrefix + "/api?q=8"
 
-describe 'I2C api', ->
-  it '[get]', (done)->
+describe 'I2C', ->
+  @timeout config.timeout
+  it "[get]#{url}", (done)->
 
     request url, (err, response, body)->
       if (!err and response.statusCode is 200)

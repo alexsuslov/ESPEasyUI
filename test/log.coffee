@@ -3,8 +3,9 @@ request = require 'request'
 
 url = config.apiPrefix + "/api?q=6"
 
-describe 'Log api', ->
-  it '[get]', (done)->
+describe 'LOG ', ->
+  @timeout config.timeout
+  it "[get]#{url}", (done)->
 
     request url, (err, response, body)->
       if (!err and response.statusCode is 200)
