@@ -2,7 +2,8 @@ include mixin
 
 form.row(method="POST")
   fieldset.col-md-3
-    legend Advanced Settings
+    legend Advanced
+      button.btn.btn-info.pull-right.btn-sm(type='submit') Appy
     +frm_input('Subscribe Template:', 'mqttsubscribe', 'data.mqttsubscribe' )
     +frm_input('Publish Template:', 'mqttpublish', 'data.mqttpublish' )
     +frm_input('Message Delay (ms):', 'messagedelay', 'data.messagedelay' )
@@ -10,6 +11,7 @@ form.row(method="POST")
 
   fieldset.col-md-3
     legend NTP
+      button.btn.btn-info.pull-right.btn-sm(type='submit') Appy
     +frm_check('Use NTP:', 'usentp', 'data.usentp' )
     +frm_input('NTP Hostname:', 'ntphost', 'data.ntphost' )
     +frm_input('Timezone Offset:', 'timezone', 'data.timezone' )
@@ -17,6 +19,7 @@ form.row(method="POST")
     +frm_check('DST:', 'dst', 'data.dst' )
   fieldset.col-md-3
     legend Syslog
+      button.btn.btn-info.pull-right.btn-sm(type='submit') Appy
     +frm_input_ip('Syslog IP:', 'syslogip', 'data.syslogip' )
     +frm_input('Syslog Level:', 'sysloglevel', 'data.sysloglevel' )
     +frm_input('UDP port:', 'udpport', 'data.udpport' )
@@ -26,9 +29,10 @@ form.row(method="POST")
     +frm_input('Baud Rate:', 'baudrate', 'data.baudrate' )
   fieldset.col-md-3
     legend Syslog
+      button.btn.btn-info.pull-right.btn-sm(type='submit') Appy
     +frm_input('WD I2C Address:', 'wdi2caddress', 'data.wdi2caddress' )
 
     +frm_check('Custom CSS:', 'customcss', 'data.customcss' )
     +frm_check('Use SSDP:', 'usessdp', 'data.usessdp' )
 
-    button.btn.btn-primary.pull-right.col-xs-6(type='submit') Save All
+

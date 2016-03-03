@@ -28,7 +28,7 @@ form.row(method="POST")
   fieldset.col-sm-6
     legend Pins state
       button.btn.btn-info.pull-right.btn-sm(type='submit') Update
-      for gpio in gpios
-        if gpio >=0
-          +pinState(gpio)
+    for gpio in gpios
+      if gpio >=0
+        +pinState(gpio)
 

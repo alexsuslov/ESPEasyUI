@@ -1,28 +1,13 @@
 #commands-list
 
 .row.editLine
-  .fieldset.col-sm-6.col-sm-offset-3
-    .panel.panel-primary
-      .panel-heading.clearfix
-        h3.panel-title.pull-left Enter command
-      .panel-body
-        form.Cmd()
-          .fast
-            button.cmd.btn.btn-primary.btn-xs(def="TaskClear %1 %2") TaskClear
-            button.cmd.btn.btn-primary.btn-xs(def="Settings") Settings
-            button.cmd.btn.btn-primary.btn-xs(def="WifiScan") WifiScan
-          .input-group
-            input.form-control( type='text' name='c' placeholder='>' )
-            span.input-group-btn
-              button.btn.btn-primary Send
-
-//-   .fieldset.col-sm-4.col-sm-offset-4
-//-     .panel.panel-primary
-//-       .panel-heading.clearfix
-//-         h3.panel-title.pull-left Quick commands
-//-       .panel-body
-//-         h3 System
-//-         .list-group
-//-           a.list-group-item(href='#/command/?c=TaskClear') TaskClear
-//-           a.list-group-item(href='#/command/?c=Settings' ) Settings
-//-           a.list-group-item(href='#/command/?c=WifiScan' ) WifiScan
+  h4 Enter command
+  form.Cmd()
+    .fast
+      button.cmd.btn.btn-primary.btn-xs(def="TaskClear %1 %2") TaskClear
+      button.cmd.btn.btn-primary.btn-xs(def="Settings") Settings
+      button.cmd.btn.btn-primary.btn-xs(def="WifiScan") WifiScan
+    .input-group
+      input.form-control( type='text' name='c' placeholder='>' )
+      span.input-group-btn
+        button.btn.btn-primary Send

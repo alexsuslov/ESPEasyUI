@@ -1,44 +1,40 @@
 include mixin
-.row
-  .col-sm-6.col-sm-offset-3
-    .panel.panel-primary
-      .panel-heading
-        h3.panel-title System Info
-      .panel-body
-        table.table.table-striped
-          tr
-            td Uptime
-            td.text-right <%= data.Uptime%>
-          tr
-            td IP address
-            td.text-right <%= data.IP%>
-          tr
-            td Gateway
-            td.text-right <%= data.Gateway%>
-          tr
-            td Build
-            td.text-right <%= data.Build%>
-          tr
-            td Unit
-            td.text-right <%= data.Unit%>
-          tr
-            td STA MAC
-            td.text-right <%= data.STA_MAC%>
-          tr
-            td AP MAC
-            td.text-right <%= data.AP_MAC%>
-          tr
-            td ESP chip id
-            td.text-right <%= data.Chip_id%>
-          tr
-            td Flash chip id
-            td.text-right <%= data.Flash_Chip_id%>
-          tr
-            td Flash Size
-            td.text-right <%= data.Flash_Size%>
-          tr
-            td Free Mem
-            td.text-right <%= data.FreeMem%>
-          tr
-            td Boot cause
-            td.text-right <%= data.Boot_cause%>
+h4 System Info
+
+table.table.table-striped
+  tr
+    td Uptime
+    td.text-right <%= data.Uptime%>
+  tr
+    td IP address
+    td.text-right <%= data.IP%>
+  tr
+    td Gateway
+    td.text-right <%= data.Gateway%>
+  tr
+    td Build
+    td.text-right <%= data.Build%>
+  tr
+    td Unit
+    td.text-right <%= data.Unit%>
+  tr
+    td STA MAC
+    td.text-right <%= data.STA_MAC%>
+  tr
+    td AP MAC
+    td.text-right <%= data.AP_MAC%>
+  tr
+    td ESP chip id
+    td.text-right <%= data.Chip_id%>
+  tr
+    td Flash chip id
+    td.text-right <%= data.Flash_Chip_id%>
+  tr
+    td Flash Size
+    td.text-right <%= data.Flash_Size%>
+  tr
+    td Free Mem
+    td.text-right <%= data.FreeMem%>
+  tr
+    td Boot cause
+    td.text-right <%= data.Boot_cause%>

@@ -1,42 +1,28 @@
 include mixin
-
 .row
-  fieldset.col-sm-3
-    .panel.panel-primary
-      .panel-heading.clearfix
-        h3.panel-title.pull-left System
-      .panel-body
-        .list-group
-          a.list-group-item(href='#/log') Log
-          a.list-group-item(href='#') Reboot
-          a.list-group-item(href='#/advanced') Advanced
-          a.list-group-item(href='#/command') Commands
-  fieldset.col-sm-3
-    .panel.panel-primary
-      .panel-heading.clearfix
-        h3.panel-title.pull-left Wifi
-      .panel-body
-        .list-group
-          a.list-group-item(href='#/wifi') Scan
-          a.list-group-item(href='#') Connect
-          a.list-group-item(href='#') Disconnect
-  fieldset.col-sm-3
-    .panel.panel-primary
-      .panel-heading.clearfix
-        h3.panel-title.pull-left Interfaces
-      .panel-body
-        .list-group
-          a.list-group-item(href='#/i2c') I²C Scan
-  fieldset.col-sm-3
-    .panel.panel-primary
-      .panel-heading.clearfix
-        h3.panel-title.pull-left Service
-      .panel-body
-        h4 Settings
-        .list-group
-          a.list-group-item(href='#') Load
-          a.list-group-item(href='#') Save
-        h4 Firmware
-        .list-group
-          a.list-group-item(href='#') Load
-          a.list-group-item(href='#') Save
+  .col-md-3
+    h4 System
+    .list-group
+      a.list-group-item(href='#/log') Log
+      a.list-group-item(href='#') Reboot
+      a.list-group-item(href='#/advanced') Advanced
+      a.list-group-item(href='#/command') Commands
+  .col-md-3
+    h4 Wifi
+    .list-group
+      a.list-group-item(href='#/wifi') Scan
+      a.list-group-item(href='#') Connect
+      a.list-group-item(href='#') Disconnect
+  .col-md-3
+    h4 Interfaces
+    .list-group
+      a.list-group-item(href='#/i2c') I²C Scan
+  .col-md-3
+    h4 Settings
+    .list-group
+      a.list-group-item(href='#') Load
+      a.list-group-item(href='#') Save
+    h4 Firmware
+    .list-group
+      a.list-group-item(href='#') Load
+      a.list-group-item(href='#') Save
