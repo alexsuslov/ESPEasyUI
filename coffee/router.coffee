@@ -182,10 +182,11 @@ opt =
       App.protocols.add protocol
     # summary
     # create summary model
-    App.model.set json.Summary
+    # App.model.set json.Summary
     # start apiPrefix
-    Backbone.history.start();
 
+
+Backbone.history.start();
 # hide blocks
 $('.block').hide()
 # show loading block

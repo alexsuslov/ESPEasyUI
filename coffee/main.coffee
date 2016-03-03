@@ -150,13 +150,13 @@ Views.Main = Backbone.View.extend
     @
 
   ip: ->
-    if @model
-      @ipInputs = []
-      @$el.find('input.ip').forEach (s)=>
-        @ipInputs.push
-        $el= $(s)
-        @ipInputs.push $el.attr('name')
-        $el.val $el.val().replace( /,/g,'.')
+    # if @model
+    #   @ipInputs = []
+    #   @$el.find('input.ip').forEach (s)=>
+    #     @ipInputs.push
+    #     $el= $(s)
+    #     @ipInputs.push $el.attr('name')
+    #     $el.val $el.val().replace( /,/g,'.')
     @
 
   render: ->
@@ -164,7 +164,7 @@ Views.Main = Backbone.View.extend
     @$el.html(@template( if @model then data:@model.toJSON() else {data:{}} )) if @template
     @onRendered() if @onRendered
     @select()
-    @ip()
+    # @ip()
     @checkbox()
     @
   onRendered: ->
