@@ -4,7 +4,7 @@
  * @created 2016-02-18
 ###
 App.model = new Models.Main()
-
+App.tasks = new Collections.Tasks()
 
 App.Router = Backbone.Router.extend
   login:false
@@ -99,7 +99,11 @@ App.Router = Backbone.Router.extend
   config:->
     model = @Forms.config.model
     @showPage 'config' , (fn)=>
-      model.fetch()
+      if App.protocols.ready
+        model.fetch()
+      else
+        App.protocols.on 'ready', =>
+          model.fetch()
       model.on 'sync', ->
         fn()
     @
@@ -108,7 +112,6 @@ App.Router = Backbone.Router.extend
     model = @Forms.hardware.model
     @showPage 'hardware' , (fn)=>
       model.on 'sync', ->
-        # console.log model.toJSON()
         fn()
       model.fetch()
     @
@@ -122,10 +125,16 @@ App.Router = Backbone.Router.extend
 
   device:(id)->
     model = @Forms.device.model
+    model.set id:id
     @showPage 'device', (fn)=>
       model.on 'sync', -> fn()
-      model.set id:id
-      model.fetch()
+
+      if App.tasks?.ready
+        model.fetch()
+      else
+        App.tasks.on 'ready', =>
+          model.fetch()
+
 
   tools:()->
     @showPage 'tools'
@@ -143,7 +152,6 @@ App.Router = Backbone.Router.extend
         $( '.' + name).show()
     else
       $( '.' + name).show()
-
 
 
 App.router = new App.Router()
@@ -174,18 +182,20 @@ opt =
         SendDataOption: task[9]
         GlobalSyncOption: task[10]
         TimerOption: task[11]
+        Name: task[12]
     # create tasks collection
-    App.tasks = new Collections.Tasks( tasks)
+    App.tasks.add tasks
+
+    App.tasks.ready = true
+    App.tasks.trigger 'ready'
     # protocols
     # use add function (App.protocols not empty)
     json.Protocols.forEach (protocol)->
       App.protocols.add protocol
-    # summary
-    # create summary model
-    # App.model.set json.Summary
-    # start apiPrefix
+    App.protocols.ready = true
+    App.protocols.trigger 'ready'
 
-
+# start app
 Backbone.history.start();
 # hide blocks
 $('.block').hide()
@@ -193,5 +203,10 @@ $('.block').hide()
 $('.loading').show()
 # start ajax query
 $.ajax opt
+
+$('button.collapsed').on 'click', (e)->
+  classEl = $(e.currentTarget).data 'toggle'
+  $('div.' + classEl).toggle()
+
 
 

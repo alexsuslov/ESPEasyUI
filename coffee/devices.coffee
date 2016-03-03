@@ -58,7 +58,7 @@ Views.Devices = Views.Collection.extend
   el          : '.devices'
   serializeData: (data)->
     data.row.value = data.row.Tasks.map (task)->
-      "#{task.TaskDeviceValueName}: #{task.TaskDeviceValue}"
+      "#{task.Name}: #{task.Number}"
     data
 
 ###*
@@ -66,7 +66,7 @@ Views.Devices = Views.Collection.extend
 ###
 Views.Device = Views.Main.extend
   template: _.template $('#Device').html()
-  templateOption:  _.template '<option value="<%= o.task %>"><%= o.name %></option>'
+  templateOption:  _.template '<option value="<%= o.Number %>"><%= o.Name %></option>'
   model: new Models.Device()
   el:'.device'
   events:
@@ -85,7 +85,7 @@ Views.Device = Views.Main.extend
 
 
   onRendered: ->
-    App.tasks.forEach (task)=>
+    App.tasks.toJSON().forEach (task)=>
       @$el.find('select.tasks').append @templateOption o:task
     task = @model.get( 'taskdevicenumber')
     template = _.template $( '[task="' + task + '"]' ).html()

@@ -1,12 +1,23 @@
-- var menuItems = ["Main", "Config", "Hard", "Dev", "Tools", "Logout"];
+- var menuItems = [ "Config", "Hardware", "Devices", "Tools"];
+- var menuHref = ["#/config", "#/hardware", "#/devices", "#/tools"];
 
-.brand
-  a.btn.btn-link(href='#/') ESP
-    sub easy
-  a.btn.btn.btn-default.pull-right(href='#/logout') x
-  .btn-group.btn-group-justified
-    a.btn.btn-primary(href='#/config') config
-    a.btn.btn-primary(href='#/hardware') hard
-    a.btn.btn-primary(href='#/devices') dev
-    a.btn.btn-primary(href='#/tools') tools
-.divider24
+//- .brand
+  //- a.btn.btn-link(href='#/') ESP
+  //-   sub easy
+  //- a.btn.btn.btn-default.pull-right(href='#/logout') x
+nav.navbar.navbar-default
+  .container-fluid
+  .navbar-header
+    button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1', aria-expanded='false')
+      span.sr-only Toggle navigation
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+    .navbar-brand
+        a(href='#/') ESP
+          sub easy
+  .collapse.navbar-collapse
+    ul.nav.navbar-nav
+      for name, i in menuItems
+        li
+          a(href=menuHref[i])= name
