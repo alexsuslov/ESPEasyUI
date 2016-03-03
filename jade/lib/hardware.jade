@@ -10,11 +10,7 @@ mixin pinState(id)
 form.row(method="POST")
   fieldset.col-sm-6
     legend I²C Settings
-      button.btn.btn-info.pull-right.btn-sm(type='submit') Save
-    //- .panel.panel-primary
-    //-   .panel-heading.clearfix
-
-    //-   .panel-body
+      button.btn.btn-info.pull-right.btn-sm(type='submit') Update
 
     +label Wifi Status Led::
       select.form-control(name="pled")
@@ -31,7 +27,7 @@ form.row(method="POST")
           option(value=gpio)= labels[i]
   fieldset.col-sm-6
     legend Pins state
-      button.btn.btn-info.pull-right.btn-sm(type='submit') Save
+      button.btn.btn-info.pull-right.btn-sm(type='submit') Update
       for gpio in gpios
         if gpio >=0
           +pinState(gpio)
