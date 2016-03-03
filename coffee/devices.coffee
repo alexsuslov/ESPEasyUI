@@ -77,9 +77,11 @@ Views.Device = Views.Main.extend
   taskdevicenumber:(e)->
     e.preventDefault()
 
-    @model.set
-      taskdevicenumber: $(e.currentTarget).val()
-    @render()
+    @model.data = @deSerialize [
+      {name:'taskdevicenumber', value:$(e.currentTarget).val()}
+      {name:'edit', value:"1"}
+    ]
+    @model.trigger 'save'
 
     false
 
