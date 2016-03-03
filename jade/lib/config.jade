@@ -3,7 +3,7 @@ include mixin
 form.row(method="POST")
   fieldset.col-md-3
     legend Config
-      button.btn.btn-info.pull-right.btn-sm(type='submit') Appy
+      button.btn.btn-info.pull-right.btn-sm(type='submit') Apply
 
     +frm_input('Device Name', 'name', 'data.name' )
     +frm_input('Device Delay', 'delay', 'data.delay' )
@@ -13,7 +13,7 @@ form.row(method="POST")
 
   fieldset.col-md-3
     legend wifi STA
-      button.btn.btn-info.pull-right.btn-sm(type='submit') Appy
+      button.btn.btn-info.pull-right.btn-sm(type='submit') Apply
 
     +frm_input('Router SSID', 'ssid', 'data.ssid' )
     +frm_input('Router WPA key', 'key', 'data.key' )
@@ -21,7 +21,7 @@ form.row(method="POST")
 
   fieldset.col-md-3
     legend wifi AP
-      button.btn.btn-info.pull-right.btn-sm(type='submit') Appy
+      button.btn.btn-info.pull-right.btn-sm(type='submit') Apply
 
     +frm_input('WPA AP mode key', 'apkey','data.apkey' )
     +frm_input_ip('ESP ip', 'espip', 'data.espip' )
@@ -31,7 +31,7 @@ form.row(method="POST")
 
   fieldset.col-md-3
     legend Protocol
-      button.btn.btn-info.pull-right.btn-sm(type='submit') Appy
+      button.btn.btn-info.pull-right.btn-sm(type='submit') Apply
 
     +label('Protocol')
       select.form-control( name="protocol" )
