@@ -4,9 +4,10 @@ echo -----------------------------------------
 echo      Start generating UI for ESPEasy
 echo -----------------------------------------
 del *.h > nul
-call gulp dist
+call gulp jade
 
-cd html
+cd .tmp
+del *.h > nul
 
 for %%f in (*.*) do (
   echo Processing: %%f
