@@ -4,177 +4,130 @@
 //-   #   ######      # #  #
 //-   #   #    # #    # #   #
 //-   #   #    #  ####  #    #
+include ../mixin
 
-script(
-  type='text/x-template'
-  task='13')
-    include ina219
+script(id='fish', type='text/x-template')
 
-script(
-  id='HC-SR04'
-  type='text/x-template'
-  task='13')
-  include hc-sr04
+script(id='taskdevicepininversed', type='text/x-template')
+  +frm_check('Inversed:', 'taskdevicepin{{i}}inversed', 'data.taskdevicepin{{i}}inversed' )
 
-script(
-  id='MLX90614'
-  type='text/x-template'
-  task='24')
-  include mlx90614
+script(id='taskdevicepinpullup', type='text/x-template')
+  +frm_check('Pull UP:', 'taskdevicepin{{i}}pullup', 'data.taskdevicepin{{i}}pullup' )
 
-script(
-  id='DS18b20'
-  type='text/x-template'
-  task='4')
-  include ds18b20
+script(id='taskdevicesenddata', type='text/x-template')
+  +frm_check('Send Data:', 'taskdevicesenddata', 'data.taskdevicesenddata' )
 
+script(id='Plugin_023_template', type='text/x-template')
+  +label  Line {{i}}:
+    input(
+      type='text',
+      size='64',
+      maxlength='64',
+      name='plugin_023_template{{i}}',
+      value!="<%= data.plugin_023_template{{i}} %>")
 
-script(
-  id='BMP085'
-  type='text/x-template'
-  task='6')
-  include bmp085
+script(id='plugin_023_rotate', type='text/x-template')
+  +label  Rotation:
+    select(name='plugin_023_rotate')
+      option(value='1') Normal
+      option(value='2') Rotated
 
-script(
-  id='SI7021'
-  type='text/x-template'
-  task='14')
-  include si7021
+script(id='plugin_12_timer', type='text/x-template')
+  +label Display Timeout:
+    input(
+      type='text',
+      name='plugin_12_timer',
+      value!="<%= data.plugin_12_timer %>")
 
-script(
-  id='DHT'
-  type='text/x-template'
-  task='5')
-  include dht
+script(id='taskdevicepin', type='text/x-template')
+  +label Display Size:
+    select(name='taskdevicepin{{i}}')
+      option(value='-1')
+      option(value='0') GPIO-0
+      option(value='1') GPIO-1
+      option(value='2') GPIO-2
+      option(value='3') GPIO-3
+      option(value='4') GPIO-4
+      option(value='5') GPIO-5
+      option(value='9') GPIO-9
+      option(value='10') GPIO-10
+      option(value='12') GPIO-12
+      option(value='13') GPIO-13
+      option(value='14') GPIO-14
+      option(value='15') GPIO-15
+      option(value='16') GPIO-16
 
-script(
-  id='BME280'
-  type='text/x-template'
-  task='28')
-  include bme280
+script(id='Plugin_012_template', type='text/x-template')
+  +label Display Size:
+    input(
+      type='text',
+      size='80', maxlength='80',
+      name='plugin_012_template{{i}}',
+      value!="<%= data.plugin_012_template{{i}} %>")
 
-script(
-  id='System'
-  type='text/x-template'
-  task='26')
-  include system
-
-script(
-  id='PCF8574'
-  type='text/x-template'
-  task='9')
-  include pcf8574
-
-script(
-  id='MCP23017'
-  type='text/x-template'
-  task='9')
-  include mcp23017
-
-script(
-  id='Switch'
-  type='text/x-template'
-  task='1')
-    include sw
-
-script(
-  id='Serial'
-  type='text/x-template'
-  task='20')
-    include serial
+script(id='plugin_012_size', type='text/x-template')
+  +label Display Size:
+    select(name='plugin_012_size')
+      option(value='1') 2 x 16
+      option(value='2') 4 x 20
 
 
-script(
-  id='Wiegand'
-  type='text/x-template'
-  task='8')
-  include wiegand
+script(id='plugin_012_adr', type='text/x-template')
+  +label I2C Address:
+    select(name='plugin_012_adr')
+      option(value='32') 20
+      option(value='33') 21
+      option(value='34') 22
+      option(value='35') 23
+      option(value='36') 24
+      option(value='37') 25
+      option(value='38') 26
+      option(value='39') 27
+      option(value='56') 38
+      option(value='57') 39
+      option(value='58') 3a
+      option(value='59') 3b
+      option(value='60') 3c
+      option(value='61') 3d
+      option(value='62') 3e
+      option(value='63') 3f
 
-script(
-  id='PN532'
-  type='text/x-template'
-  task='17')
-  include pn532
+script(id='taskdeviceport', type='text/x-template')
+  +frm_input('Port:', 'taskdeviceport', 'data.taskdeviceport' )
 
+script(id='plugin_025_gain', type='text/x-template')
+  +label Gain:
+    select.form-control( name="plugin_025_gain" )
+      option(value="0") 2/3x gain 6.144V 0.1875mV
+      option(value="2") 1x gain 4.096V 0.125mV
+      option(value="4") 2x gain 2.048V 0.0625mV
+      option(value="6") 4x gain 1.024V 0.03125mV
+      option(value="8") 8x gain 0.512V 0.015625mV
+      option(value="10") 16x gain 0.256V 0.0078125V
 
-script(
-  id='Pulse'
-  type='text/x-template'
-  task='3')
-  include pulse
+script(id='plugin_005_dhttype', type='text/x-template')
+  +label DHT Type:
+    select.form-control(name="plugin_005_dhttype")
+      option(value='11') DHT 11
+      option(value='22') DHT 22
 
-script(
-  id='ProMini'
-  type='text/x-template'
-  task='11')
-  include promini
+script(id='taskdevicevaluename', type='text/x-template')
+  +frm_input('Value Name {{i}}:', 'taskdevicevaluename{{i}}', 'data.taskdevicevaluename{{i}}' )
 
-script(
-  id='PCA9685'
-  type='text/x-template'
-  task='22')
-  include pca9685
+script(id='taskdeviceformula', type='text/x-template')
+  +frm_input('Formula {{i}}:', 'taskdeviceformula{{i}}', 'data.taskdeviceformula{{i}}' )
 
+script(id='taskdevicepin', type='text/x-template')
+  +label {{i}}st GPIO:
+    select.form-control(name="taskdevicepin{{i}}")
+      for gpio, i in gpios
+        option(value=gpio)= labels[i]
 
-script(
-  id='TLS2561'
-  type='text/x-template'
-  task='15')
-  include tls2561
+script(id='taskdeviceid', type='text/x-template')
+  +frm_input('IDX / Var:', 'taskdeviceid', 'data.taskdeviceid' )
 
+script(id='taskdevicetimer', type='text/x-template')
+  +frm_input('Delay', 'taskdevicetimer', 'data.taskdevicetimer' )
 
-script(
-  id='BH1750'
-  type='text/x-template'
-  task='10')
-  include bh1750
-
-
-script(
-  id='level'
-  type='text/x-template'
-  task='21')
-  include level
-
-
-script(
-  id='TSOP4838'
-  type='text/x-template'
-  task='16')
-  include tsop4838
-
-script(
-  id='GP2Y10'
-  type='text/x-template'
-  task='18')
-  include gp2y10
-
-script(
-  id='SSD1306'
-  type='text/x-template'
-  task='23')
-    include ssd1306
-
-script(
-  id='LCD2004'
-  type='text/x-template'
-  task='12')
-    include lcd2004
-
-script(
-  id='PCF8591'
-  type='text/x-template'
-  task='7')
-    include pcf8591
-
-script(
-  id='ADS1115'
-  type='text/x-template'
-  task='25')
-    include ads1115
-
-script(
-  id='Analoginput'
-  type='text/x-template'
-  task='2')
-    include analog
+script(id='taskdevicename', type='text/x-template')
+  +frm_input('Name', 'taskdevicename', 'data.taskdevicename' )
