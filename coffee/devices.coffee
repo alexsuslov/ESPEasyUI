@@ -39,8 +39,8 @@ Models.Device = Models.Config.extend
 Collections.Devices = Backbone.Collection.extend
   url: apiPrefix + "?q=3"
 
-Collections.Tasks = Backbone.Collection.extend
-  url: apiPrefix + "?q=11"
+Collections.Tasks = Backbone.Collection.extend()
+  # url: apiPrefix + "?q=11"
 
 
 ###
@@ -88,67 +88,19 @@ Views.Device = Views.Main.extend
     @model.trigger 'save'
 
     false
-  getHtmlByName:(name, i)->
-    model = @model.toJSON()
-    if Object.keys(model).indexOf(name) > -1 and model[name] isnt '-1'
-      i = '' if i is undefined
-      throw new Error '#' + name + ' error id' if  $('#' + name).html() is null
-      $('#' + name).html().replaceAll('{{i}}', i)
-    else
-      ""
 
+  getTemplate:(fn)->
+    $.ajax
+      url:apiPrefix + "?q=10&index=" + @model.get 'id'
+      complete:(jqXHR)->
+        json =  JSON.parse jqXHR.response
+        fn json.template if fn
+    @
 
   onRendered: ->
-    model = @model.toJSON()
-    console.log  model
-    html = [
-      @getHtmlByName('taskdevicename')
-      @getHtmlByName('taskdevicetimer')
-      @getHtmlByName('taskdeviceid')
-      @getHtmlByName('taskdeviceport')
-
-      @getHtmlByName('plugin_012_adr')
-      @getHtmlByName('plugin_012_size')
-      @getHtmlByName('plugin_005_dhttype')
-      @getHtmlByName('plugin_023_adr')
-      @getHtmlByName('plugin_023_rotate')
-      @getHtmlByName('plugin_025_gain')
-
-      @getHtmlByName('Plugin_012_template', '1')
-      @getHtmlByName('Plugin_012_template', '2')
-      @getHtmlByName('Plugin_012_template', '3')
-      @getHtmlByName('Plugin_012_template', '4')
-
-      @getHtmlByName('Plugin_023_template', '1')
-      @getHtmlByName('Plugin_023_template', '2')
-      @getHtmlByName('Plugin_023_template', '3')
-      @getHtmlByName('Plugin_023_template', '4')
-      @getHtmlByName('Plugin_023_template', '5')
-      @getHtmlByName('Plugin_023_template', '6')
-      @getHtmlByName('Plugin_023_template', '7')
-      @getHtmlByName('Plugin_023_template', '8')
-
-      @getHtmlByName('taskdevicepin', '1')
-      @getHtmlByName('taskdevicepinpullup', '1')
-      @getHtmlByName('taskdevicepininversed', '1')
-
-      @getHtmlByName('taskdevicepin', '2')
-      @getHtmlByName('taskdevicepin', '3')
-      @getHtmlByName('taskdevicesenddata')
-
-      @getHtmlByName('taskdeviceformula', '1')
-      @getHtmlByName('taskdeviceformula', '2')
-
-      @getHtmlByName('taskdevicevaluename', '1')
-      @getHtmlByName('taskdevicevaluename', '2')
-    ].join('')
-
-
-    console.log html
-    # App.tasks.toJSON().forEach (task)=>
-    #   @$el.find('select.tasks').append @templateOption o:task
-    # task = @model.get( 'taskdevicenumber')
-    # template = _.template $( '[task="' + task + '"]' ).html()
-    # form = @$el.find('form')
-    # $(form).append template data: @model.toJSON()
+    App.tasks.toJSON().forEach (task)=>
+      @$el.find('select.tasks').append @templateOption o:task
+    @getTemplate (template)=>
+      tpl = _.template template
+      $('.deviceForm').append tpl data: @model.toJSON()
     @

@@ -4,130 +4,130 @@
 //-   #   ######      # #  #
 //-   #   #    # #    # #   #
 //-   #   #    #  ####  #    #
-include ../mixin
+//- include ../mixin
 
-script(id='fish', type='text/x-template')
+//- script(id='fish', type='text/x-template')
 
-script(id='taskdevicepininversed', type='text/x-template')
-  +frm_check('Inversed:', 'taskdevicepin{{i}}inversed', 'data.taskdevicepin{{i}}inversed' )
+//- script(id='taskdevicepininversed', type='text/x-template')
+//-   +frm_check('Inversed:', 'taskdevicepin{{i}}inversed', 'data.taskdevicepin{{i}}inversed' )
 
-script(id='taskdevicepinpullup', type='text/x-template')
-  +frm_check('Pull UP:', 'taskdevicepin{{i}}pullup', 'data.taskdevicepin{{i}}pullup' )
+//- script(id='taskdevicepinpullup', type='text/x-template')
+//-   +frm_check('Pull UP:', 'taskdevicepin{{i}}pullup', 'data.taskdevicepin{{i}}pullup' )
 
-script(id='taskdevicesenddata', type='text/x-template')
-  +frm_check('Send Data:', 'taskdevicesenddata', 'data.taskdevicesenddata' )
+//- script(id='taskdevicesenddata', type='text/x-template')
+//-   +frm_check('Send Data:', 'taskdevicesenddata', 'data.taskdevicesenddata' )
 
-script(id='Plugin_023_template', type='text/x-template')
-  +label  Line {{i}}:
-    input(
-      type='text',
-      size='64',
-      maxlength='64',
-      name='plugin_023_template{{i}}',
-      value!="<%= data.plugin_023_template{{i}} %>")
+//- script(id='Plugin_023_template', type='text/x-template')
+//-   +label  Line {{i}}:
+//-     input(
+//-       type='text',
+//-       size='64',
+//-       maxlength='64',
+//-       name='plugin_023_template{{i}}',
+//-       value!="<%= data.plugin_023_template{{i}} %>")
 
-script(id='plugin_023_rotate', type='text/x-template')
-  +label  Rotation:
-    select(name='plugin_023_rotate')
-      option(value='1') Normal
-      option(value='2') Rotated
+//- script(id='plugin_023_rotate', type='text/x-template')
+//-   +label  Rotation:
+//-     select(name='plugin_023_rotate')
+//-       option(value='1') Normal
+//-       option(value='2') Rotated
 
-script(id='plugin_12_timer', type='text/x-template')
-  +label Display Timeout:
-    input(
-      type='text',
-      name='plugin_12_timer',
-      value!="<%= data.plugin_12_timer %>")
+//- script(id='plugin_12_timer', type='text/x-template')
+//-   +label Display Timeout:
+//-     input(
+//-       type='text',
+//-       name='plugin_12_timer',
+//-       value!="<%= data.plugin_12_timer %>")
 
-script(id='taskdevicepin', type='text/x-template')
-  +label Display Size:
-    select(name='taskdevicepin{{i}}')
-      option(value='-1')
-      option(value='0') GPIO-0
-      option(value='1') GPIO-1
-      option(value='2') GPIO-2
-      option(value='3') GPIO-3
-      option(value='4') GPIO-4
-      option(value='5') GPIO-5
-      option(value='9') GPIO-9
-      option(value='10') GPIO-10
-      option(value='12') GPIO-12
-      option(value='13') GPIO-13
-      option(value='14') GPIO-14
-      option(value='15') GPIO-15
-      option(value='16') GPIO-16
+//- script(id='taskdevicepin', type='text/x-template')
+//-   +label Display Size:
+//-     select(name='taskdevicepin{{i}}')
+//-       option(value='-1')
+//-       option(value='0') GPIO-0
+//-       option(value='1') GPIO-1
+//-       option(value='2') GPIO-2
+//-       option(value='3') GPIO-3
+//-       option(value='4') GPIO-4
+//-       option(value='5') GPIO-5
+//-       option(value='9') GPIO-9
+//-       option(value='10') GPIO-10
+//-       option(value='12') GPIO-12
+//-       option(value='13') GPIO-13
+//-       option(value='14') GPIO-14
+//-       option(value='15') GPIO-15
+//-       option(value='16') GPIO-16
 
-script(id='Plugin_012_template', type='text/x-template')
-  +label Display Size:
-    input(
-      type='text',
-      size='80', maxlength='80',
-      name='plugin_012_template{{i}}',
-      value!="<%= data.plugin_012_template{{i}} %>")
+//- script(id='Plugin_012_template', type='text/x-template')
+//-   +label Display Size:
+//-     input(
+//-       type='text',
+//-       size='80', maxlength='80',
+//-       name='plugin_012_template{{i}}',
+//-       value!="<%= data.plugin_012_template{{i}} %>")
 
-script(id='plugin_012_size', type='text/x-template')
-  +label Display Size:
-    select(name='plugin_012_size')
-      option(value='1') 2 x 16
-      option(value='2') 4 x 20
+//- script(id='plugin_012_size', type='text/x-template')
+//-   +label Display Size:
+//-     select(name='plugin_012_size')
+//-       option(value='1') 2 x 16
+//-       option(value='2') 4 x 20
 
 
-script(id='plugin_012_adr', type='text/x-template')
-  +label I2C Address:
-    select(name='plugin_012_adr')
-      option(value='32') 20
-      option(value='33') 21
-      option(value='34') 22
-      option(value='35') 23
-      option(value='36') 24
-      option(value='37') 25
-      option(value='38') 26
-      option(value='39') 27
-      option(value='56') 38
-      option(value='57') 39
-      option(value='58') 3a
-      option(value='59') 3b
-      option(value='60') 3c
-      option(value='61') 3d
-      option(value='62') 3e
-      option(value='63') 3f
+//- script(id='plugin_012_adr', type='text/x-template')
+//-   +label I2C Address:
+//-     select(name='plugin_012_adr')
+//-       option(value='32') 20
+//-       option(value='33') 21
+//-       option(value='34') 22
+//-       option(value='35') 23
+//-       option(value='36') 24
+//-       option(value='37') 25
+//-       option(value='38') 26
+//-       option(value='39') 27
+//-       option(value='56') 38
+//-       option(value='57') 39
+//-       option(value='58') 3a
+//-       option(value='59') 3b
+//-       option(value='60') 3c
+//-       option(value='61') 3d
+//-       option(value='62') 3e
+//-       option(value='63') 3f
 
-script(id='taskdeviceport', type='text/x-template')
-  +frm_input('Port:', 'taskdeviceport', 'data.taskdeviceport' )
+//- script(id='taskdeviceport', type='text/x-template')
+//-   +frm_input('Port:', 'taskdeviceport', 'data.taskdeviceport' )
 
-script(id='plugin_025_gain', type='text/x-template')
-  +label Gain:
-    select.form-control( name="plugin_025_gain" )
-      option(value="0") 2/3x gain 6.144V 0.1875mV
-      option(value="2") 1x gain 4.096V 0.125mV
-      option(value="4") 2x gain 2.048V 0.0625mV
-      option(value="6") 4x gain 1.024V 0.03125mV
-      option(value="8") 8x gain 0.512V 0.015625mV
-      option(value="10") 16x gain 0.256V 0.0078125V
+//- script(id='plugin_025_gain', type='text/x-template')
+//-   +label Gain:
+//-     select.form-control( name="plugin_025_gain" )
+//-       option(value="0") 2/3x gain 6.144V 0.1875mV
+//-       option(value="2") 1x gain 4.096V 0.125mV
+//-       option(value="4") 2x gain 2.048V 0.0625mV
+//-       option(value="6") 4x gain 1.024V 0.03125mV
+//-       option(value="8") 8x gain 0.512V 0.015625mV
+//-       option(value="10") 16x gain 0.256V 0.0078125V
 
-script(id='plugin_005_dhttype', type='text/x-template')
-  +label DHT Type:
-    select.form-control(name="plugin_005_dhttype")
-      option(value='11') DHT 11
-      option(value='22') DHT 22
+//- script(id='plugin_005_dhttype', type='text/x-template')
+//-   +label DHT Type:
+//-     select.form-control(name="plugin_005_dhttype")
+//-       option(value='11') DHT 11
+//-       option(value='22') DHT 22
 
-script(id='taskdevicevaluename', type='text/x-template')
-  +frm_input('Value Name {{i}}:', 'taskdevicevaluename{{i}}', 'data.taskdevicevaluename{{i}}' )
+//- script(id='taskdevicevaluename', type='text/x-template')
+//-   +frm_input('Value Name {{i}}:', 'taskdevicevaluename{{i}}', 'data.taskdevicevaluename{{i}}' )
 
-script(id='taskdeviceformula', type='text/x-template')
-  +frm_input('Formula {{i}}:', 'taskdeviceformula{{i}}', 'data.taskdeviceformula{{i}}' )
+//- script(id='taskdeviceformula', type='text/x-template')
+//-   +frm_input('Formula {{i}}:', 'taskdeviceformula{{i}}', 'data.taskdeviceformula{{i}}' )
 
-script(id='taskdevicepin', type='text/x-template')
-  +label {{i}}st GPIO:
-    select.form-control(name="taskdevicepin{{i}}")
-      for gpio, i in gpios
-        option(value=gpio)= labels[i]
+//- script(id='taskdevicepin', type='text/x-template')
+//-   +label {{i}}st GPIO:
+//-     select.form-control(name="taskdevicepin{{i}}")
+//-       for gpio, i in gpios
+//-         option(value=gpio)= labels[i]
 
-script(id='taskdeviceid', type='text/x-template')
-  +frm_input('IDX / Var:', 'taskdeviceid', 'data.taskdeviceid' )
+//- script(id='taskdeviceid', type='text/x-template')
+//-   +frm_input('IDX / Var:', 'taskdeviceid', 'data.taskdeviceid' )
 
-script(id='taskdevicetimer', type='text/x-template')
-  +frm_input('Delay', 'taskdevicetimer', 'data.taskdevicetimer' )
+//- script(id='taskdevicetimer', type='text/x-template')
+//-   +frm_input('Delay', 'taskdevicetimer', 'data.taskdevicetimer' )
 
-script(id='taskdevicename', type='text/x-template')
-  +frm_input('Name', 'taskdevicename', 'data.taskdevicename' )
+//- script(id='taskdevicename', type='text/x-template')
+//-   +frm_input('Name', 'taskdevicename', 'data.taskdevicename' )
