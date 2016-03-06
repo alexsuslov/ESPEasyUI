@@ -128,12 +128,7 @@ App.Router = Backbone.Router.extend
     model.set id:id
     @showPage 'device', (fn)=>
       model.on 'sync', -> fn()
-
-      if App.tasks?.ready
-        model.fetch()
-      else
-        App.tasks.on 'ready', =>
-          model.fetch()
+      model.fetch()
 
 
   tools:()->
@@ -167,27 +162,27 @@ opt =
     # @todo: create try / catch
     json = JSON.parse(jqXHR.response)
     # tasks list
-    tasks = json.Tasks.map (task)->
-      # convert list to object
-      Task =
-        Number: task[0]
-        Type: task[1]
-        VType: task[2]
-        Ports: task[3]
-        PullUpOption: task[4]
-        InverseLogicOption: task[5]
-        FormulaOption: task[6]
-        ValueCount: task[7]
-        Custom: task[8]
-        SendDataOption: task[9]
-        GlobalSyncOption: task[10]
-        TimerOption: task[11]
-        Name: task[12]
-    # create tasks collection
-    App.tasks.add tasks
+    # tasks = json.Tasks.map (task)->
+    #   # convert list to object
+    #   Task =
+    #     Number: task[0]
+    #     Type: task[1]
+    #     VType: task[2]
+    #     Ports: task[3]
+    #     PullUpOption: task[4]
+    #     InverseLogicOption: task[5]
+    #     FormulaOption: task[6]
+    #     ValueCount: task[7]
+    #     Custom: task[8]
+    #     SendDataOption: task[9]
+    #     GlobalSyncOption: task[10]
+    #     TimerOption: task[11]
+    #     Name: task[12]
+    # # create tasks collection
+    # App.tasks.add tasks
 
-    App.tasks.ready = true
-    App.tasks.trigger 'ready'
+    # App.tasks.ready = true
+    # App.tasks.trigger 'ready'
     # protocols
     # use add function (App.protocols not empty)
     json.Protocols.forEach (protocol)->

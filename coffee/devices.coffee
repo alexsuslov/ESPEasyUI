@@ -75,16 +75,17 @@ Views.Device = Views.Main.extend
     'submit form': 'submit'
     'change [name="taskdevicenumber"]': 'taskdevicenumber'
 
-  taskdevicenumber:(e)->
-    e.preventDefault()
-    @model.data = @deSerialize [
-      {name:'taskdevicenumber', value:$(e.currentTarget).val()}
-      {name:'edit', value:"1"}
-    ]
-    @model.trigger 'save'
-    false
+  # taskdevicenumber:(e)->
+  #   e.preventDefault()
+  #   @model.data = @deSerialize [
+  #     {name:'taskdevicenumber', value:$(e.currentTarget).val()}
+  #     {name:'edit', value:"1"}
+  #   ]
+  #   @model.trigger 'save'
+  #   false
 
   getTemplate:(fn)->
+    console.log 'getTemplate'
     $.ajax
       url:apiPrefix + "?q=10&index=" + @model.get 'id'
       complete:(jqXHR)->
@@ -93,8 +94,9 @@ Views.Device = Views.Main.extend
     @
 
   onRendered: ->
-    App.tasks.toJSON().forEach (task)=>
-      @$el.find('select.tasks').append @templateOption o:task
+    console.log 'onRendered'
+    # App.tasks.toJSON().forEach (task)=>
+    #   @$el.find('select.tasks').append @templateOption o:task
     @getTemplate (template)=>
       tpl = _.template template
       $('.deviceForm').append tpl data: @model.toJSON()
