@@ -3,7 +3,6 @@
  * @author AlexSuslov<suslov@me.com>
  * @created 2016-02-18
 ###
-'use strict'
 
 ###
   ____      _ _           _   _

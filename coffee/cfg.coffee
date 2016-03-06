@@ -3,7 +3,7 @@
  * @author AlexSuslov<suslov@me.com>
  * @created 2016-02-22
 ###
-'use strict'
+
 
 ###
  __  __           _      _
@@ -18,18 +18,6 @@
 ###
 Models.Config = Models.Model.extend
   url: apiPrefix + "?q=1"
-  initialize:->
-    @on 'error', (model, jqXHR)-> Backbone.trigger jqXHR.status
-
-    @on 'save', =>
-      @save( {}, type: 'post', data: @data, contentType: false, processData: false,)
-
-    @on 'change:usedns', =>
-      if @get( 'usedns') is '1'
-        @set 'host', @get 'controllerhostname'
-      else
-        @set 'host', @get  'controllerip'
-    @
 
 ###
 __     ___
@@ -51,7 +39,7 @@ Views.Config = Views.Main.extend
   model     : new Models.Config()
   template  : _.template $('#Config').html()
   templateRow: _.template '<option value="<%= row.Number %>" ><%=row.Name%></option>'
-  templates : []
+
   el        : '.config'
   deSerialize:(arr)->
     arr.map (val)=>
@@ -98,18 +86,13 @@ Views.Config = Views.Main.extend
         return 1
       .forEach (p)=>
         $select.append @templateRow row:p
-    # create list protocol templates
-    @templates = $('[type="text/x-template-protocol"]').sort( (a,b)->
-      return -1 if $(a).attr('p') < $(b).attr('p')
-      1
-      ).map (i,v)-> '#' + v.id
+
     # get #Protocol element
     $el = @$el.find('#Protocol')
     proto =  @model.get( 'protocol')
     # get model
     # console.log   App.protocols.toJSON()
     model = App.protocols.get proto
-    # console.log 'model', model
     # create template func
     template = _.template model.getTemplate()
     # render

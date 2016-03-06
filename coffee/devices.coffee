@@ -3,7 +3,6 @@
  * @author AlexSuslov<suslov@me.com>
  * @created 2016-02-18
 ###
-'use strict'
 
 String.prototype.replaceAll = (search, replace)->
   @split(search).join(replace)
@@ -21,8 +20,7 @@ String.prototype.replaceAll = (search, replace)->
 ###
 Models.Device = Models.Config.extend
   url: ->
-    id = @get 'id'
-    apiPrefix + "?q=4&index=#{id}"
+    apiPrefix + "?q=4&index=" +  @get 'id'
 
 
 ###
@@ -77,16 +75,13 @@ Views.Device = Views.Main.extend
     'submit form': 'submit'
     'change [name="taskdevicenumber"]': 'taskdevicenumber'
 
-
   taskdevicenumber:(e)->
     e.preventDefault()
-
     @model.data = @deSerialize [
       {name:'taskdevicenumber', value:$(e.currentTarget).val()}
       {name:'edit', value:"1"}
     ]
     @model.trigger 'save'
-
     false
 
   getTemplate:(fn)->

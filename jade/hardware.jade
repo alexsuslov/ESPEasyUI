@@ -1,8 +1,8 @@
-script(id="menu", type="text/x-template")
+script(id="menu", type="text/xtpl")
   include lib/nav
 
 
-script(id="row", type="text/x-template")
+script(id="row", type="text/xtpl")
   li.list-group-item
     span.badge {{data.rssi}}
     a(href='#/{{data.ssid}}') {{data.ssid}}

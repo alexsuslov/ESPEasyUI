@@ -3,8 +3,6 @@
  * @author AlexSuslov<suslov@me.com>
  * @created 2016-02-18
 ###
-'use strict'
-
 
 ###
  __  __           _      _
@@ -30,6 +28,7 @@ Protocol = Backbone.Model.extend
   Account: $('#ProtocolAccount').html()
   Password: $('#ProtocolPassword').html()
   idAttribute: "Number"
+
   getTemplate: ->
     unless @get('clean')
       [

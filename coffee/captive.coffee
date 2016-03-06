@@ -1,5 +1,5 @@
 # first start
-'use strict'
+
 $ ->
   # api = 'http://10.0.1.32/api/wifiscanner'
   # config_api = 'http://10.0.1.32/api/wifiscanner'

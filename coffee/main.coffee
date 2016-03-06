@@ -3,7 +3,6 @@
  * @author AlexSuslov<suslov@me.com>
  * @created 2016-02-18
 ###
-'use strict'
 
 App =
   Views : {}
@@ -32,6 +31,14 @@ Models.Model = Backbone.Model.extend
     @on 'save', =>
       @save( {}, type: 'post', data: @data, contentType: false, processData: false,)
       @
+
+    @on 'change:usedns', =>
+      if @get( 'usedns') is '1'
+        @set 'host', @get 'controllerhostname'
+      else
+        @set 'host', @get  'controllerip'
+
+    @onInit() if @onInit
     @
 
 ###*
@@ -39,14 +46,8 @@ Models.Model = Backbone.Model.extend
 ###
 Models.Main = Models.Model.extend
   url: apiPrefix + '?q=0'
-  initialize:->
-    @on 'error', (model, jqXHR)-> Backbone.trigger jqXHR.status
-
-    @on 'change:Chip_id', ->
-      Backbone.trigger 'unLocked'
-
-    @on 'save', =>
-      @save( {}, type: 'post', data: @data, contentType: false, processData: false,)
+  onInit:->
+    @on 'change:Chip_id', -> Backbone.trigger 'unLocked'
     @
 
 ###*
@@ -99,7 +100,7 @@ Views.Main = Backbone.View.extend
   template: _.template $('#Main').html()
   model:App.model
   el:'.main'
-  ipInputs: []
+
   initialize:->
     if @model
       @model.on 'sync', =>
@@ -136,9 +137,9 @@ Views.Main = Backbone.View.extend
       @$el.find('input[type="checkbox"]').forEach (s)=>
         name = $(s).attr('name')
         val = @model.get name unless name is undefined
-        if val is "1"
-          $(s).attr 'checked', 'checked'
+        $(s).attr 'checked', 'checked' if val is "1"
     @
+
   select: ->
     if @model
       @$el.find('select').forEach (s)=>
@@ -149,24 +150,13 @@ Views.Main = Backbone.View.extend
           @$el.find("select[name='#{name}'] option[value='#{val}']").attr("selected", "selected")
     @
 
-  ip: ->
-    # if @model
-    #   @ipInputs = []
-    #   @$el.find('input.ip').forEach (s)=>
-    #     @ipInputs.push
-    #     $el= $(s)
-    #     @ipInputs.push $el.attr('name')
-    #     $el.val $el.val().replace( /,/g,'.')
-    @
-
   render: ->
-
     @$el.html(@template( if @model then data:@model.toJSON() else {data:{}} )) if @template
     @onRendered() if @onRendered
     @select()
-    # @ip()
     @checkbox()
     @
+
   onRendered: ->
     @
 
@@ -204,11 +194,12 @@ Views.Hardware = Views.Main.extend
 Views.Collection = Backbone.View.extend
   tBody: '.list'
 
-  serializeData: (data)->
-    data
+  serializeData: (data)-> data
+
   initialize  :->
     @collection.on 'update', => @render()
     @
+
   render      :->
     if @template and @$el
       @$el.html @template()
@@ -238,7 +229,6 @@ Views.Wifi = Views.Collection.extend
   tBody         : '#wifi-list'
   collection    : new Collections.Wifi()
   el            : '.wifi'
-
 
 ###*
  * [Tools view]
