@@ -127,9 +127,9 @@ App.Router = Backbone.Router.extend
     model = @Forms.device.model
     model.set id:id
     @showPage 'device', (fn)=>
-      model.on 'sync', -> fn()
+      @Forms.device.on 'template', -> fn()
       model.fetch()
-
+    @
 
   tools:()->
     @showPage 'tools'

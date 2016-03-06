@@ -85,19 +85,18 @@ Views.Device = Views.Main.extend
     false
 
   getTemplate:(fn)->
-    console.log 'getTemplate'
     $.ajax
       url:apiPrefix + "?q=10&index=" + @model.get 'id'
-      complete:(jqXHR)->
+      complete:(jqXHR)=>
         json =  JSON.parse jqXHR.response
+        @trigger 'template'
         fn json.template if fn
     @
 
   onRendered: ->
-    console.log 'onRendered'
-    # App.tasks.toJSON().forEach (task)=>
-    #   @$el.find('select.tasks').append @templateOption o:task
+    console.log 'on render'
     @getTemplate (template)=>
       tpl = _.template template
+      console.log $('.deviceForm')
       $('.deviceForm').append tpl data: @model.toJSON()
     @
