@@ -60,7 +60,9 @@ Views.Devices = Views.Collection.extend
   el          : '.devices'
   serializeData: (data)->
     data.row.value = data.row.Tasks.map (task)->
-      "#{task.Name}: #{task.Number}"
+      "#{task.TaskDeviceValueName}: #{task.TaskDeviceValue}"
+
+    data.row.value = data.row.value.join('<br>')
     data
 
 ###*
