@@ -6,8 +6,28 @@ var uglify = require('gulp-uglify');
 var clean = require('gulp-clean');
 var watch = require('gulp-watch');
 var webserver = require('gulp-webserver');
+var postcss = require('gulp-postcss');
 
-gulp.task('default', ['watch', 'webserver']);
+
+var processors = [
+  require('autoprefixer'),
+  require('cssnext'),
+  require('precss'),
+
+  require('cssnano')({
+    calc: {precision: 2},
+    discardComments: {removeAll: true}
+  })
+];
+
+gulp.task('css', function () {
+  return gulp.src('css/style.css')
+    .pipe(postcss(processors))
+    .pipe(gulp.dest('.tmp/css/'));
+});
+
+
+gulp.task('default', ['css', 'watch', 'webserver']);
 
 gulp.task('coffee', function() {
   return gulp.src('./coffee/*.coffee')
@@ -43,6 +63,7 @@ gulp.task('clean', function () {
 gulp.task('watch', function () {
   gulp.watch('coffee/**/*.coffee', ['coffee'])
   // gulp.watch('.tmp/js/**/*.js', ['compress'])
+  gulp.watch(['css/**/*.css'], ['css']);
   gulp.watch(['jade/**/*.jade','.tmp/js/*.js'], ['jade']);
 });
 

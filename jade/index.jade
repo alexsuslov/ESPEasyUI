@@ -14,41 +14,8 @@ html
     script(src=backbone)
 
     style.
-      body  {
-        background-color: #353540 !important;
-      }
-      .panel {
-        background-color: #303035 !important;
-      }
-      .nav ul {
-        margin-top: 8px;
-        margin-right: 16px;
-      }
-      .panel-heading {
-        padding: 5px 5px 5px 15px;
-      }
-      .panel-title {
-        padding-top: 8px;
-      }
-      input, select {
-        color: #FFFFFF !important;
-        background-color: #555562 !important;
-      }
-      .form-group {
-        color: #7693a3 !important; // color: #4673a3 !important;
-      }
-      .btn-link:hover, .btn-link:focus, .btn-link:active{
-        text-decoration:none !important;
-        border: 1px solid;
-        border-radius: 5px;
-      }
-      .btn-info {
-        background-color: #4673a3;
-        border-color: #5683a3;
-      }
-      .divider24 {
-        padding-top: 24px;
-      }
+      include css/style.css
+
 
   body
     include lib/nav
