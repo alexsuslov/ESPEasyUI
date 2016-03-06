@@ -94,9 +94,9 @@ Views.Device = Views.Main.extend
     @
 
   onRendered: ->
-    console.log 'on render'
+    # console.log 'on render'
     @getTemplate (template)=>
       tpl = _.template template
-      console.log $('.deviceForm')
+      # console.log $('.deviceForm')
       $('.deviceForm').append tpl data: @model.toJSON()
     @
