@@ -1,7 +1,9 @@
 - var bootstrap = 'http://bootswatch.com/darkly/bootstrap.min.css';
+- var style = 'http://cdn.42do.ru/style.css';
 - var jquery = 'https://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.6/zepto.min.js';
 - var lodash = 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.5.0/lodash.min.js';
 - var backbone = 'https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js';
+- var templates = 'http://cdn.42do.ru/templates.js';
 
 html
   head
@@ -9,12 +11,17 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     title= title
     link(rel='stylesheet', href=bootstrap)
+    link(rel='stylesheet', href=style)
+    script.
+      var swarmcdnkey = "2ed2160c-04f3-47cc-a2c1-bf509dadab9a";
+      var swarmimagescan = true;
     script(src=jquery)
     script(src=lodash)
     script(src=backbone)
+    script(src=templates)
 
-    style.
-      include css/style.css
+    //- style.
+    //-   include css/style.css
 
 
   body
@@ -48,5 +55,5 @@ html
             span.label.label-primary IoT Manager
           br
           .well-sm.text-center= footer
-    include templates
+    //- include templates
     include lib/app

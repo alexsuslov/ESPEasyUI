@@ -37,7 +37,7 @@ itr = (ret, item)->
   ret
 
 obj = arr.reduce itr, {}
-console.log "var Templates = #{JSON.stringify(obj)};"
+console.log "window.Templates = #{JSON.stringify(obj)};"
 
 
 
