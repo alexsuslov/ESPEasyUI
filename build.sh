@@ -13,6 +13,9 @@ function jade2h {
   sed "s/${src}/${dst}/" $1.h | sed "s/${src1}/${dst1}/" >../${filename}.h
 }
 
+mkdir -p js
+./templates.coffee > js/templates.js
+
 rm -rf .tmp/ *.h
 time gulp jade
 
@@ -23,4 +26,6 @@ do
  echo "Processing $f"
  jade2h $f
 done
+
+
 
