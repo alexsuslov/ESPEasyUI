@@ -1,8 +1,10 @@
+#!/usr/bin/env coffee
 ###
 Generate js object from html templates
 ###
 jade = require('jade')
 _ = require 'lodash'
+
 YOUR_LOCALS =
   title:'ESP Easy'
   footer: "Powered by IoT Manager team"
@@ -35,7 +37,7 @@ itr = (ret, item)->
   ret
 
 obj = arr.reduce itr, {}
-console.log "<script>#{JSON.stringify(obj)}</script>"
+console.log "var Templates = #{JSON.stringify(obj)};"
 
 
 
